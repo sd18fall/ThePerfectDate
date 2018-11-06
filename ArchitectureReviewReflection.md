@@ -10,7 +10,7 @@ One area where we received a ton of valuable ideas and feedback was how to make 
 2. **Adding random chance:** this makes the game more attractive because users can play it multiple times without achieving the same result. They can also be surprised in multiple ways.
 3. **Adding an inventory:** allows the player to see artifacts they have already seen and allows us to remove the artifacts from rooms after they have seen them, narrowing their choices for things to investigate and pushing the plot forward
 4. **Adding a map:** makes the game and locations more visual, connecting the player to the world we have created more
-5. Having all past actions matter instead of just the most recent decision: makes the game more personalized and more fun to replay
+5. **Having all past actions matter instead of just the most recent decision:** makes the game more personalized and more fun to replay
    -This will be a little hard to do from a plot perspective because it would introduce many different plot lines 
 
 
