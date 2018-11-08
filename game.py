@@ -1,3 +1,16 @@
+"""
+MetaGame
+An interactive video game!
+
+Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
+"""
+import pygame
+
+pygame.init()
+win = pygame.display.set_mode((800,800))
+win.fill((43, 226, 229))
+
+
 class TextBox():
     """needs to accept dimensions, color, text, location """
 
