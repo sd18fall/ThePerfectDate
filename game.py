@@ -43,12 +43,24 @@ class Button(TextBox):
     """Child to text box,
     on screen and where it leads"""
 
-    def isOver(self, pos):
+    def isOver(self,pos):
         #Pos is the mouse position or a tuple of (x,y) coordinates
-        if pos[0] > self.x and pos[0] < self.x + self.width:
-            if pos[1] > self.y and pos[1] < self.y + self.height:
-                return True
-        return False
+            if pos[0] > self.x and pos[0] < self.x + self.width:
+                if pos[1] > self.y and pos[1] < self.y + self.height:
+                    #print('WOW')
+                    return True
+            return False
+
+    def isClick(self):
+        for event in pygame.event.get():
+            pos = pygame.mouse.get_pos()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                print('CLICK')
+                if self.isOver(pos):
+                    print('OVER')
+                    return True
+        else:
+            return False
 
 class State():
     """stores all the information of what has already happened"""
@@ -74,7 +86,7 @@ class Artifact():
         self.description = description
         self.picture = picture
 
-class Screen():
+#class Screen():
 
 # def screengenerator(i=0):
 #     """
@@ -97,39 +109,48 @@ class Screen():
 #         incrementx += 150
 #     return buttonlist
 
-def display(dictkey):
-    """clears last display and puts up what should currently be on the screen"""
-    win.fill((43, 226, 229))
+# def display(dictkey):
+#     """clears last display and puts up what should currently be on the screen"""
+#     win.fill((43, 226, 229))
+#
+#     newScreen = ItemDictionary(dictkey)
+#         for item in newScreen:
+#             button()
 
-    newScreen = ItemDictionary(dictkey)
-        for item in newScreen:
-            button()
 
 
-        question = qlist[i].message
-        questionbutton = button((184, 231, 242),225,150,150, 75, question)
-        questionbutton.draw(win, (0,0,0))
 
-        buttonlist = []
-        incrementx = 0
-        for choice in qlist[i].choices:
-            b = button((184, 231, 242), 100 + incrementx, 300, 100, 75, choice)
-            buttonlist.append(b)
-            b.draw(win, (0,0,0))
-            incrementx += 150
-        return buttonlist
 
-ItemDictionary = {'a' : 'b', 'b': 'a'}
+
+        # question = qlist[i].message
+        # questionbutton = button((184, 231, 242),225,150,150, 75, question)
+        # questionbutton.draw(win, (0,0,0))
+        #
+        # buttonlist = []
+        # incrementx = 0
+        # for choice in qlist[i].choices:
+        #     b = button((184, 231, 242), 100 + incrementx, 300, 100, 75, choice)
+        #     buttonlist.append(b)
+        #     b.draw(win, (0,0,0))
+        #     incrementx += 150
+        # return buttonlist
+
+
+a = Button((255,255,255),100,100,250,250, text='I am a, I go to b')
+b = Button((255,255,255),100,100,250,250, text='i AM B I GO TO A')
+ItemDictionary = {a : b, b: a}
 
 win.fill((0,0,0))
 
 while True:
     pygame.display.update()
-
-    TextBox((255,255,255),100,100,250,250, text='Hello Friends').draw(win,(0,0,0))
-
     for event in pygame.event.get():
-        pos = pygame.mouse.get_pos()
+
+        a.draw(win,(0,0,0))
+        if a.isClick() == True:
+            print('draw')
+            b.draw(win,(0,0,0))
+
 
         if event.type == pygame.QUIT:
             run = False
