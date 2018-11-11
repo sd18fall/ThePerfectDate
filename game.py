@@ -6,25 +6,37 @@ game!
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
-
 pygame.init()
-win = pygame.display.set_mode((800,600))
-win.fill((43, 226, 229))
+
+
+#Setting the standars sizes for the text boxes and buttons
+width = 800
+height = 600
+buttonWidth = 200
+buttonHeight = 100
+buttonY = 400
+textBoxWidth = 400
+textBoxHeight = 200
+textBoxY = 100
+textBoxX = (width - textBoxWidth)/2
+win = pygame.display.set_mode((width,height))
+
 
 
 class TextBox():
     """needs to accept dimensions, color, text, location """
 
-    def __init__(self, color, x,y,width,height, text=''):
+    def __init__(self, color, x=textBoxX,y=textBoxY,width=textBoxWidth,height = textBoxHeight, text='', exist = False):
         self.color = color
         self.x = x
         self.y = y
         self.width = width
         self.height = height
         self.text = text
+        self.exist = exist
 
     def draw(self,win,outline=None):
-        #Call this method to draw the button on the screen
+        #Call tButtonshis method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
 
@@ -36,6 +48,9 @@ class TextBox():
             text = font.render(self.text, 1, (0,0,0))
             win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
 
+    def __str__(self):
+        return self.text
+
     def __repr__(self):
         return self.text
 
@@ -43,24 +58,30 @@ class Button(TextBox):
     """Child to text box,
     on screen and where it leads"""
 
+    def __init__(self, color, x=0,y=buttonY,width=buttonWidth,height=buttonHeight, text='', exist = False):
+        # super().__init__(color, x)
+        self.color = color
+        self.y = buttonY
+        self.width = buttonWidth
+        self.height = buttonHeight
+        self.exist = exist
+        self.text = text
+
     def isOver(self,pos):
         #Pos is the mouse position or a tuple of (x,y) coordinates
             if pos[0] > self.x and pos[0] < self.x + self.width:
                 if pos[1] > self.y and pos[1] < self.y + self.height:
-                    #print('WOW')
                     return True
             return False
 
-    def isClick(self):
-        for event in pygame.event.get():
-            pos = pygame.mouse.get_pos()
+    def isClick(self,pos):
+        if self.exist:
             if event.type == pygame.MOUSEBUTTONDOWN:
-                print('CLICK')
                 if self.isOver(pos):
-                    print('OVER')
                     return True
-        else:
-            return False
+            else:
+                return False
+
 
 class State():
     """stores all the information of what has already happened"""
@@ -86,103 +107,77 @@ class Artifact():
         self.description = description
         self.picture = picture
 
-#class Screen():
+def Quitting():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+           run = False
+           pygame.quit()
+           quit()
 
-# def screengenerator(i=0):
-#     """
-#     Generates and displays buttons with a question and its corresponding answer choices.
-#     Takes in the index for the desired question from the question list qlist.
-#     Returns a list of the generated button objects for the answer choices.
-#     """
-#     win.fill((43, 226, 229))
-#
-#     question = qlist[i].message
-#     questionbutton = button((184, 231, 242),225,150,150, 75, question)
-#     questionbutton.draw(win, (0,0,0))
-#
-#     buttonlist = []
-#     incrementx = 0
-#     for choice in qlist[i].choices:
-#         b = button((184, 231, 242), 100 + incrementx, 300, 100, 75, choice)
-#         buttonlist.append(b)
-#         b.draw(win, (0,0,0))
-#         incrementx += 150
-#     return buttonlist
+def newScreen(dictkey,oldScreen = []):
+    """clears last display and puts up what should currently be on the screen"""
+    win.fill((0, 0, 0))
+    for item in oldScreen:
+        item.exist = False
+    newItems = ItemDictionary[dictkey]
+    buttonList = []
+    for item in newItems:
+        if type(item) == Button:
+            buttonList.append(item)
+    buttonPlacement(buttonList)
+    for item in newItems:
+        item.draw(win,(0,0,0))
+        item.exist = True
+    return newItems
 
-# def display(dictkey):
-#     """clears last display and puts up what should currently be on the screen"""
-#     win.fill((43, 226, 229))
-#
-#     newScreen = ItemDictionary(dictkey)
-#         for item in newScreen:
-#             button()
+def isAnythingClick(screenButtons):
+    for item in screenButtons:
+        if type(item) == Button:
+            if item.isClick(pos):
+                newButtons = newScreen(item,screenButtons)
+                return newButtons
+            else:
+                return screenButtons
 
+def buttonPlacement(screenButtons):
+    totalSpace = width - buttonWidth*len(screenButtons)
+    space = totalSpace/(len(screenButtons)+1)
 
-
-
-
-
-        # question = qlist[i].message
-        # questionbutton = button((184, 231, 242),225,150,150, 75, question)
-        # questionbutton.draw(win, (0,0,0))
-        #
-        # buttonlist = []
-        # incrementx = 0
-        # for choice in qlist[i].choices:
-        #     b = button((184, 231, 242), 100 + incrementx, 300, 100, 75, choice)
-        #     buttonlist.append(b)
-        #     b.draw(win, (0,0,0))
-        #     incrementx += 150
-        # return buttonlist
+    spacerIndex = space
+    for item in screenButtons:
+        item.x = spacerIndex
+        item.y = buttonY
+        spacerIndex += buttonWidth + space
 
 
-a = Button((255,255,255),100,100,250,250, text='I am a, I go to b')
-b = Button((255,255,255),100,100,250,250, text='i AM B I GO TO A')
-ItemDictionary = {a : b, b: a}
+
+##TESTING newScreen(item,screen)
+
+#a = Button((255,255,255),100,buttonY,buttonWidth,buttonHeight, text='A',exist = False)
+#b = Button((255,255,255),200,buttonY,buttonWidth,buttonHeight, text='B',exist = False)
+a = Button((255,255,255), text='A',exist = False)
+b = Button((255,255,255), text='B',exist = False)
+d = Button((255,255,255), text='D',exist = False)
+c = TextBox((255,255,255), text='C')
+
+ItemDictionary = {a : [b,a,c,d], b: [a]}
 
 win.fill((0,0,0))
 
+newScreen(b)
+oldScreen = [a]
+
 while True:
-    pygame.display.update()
-    for event in pygame.event.get():
-
-        a.draw(win,(0,0,0))
-        if a.isClick() == True:
-            print('draw')
-            b.draw(win,(0,0,0))
-
-
-        if event.type == pygame.QUIT:
-            run = False
-            pygame.quit()
-            quit()
-
-while Middle:
-    buttonlist = buttongenerator(i)
-    pygame.display.update()
-
-    if Dog_list == []:
-        Middle = False
-        SadEnd = True
-
     for event in pygame.event.get():
         pos = pygame.mouse.get_pos()
+        pygame.display.update()
 
-        if event.type == pygame.QUIT:
-            run = False
-            pygame.quit()
+        oldScreen = isAnythingClick(oldScreen)
 
-        #Advances to next question if the user clicks on an answer choice, proceeds to end sequence if finished of if no dogs are applicable
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            for b in buttonlist:
-                if b.isOver(pos):
-                    user_input = b.text
-                    filter_doglist(user_input, Dog_list, qlist[i].name)
-                    if i < len(qlist):
-                        i += 1
-                        if i == len(qlist):
-                            Middle = False
-                            if Dog_list == []:
-                                SadEnd = True
-                            else:
-                                End = True
+
+
+
+
+
+
+##end
