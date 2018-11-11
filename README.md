@@ -26,9 +26,11 @@ This project falls under the MIT Open Source License and any other relevant lice
 ## FAQs:
 
 Question 1: Does this game have multiple endings
+
 Answer: Yes, depending on the options you choose - you may end up with a completely different result!
 
 Question 2: How long is the game?
+
 Answer: It lasts about 5-10minutes depending on the options you choose and how carefully you want to read through the descriptions
 
 ## Acknowledgements
