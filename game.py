@@ -20,6 +20,8 @@ textBoxHeight = 200
 textBoxY = 100
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
+pic = pygame.image.load("Creepy.jpg")
+
 
 
 
@@ -82,6 +84,18 @@ class Button(TextBox):
             else:
                 return False
 
+class BackButton(Button):
+    def __init__(self, color, x=600,y=50,width=150,height=100, text='', exist = False):
+        # super().__init__(color, x)
+        self.color = color
+        self.y = buttonY
+        self.width = buttonWidth
+        self.height = buttonHeight
+        self.exist = exist
+        self.text = text
+
+    pass
+
 
 class State():
     """stores all the information of what has already happened"""
@@ -116,7 +130,7 @@ def Quitting():
 
 def newScreen(dictkey,oldScreen = []):
     """clears last display and puts up what should currently be on the screen"""
-    win.fill((0, 0, 0))
+    win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
     for item in oldScreen:
         item.exist = False
     newItems = ItemDictionary[dictkey]
@@ -153,7 +167,7 @@ def buttonPlacement(screenButtons):
 
 ##TESTING newScreen(item,screen)
 
-#a = Button((255,255,255),100,buttonY,buttonWidth,buttonHeight, text='A',exist = False)
+a = Button((255,255,255),100,buttonY,buttonWidth,buttonHeight, text='A',exist = False)
 #b = Button((255,255,255),200,buttonY,buttonWidth,buttonHeight, text='B',exist = False)
 a = Button((255,255,255), text='A',exist = False)
 b = Button((255,255,255), text='B',exist = False)
@@ -162,12 +176,18 @@ c = TextBox((255,255,255), text='C')
 
 ItemDictionary = {a : [b,a,c,d], b: [a]}
 
-win.fill((0,0,0))
+if type(b) == TextBox:
+    print('yas')
 
 newScreen(b)
 oldScreen = [a]
 
+# win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
+
 while True:
+    # pygame.display.update()
+    # win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
+
     for event in pygame.event.get():
         pos = pygame.mouse.get_pos()
         pygame.display.update()
