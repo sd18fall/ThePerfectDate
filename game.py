@@ -42,19 +42,16 @@ class TextBox():
         self.height = height
         self.text = text
         self.exist = exist
-        self.dimensions = (width,height)
 
-    def textSpacing(self, font = textFont, color=pygame.Color('black')):
+    def textSpacing(self, font = textFont, color=(0,0,0)):
         """
         Method able to adjust the lines of text to fit in text box.
-
-        * Not currently in use
         """
-        print(type(self.text))
         words = [word.split(' ') for word in self.text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
-        max_width, max_height = self.dimensions
-        x, y = self.x+10,self.y+10
+        pos = self.x + space ,self.y + space
+        max_width, max_height = self.width+self.x,self.height+self.y
+        x, y = pos
         for line in words:
             for word in line:
                 word_surface = font.render(word, 0, color)
@@ -62,7 +59,7 @@ class TextBox():
                 if x + word_width >= max_width:
                     x = pos[0]  # Reset the x.
                     y += word_height  # Start on new row.
-                self.blit(word_surface, (x, y))
+                win.blit(word_surface,(x, y))
                 x += word_width + space
             x = pos[0]  # Reset the x.
             y += word_height  # Start on new row.
@@ -74,14 +71,14 @@ class TextBox():
 
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
 
-        if self.text != '':
-            #Set font and size of button text, display centered
-            font = textFont
-            text = font.render(self.text, 1, (0,0,0))
-            win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-
         # if self.text != '':
-        #     self.textSpacing(self)
+        #     #Set font and size of button text, display centered
+        #     font = textFont
+        #     text = font.render(self.text, 1, (0,0,0))
+        #     win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
+
+        if self.text != '':
+            self.textSpacing()
 
 
 
@@ -247,38 +244,42 @@ def buttonPlacement(screenButtons):
 """
 Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
 """
-StartDescription = TextBox((255,255,255), text='You wake up and are confused')
-Start = Button((255,255,255), text='Get up from the bed')
+StartDescription = TextBox((255,255,255), text='You wake up in a bathroom and are confused. You do not know where you are')
+Start = Button((255,255,255))
 StartBack = BackButton((255,255,255), text='Back to Start')
 
-BedroomDescription = TextBox((255,255,255), text='The room is messy and smells funky')
-Bedroom = Button((255,255,255), text='Explore Bedroom')
+BedroomDescription = TextBox((255,255,255), text='The room is messy and the lights are dim. Did something move in the corner')
+Bedroom = Button((255,255,255), text='Go towards the bedroom')
 
-Diary = Button((255,255,255), text='Open up her Diary')
-DiaryDescription = TextBox((255,255,255), text='The diary appears to be locked')
-DiaryBack = BackButton((255,255,255), text='Go Back')
+Diary = Button((255,255,255), text='Open up her diary')
+DiaryDescription = TextBox((255,255,255), text='The diary appears to be locked, but it feels nice to hold')
+DiaryBack = BackButton((255,255,255), text='Go back to exploring the bedroom')
 
-Pillow = Button((255,255,255), text='Scream into pillow')
+Pillow = Button((255,255,255), text='Scream into the pillow on the bed')
 PillowDescription = TextBox((255,255,255), text='The pillow is old and flat')
-PillowBack = BackButton((255,255,255), text='Go Back')
+PillowBack = BackButton((255,255,255), text='Go back to exploring the bedroom')
 
-Kitchen = Button((255,255,255), text='Explore Kitchen')
-KitchenDescription = TextBox((255,255,255), text='The kitchen smells weird')
+Kitchen = Button((255,255,255), text='Go towards the weird smelling kitchen')
+KitchenDescription = TextBox((255,255,255), text='The kitchen smells weird, just like you expected. There are dirty dishes everywhere')
 
-Fork = Button((255,255,255), text='Fork as a weapon')
-ForkDescription = TextBox((255,255,255), text='The fork is oddly sharp')
-ForkBack = BackButton((255,255,255), text='Go Back')
+Fork = Button((255,255,255), text='Use a fork as a weapon')
+ForkDescription = TextBox((255,255,255), text='The fork is oddly sharp and you stare at your reflection. You hold it close to your face and then slowly put it back down')
+ForkBack = BackButton((255,255,255), text='Go back to exploring the kitchen')
 
-Fridge = Button((255,255,255), text='Put head in fridge')
-FridgeDescription = TextBox((255,255,255), text='There is mold everywhere')
-FridgeBack = BackButton((255,255,255), text='Go Back')
+Fridge = Button((255,255,255), text='Put head in fridge, look around')
+FridgeDescription = TextBox((255,255,255), text='There is mold everywhere. Uh oh you touched some mold')
+FridgeBack = BackButton((255,255,255), text='Go back to exploring the kitchen')
 
+
+StartRoom = [StartDescription, Bedroom, Kitchen]
+KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
+BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
 
 """
 Screens is our initial dictionary with key and buttons/ textboxes as the values
 """
 
-Screens = {Start : [StartDescription, Bedroom, Kitchen], Bedroom : [StartBack, BedroomDescription,Pillow,Diary], Kitchen : [StartBack, KitchenDescription,Fork,Fridge],Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : [StartDescription, Bedroom, Kitchen], ForkBack : [Fridge,Fork,StartBack,KitchenDescription],FridgeBack : [Fridge,Fork,StartBack, KitchenDescription], DiaryBack: [Pillow,Diary,StartBack,BedroomDescription],PillowBack: [Pillow,Diary,StartBack, BedroomDescription]}
+Screens = {Start : StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 
 
 
@@ -287,7 +288,9 @@ if __name__ == '__main__':
 ##    FOR TESTING PURPOSES
 #     newScreen(item,screen)
 #
-#     a = Button((255,255,255), text='A')
+    # a = TextBox((255,255,255), text='AAAAAAAA AAAAAAA AAAAAAAA AAAAAA')
+
+
 #     b = Button((255,255,255), text='B')
 #     d = Button((255,255,255), text='D')
 #     c = Button((255,255,255), text='C')
@@ -300,7 +303,6 @@ if __name__ == '__main__':
 
     newScreen(Start, Screens)
     oldScreen = Screens[Start]
-
     while True:
         pygame.display.update()
 
@@ -308,7 +310,9 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
+
             Quitting()
+
             oldScreen = isAnythingClick(oldScreen,Screens)
 
 
@@ -317,4 +321,4 @@ if __name__ == '__main__':
 
 
 
-#     ##end
+##end
