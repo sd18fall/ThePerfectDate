@@ -6,6 +6,8 @@ game!
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
+from Data_Storage import*
+
 pygame.init()
 
 
@@ -164,6 +166,8 @@ def buttonPlacement(screenButtons):
         spacerIndex += buttonWidth + space
 
 
+
+if __name__ == '__main__':
 
 ##TESTING newScreen(item,screen)
 
