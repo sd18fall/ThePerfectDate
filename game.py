@@ -11,6 +11,7 @@ from Data_Storage import*
 pygame.init()
 
 
+
 #Setting the standars sizes for the text boxes and buttons
 width = 800
 height = 600
@@ -90,13 +91,13 @@ class BackButton(Button):
     def __init__(self, color, x=600,y=50,width=150,height=100, text='', exist = False):
         # super().__init__(color, x)
         self.color = color
-        self.y = buttonY
-        self.width = buttonWidth
-        self.height = buttonHeight
+        self.y = y
+        self.x = x
+        self.width = width
+        self.height = height
         self.exist = exist
         self.text = text
 
-    pass
 
 
 class State():
@@ -108,6 +109,7 @@ class State():
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
+
 
 class Room():
     """needs to accept name, picture, artifacts"""
@@ -135,7 +137,7 @@ def newScreen(dictkey,oldScreen = []):
     win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
     for item in oldScreen:
         item.exist = False
-    newItems = ItemDictionary[dictkey]
+    newItems = Screens[dictkey]
     buttonList = []
     for item in newItems:
         if type(item) == Button:
@@ -166,37 +168,68 @@ def buttonPlacement(screenButtons):
         spacerIndex += buttonWidth + space
 
 
+StartDescription = TextBox((255,255,255), text='You wake up and are confused')
+Start = Button((255,255,255), text='Get up from the bed',exist = False)
+StartBack = BackButton((255,255,255), text='Go Back to Start',exist = False)
+
+
+BedroomDescription = TextBox((255,255,255), text='The room is very messy and smells funky')
+Bedroom = Button((255,255,255), text='Explore the room')
+
+Diary = Button((255,255,255), text='Open up her Diary',exist = False)
+DiaryDescription = TextBox((255,255,255), text='The diary appears to be locked.')
+DiaryBack = BackButton((255,255,255), text='Diary - Back',exist = False)
+
+Pillow = Button((255,255,255), text='Scream into a pillow',exist = False)
+PillowDescription = TextBox((255,255,255), text='The pillow is old and flat',exist = False)
+PillowBack = BackButton((255,255,255), text='Pillow - Back',exist = False)
+
+Kitchen = Button((255,255,255), text='Kitchen',exist = False)
+KitchenDescription = TextBox((255,255,255), text='The kitchen smells weird',exist = False)
+
+Fork = Button((255,255,255), text='Use the fork as a weapon',exist = False)
+ForkDescription = TextBox((255,255,255), text='The fork is oddly sharp',exist = False)
+ForkBack = BackButton((255,255,255), text='Fork - Back',exist = False)
+
+Fridge = Button((255,255,255), text='Stick your head in the fridge',exist = False)
+FridgeDescription = TextBox((255,255,255), text='There is mold everywhere',exist = False)
+FridgeBack = BackButton((255,255,255), text='Fridge - Back',exist = False)
+
+
+
+Screens = {Start : [StartDescription, Bedroom, Kitchen], Bedroom : [StartBack, BedroomDescription,Pillow,Diary], Kitchen : [StartBack, KitchenDescription,Fork,Fridge],Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : [Kitchen,Bedroom], ForkBack : [Fridge,Fork,StartBack],FridgeBack : [Fridge,Fork,StartBack], DiaryBack: [Pillow,Diary,StartBack],PillowBack: [Pillow,Diary,StartBack]}
+
+
 
 if __name__ == '__main__':
 
 ##TESTING newScreen(item,screen)
+    #
+    # a = Button((255,255,255),100,buttonY,buttonWidth,buttonHeight, text='A',exist = False)
+    # #b = Button((255,255,255),200,buttonY,buttonWidth,buttonHeight, text='B',exist = False)
+    # a = Button((255,255,255), text='A',exist = False)
+    # b = Button((255,255,255), text='B',exist = False)
+    # d = Button((255,255,255), text='D',exist = False)
+    # c = TextBox((255,255,255), text='C')
+    #
+    # ItemDictionary = {a : [b,a,c,d], b: [a]}
+    #
+    #
+    # newScreen(b)
+    # oldScreen = [a]
 
-a = Button((255,255,255),100,buttonY,buttonWidth,buttonHeight, text='A',exist = False)
-#b = Button((255,255,255),200,buttonY,buttonWidth,buttonHeight, text='B',exist = False)
-a = Button((255,255,255), text='A',exist = False)
-b = Button((255,255,255), text='B',exist = False)
-d = Button((255,255,255), text='D',exist = False)
-c = TextBox((255,255,255), text='C')
-
-ItemDictionary = {a : [b,a,c,d], b: [a]}
-
-if type(b) == TextBox:
-    print('yas')
-
-newScreen(b)
-oldScreen = [a]
-
-# win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
-
-while True:
-    # pygame.display.update()
     # win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
-
-    for event in pygame.event.get():
-        pos = pygame.mouse.get_pos()
+    newScreen(Start)
+    oldScreen = Screens[Start]
+    while True:
         pygame.display.update()
+        # win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
 
-        oldScreen = isAnythingClick(oldScreen)
+        for event in pygame.event.get():
+            pos = pygame.mouse.get_pos()
+            pygame.display.update()
+
+            oldScreen = isAnythingClick(oldScreen)
 
 
 
@@ -204,4 +237,4 @@ while True:
 
 
 
-##end
+    ##end
