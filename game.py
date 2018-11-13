@@ -155,7 +155,7 @@ class State():
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
 
-#map of entire space, and update 
+#map of entire space, and update
 class Room(): #screen? has information about what to do next
     """
     Stores the information for room
