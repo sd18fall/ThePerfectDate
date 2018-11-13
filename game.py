@@ -1,15 +1,15 @@
 """
 MetaGame
-An interactive video game!
+An interactive video game! #name files differently
 
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
 
-pygame.init()
+pygame.init() #add it in the main or write game function that init the pygame
 
 
-
+#doesn't need to be here, create dictionary: default settings - refer to it
 #Setting the standard sizes for the text boxes and buttons
 textFont = pygame.font.SysFont('comicsans', 30)
 width = 800
@@ -27,7 +27,7 @@ pic = pygame.image.load("Creepy.jpg") #the background image for our game - there
 
 
 
-class TextBox():
+class TextBox(): #scatter and gather : what does user need at minimum to display textbox; what is actually mandatory: gather optionals into dictionary and call it: dictionary update method
     """
     This is used to display text on the screen.
     Requires textbox dimensions, color, text, location
@@ -64,7 +64,7 @@ class TextBox():
             x = pos[0]  # Reset the x.
             y += word_height  # Start on new row.
 
-    def draw(self,win,outline=None):
+    def draw(self,win,outline=None): #each button is responsible for drawing itself
         #Call this method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
@@ -82,10 +82,10 @@ class TextBox():
 
 
 
-    def __str__(self):
-        return self.text
+    # def __str__(self):
+    #     return self.text
 
-    def __repr__(self):
+    def __repr__(self): #print textbox with self.text
         return self.text
 
 class Button(TextBox):
@@ -96,7 +96,8 @@ class Button(TextBox):
     """
 
     def __init__(self, color, x=0,y=buttonY,width=buttonWidth,height=buttonHeight, text='', exist = False):
-        # super().__init__(color, x) # we eventually want to use this method instead of writing everything out
+        super().__init__(color, x) # we eventually want to use this method instead of writing everything out
+        # pass all arguments from textbox: color, position
         self.color = color
         self.y = buttonY
         self.width = buttonWidth
@@ -111,10 +112,10 @@ class Button(TextBox):
                     return True
             return False
 
-    def isClick(self,pos):
+    def isClick(self,pos): #controller stuff?
         # Will recognize when the user pushes down on the mouse
         if self.exist:
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
                 if self.isOver(pos):
                     return True
             else:
@@ -129,6 +130,7 @@ class BackButton(Button):
     """
     def __init__(self, color, x=625,y= 25,width=150,height=100, text='', exist = False):
         # super().__init__(color, x)
+        #shouldn't have optional arguments, just call button with fixed position
         self.color = color
         self.y = y
         self.x = x
@@ -153,8 +155,8 @@ class State():
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
 
-
-class Room():
+#map of entire space, and update 
+class Room(): #screen? has information about what to do next
     """
     Stores the information for room
 
@@ -184,7 +186,7 @@ def Quitting():
        pygame.quit()
        quit()
 
-def newScreen(dictkey,dictionary,oldScreen = []):
+def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dictkey and dictionary
     """
     This function clears the last display and
     puts up a new screen after the user selects an option
@@ -240,7 +242,7 @@ def buttonPlacement(screenButtons):
 
 
 
-
+#button color default, what is minimum you need to make story work, need: rooms with text and buttons to other screens
 """
 Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
 """
