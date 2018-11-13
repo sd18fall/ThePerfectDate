@@ -34,12 +34,12 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
     """
 
-    def __init__(self, color, x=textBoxX,y=textBoxY,width=textBoxWidth,height = textBoxHeight, text='', exist = False):
+    def __init__(self, text='', exist = False, color = (255,255,255)):
         self.color = color
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
+        self.x = 200
+        self.y = 125
+        self.width = 400
+        self.height = 200
         self.text = text
         self.exist = exist
 
@@ -95,15 +95,13 @@ class Button(TextBox):
 
     """
 
-    def __init__(self, color, x=0,y=buttonY,width=buttonWidth,height=buttonHeight, text='', exist = False):
-        super().__init__(color, x) # we eventually want to use this method instead of writing everything out
+    def __init__(self,**kw):
+        super(Button,self).__init__(**kw) # we eventually want to use this method instead of writing everything out
         # pass all arguments from textbox: color, position
-        self.color = color
-        self.y = buttonY
-        self.width = buttonWidth
-        self.height = buttonHeight
-        self.exist = exist
-        self.text = text
+        self.y = 400
+        self.x = 0
+        self.width = 200
+        self.height = 100
 
     def isOver(self,pos):
         # Pos is the mouse position or a tuple of (x,y) coordinates
@@ -128,16 +126,15 @@ class BackButton(Button):
     doesn't need positioning
 
     """
-    def __init__(self, color, x=625,y= 25,width=150,height=100, text='', exist = False):
-        # super().__init__(color, x)
+    def __init__(self,**kw):
+        super(BackButton,self).__init__(**kw)#, text, exist, color)
         #shouldn't have optional arguments, just call button with fixed position
-        self.color = color
-        self.y = y
-        self.x = x
-        self.width = width
-        self.height = height
-        self.exist = exist
-        self.text = text
+        self.y = 25
+        self.x = 625
+        self.width = 150
+        self.height = 100
+        # self.exist = exist
+        # self.text = text
 
 
 
@@ -246,31 +243,31 @@ def buttonPlacement(screenButtons):
 """
 Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
 """
-StartDescription = TextBox((255,255,255), text='You wake up in a bathroom and are confused. You do not know where you are')
-Start = Button((255,255,255))
-StartBack = BackButton((255,255,255), text='Back to Start')
+StartDescription = TextBox(text='You wake up in a bathroom and are confused. You do not know where you are')
+Start = Button()
+StartBack = BackButton(text='Back to Start')
 
-BedroomDescription = TextBox((255,255,255), text='The room is messy and the lights are dim. Did something move in the corner')
-Bedroom = Button((255,255,255), text='Go towards the bedroom')
+BedroomDescription = TextBox(text='The room is messy and the lights are dim. Did something move in the corner')
+Bedroom = Button(text='Go towards the bedroom')
 
-Diary = Button((255,255,255), text='Open up her diary')
-DiaryDescription = TextBox((255,255,255), text='The diary appears to be locked, but it feels nice to hold')
-DiaryBack = BackButton((255,255,255), text='Go back to exploring the bedroom')
+Diary = Button(text='Open up her diary')
+DiaryDescription = TextBox(text='The diary appears to be locked, but it feels nice to hold')
+DiaryBack = BackButton(text='Go back to exploring the bedroom')
 
-Pillow = Button((255,255,255), text='Scream into the pillow on the bed')
-PillowDescription = TextBox((255,255,255), text='The pillow is old and flat')
-PillowBack = BackButton((255,255,255), text='Go back to exploring the bedroom')
+Pillow = Button(text='Scream into the pillow on the bed')
+PillowDescription = TextBox(text='The pillow is old and flat')
+PillowBack = BackButton(text='Go back to exploring the bedroom')
 
-Kitchen = Button((255,255,255), text='Go towards the weird smelling kitchen')
-KitchenDescription = TextBox((255,255,255), text='The kitchen smells weird, just like you expected. There are dirty dishes everywhere')
+Kitchen = Button(text='Go towards the weird smelling kitchen')
+KitchenDescription = TextBox(text='The kitchen smells weird, just like you expected. There are dirty dishes everywhere')
 
-Fork = Button((255,255,255), text='Use a fork as a weapon')
-ForkDescription = TextBox((255,255,255), text='The fork is oddly sharp and you stare at your reflection. You hold it close to your face and then slowly put it back down')
-ForkBack = BackButton((255,255,255), text='Go back to exploring the kitchen')
+Fork = Button(text='Use a fork as a weapon')
+ForkDescription = TextBox(text='The fork is oddly sharp and you stare at your reflection. You hold it close to your face and then slowly put it back down')
+ForkBack = BackButton(text='Go back to exploring the kitchen')
 
-Fridge = Button((255,255,255), text='Put head in fridge, look around')
-FridgeDescription = TextBox((255,255,255), text='There is mold everywhere. Uh oh you touched some mold')
-FridgeBack = BackButton((255,255,255), text='Go back to exploring the kitchen')
+Fridge = Button(text='Put head in fridge, look around')
+FridgeDescription = TextBox(text='There is mold everywhere. Uh oh you touched some mold')
+FridgeBack = BackButton(text='Go back to exploring the kitchen')
 
 
 StartRoom = [StartDescription, Bedroom, Kitchen]
@@ -290,19 +287,19 @@ if __name__ == '__main__':
 ##    FOR TESTING PURPOSES
 #     newScreen(item,screen)
 #
-    # a = TextBox((255,255,255), text='AAAAAAAA AAAAAAA AAAAAAAA AAAAAA')
+    # a = TextBox(text='AAAAAAAA AAAAAAA AAAAAAAA AAAAAA')
 
 
-#     b = Button((255,255,255), text='B')
-#     d = Button((255,255,255), text='D')
-#     c = Button((255,255,255), text='C')
+#     b = Button(text='B')
+#     d = Button(text='D')
+#     c = Button(text='C')
 #
 #     ItemDictionary = {a : [b,c], b: [c,d],c : [d,a], d: [a,b]}
 #
 #     newScreen(d,ItemDictionary)
 #     oldScreen = ItemDictionary[d]
 
-
+    # pygame.init()
     newScreen(Start, Screens)
     oldScreen = Screens[Start]
     while True:
