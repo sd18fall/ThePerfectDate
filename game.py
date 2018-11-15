@@ -68,11 +68,11 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                 if x + word_width >= max_width:
                     x = pos[0]  # Reset the x.
                     y += word_height  # Start on new row.
-                if type(self) == ResponseButton:
-                    print('response')
-                    if word_width >= max_width:
-                        print('WOW')
-                        break
+                # if type(self) == ResponseButton:
+                # 
+                #     if word_width >= max_width:
+                #         print('WOW')
+                #         break
                 for letter in word:
                     letter_surface = font.render(letter, 0, color)
                     letter_width, letter_height = letter_surface.get_size()
