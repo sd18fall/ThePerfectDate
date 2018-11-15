@@ -128,7 +128,7 @@ class BackButton(Button):
 class Screen(Room,State):
     def __init__():
         self.description = TextBox(Room.description)
-        
+
 
     def buttonPlacement(screenButtons):
         """

@@ -23,7 +23,7 @@ textBoxHeight = 200
 textBoxY = 125
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
-background = pygame.Surface(win.get_size())
+background = pygame.Surface(win.get_size())  #black background surface in case we need it later
 background.fill((0, 0, 0))
 pic = pygame.image.load("Creepy.jpg") #the background image for our game - there will eventually be different backgrounds as the player progresses
 
@@ -68,10 +68,30 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                 if x + word_width >= max_width:
                     x = pos[0]  # Reset the x.
                     y += word_height  # Start on new row.
-                win.blit(word_surface,(x, y))
-                x += word_width + space
+                if type(self) == ResponseButton:
+                    print('response')
+                    if word_width >= max_width:
+                        print('WOW')
+                        break
+                for letter in word:
+                    letter_surface = font.render(letter, 0, color)
+                    letter_width, letter_height = letter_surface.get_size()
+                    win.blit(letter_surface,(x, y))
+                    x+=letter_width
+                    self.typePause(.05)
+                x += space
             x = pos[0]  # Reset the x.
             y += word_height  # Start on new row.
+            self.typePause(.5)
+
+    def typePause(self,pause):
+        if type(self) == Button:
+            pass
+        elif type(self) == BackButton:
+            pass
+        elif type(self) == TextBox:
+            pygame.display.update()
+            time.sleep(pause)
 
     def draw(self,win,outline=None): #each button is responsible for drawing itself
         #Call this method to draw the button on the screen
@@ -158,22 +178,32 @@ class ResponseButton(Button):
         self.x = 0
         self.width = 200
         self.height = 100
+        self.currentWord = ''
 
     def whatTyping(self):
         if self.exist:
             if event.type == pygame.KEYDOWN:
-                if event.key == 8:
+                if event.key == 8: #delete
                     self.pop()
-                elif event.key == 13:
+                    #self.currentWord = #self.currentWord[0:len(self.currentWord)-1]
+                    #print(self.currentWord)
+                elif event.key == 13: #enter
                     pass
                 else:
                     self.append(event.unicode)
+                    #self.currentWord += event.unicode
+                    #if event.key == 32: #space
+                    #    self.currentWord = ''
+                    #print(self.currentWord)
                 #self.text += event.unicode
 
     def enter(self):
         if event.type == pygame.KEYDOWN:
             if event.key == 13:
                 return True
+
+#    def updateCurrentWord():
+
 
 class State():
     """
@@ -228,6 +258,8 @@ def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dic
 
     """
     win.blit(pygame.transform.scale(pic, (width, height)), (0, 0)) #photo background for screens
+    pygame.display.update()
+    time.sleep(.1)
     for item in oldScreen:
         item.exist = False # eliminates the buttons in the previous screen
     newItems = dictionary[dictkey] # gathers values (textboxes & buttons) based on dictionary key
@@ -257,14 +289,9 @@ def isAnythingClick(screenButtons,dictionary):
                 item.draw(win,(0,0,0)) #Black outline in normal state
             if type(item) == ResponseButton:
                 if item.enter():
-                    win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
-                    pygame.display.update()
                     newButtons = newScreen(item,dictionary,screenButtons)
                     return newButtons
             if item.isClick(pos):
-                win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
-                pygame.display.update()
-                time.sleep(.1)
                 newButtons = newScreen(item,dictionary,screenButtons)
                 return newButtons
     return screenButtons #if nothing is clicked, the screen stays the same
@@ -321,8 +348,8 @@ FridgeBack = BackButton(text='Go back to exploring the kitchen')
 
 
 StartRoom = [StartDescription, Bedroom, Kitchen]
-KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
-BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
+KitchenRoom = [KitchenDescription,StartBack,Fork,Fridge]
+BedroomRoom = [BedroomDescription,StartBack,Pillow,Diary]
 
 """
 Screens is our initial dictionary with key and buttons/ textboxes as the values
@@ -371,8 +398,8 @@ if __name__ == '__main__':
             StartDescription = TextBox(text= str(IntroName.text) + ' wakes up in a bathroom and is confused. You do not know where you are')
 
             StartRoom = [StartDescription, Bedroom, Kitchen]
-            KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
-            BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
+            KitchenRoom = [KitchenDescription, StartBack,Fork,Fridge]
+            BedroomRoom = [BedroomDescription, StartBack,Pillow,Diary]
 
             Screens = {Intro:[IntroName,IntroDescription], IntroName: StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 
