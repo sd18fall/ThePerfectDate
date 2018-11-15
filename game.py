@@ -5,6 +5,7 @@ An interactive video game! #name files differently
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
+import time
 
 pygame.init() #add it in the main or write game function that init the pygame
 
@@ -22,6 +23,8 @@ textBoxHeight = 200
 textBoxY = 125
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
+background = pygame.Surface(win.get_size())
+background.fill((0, 0, 0))
 pic = pygame.image.load("Creepy.jpg") #the background image for our game - there will eventually be different backgrounds as the player progresses
 
 
@@ -42,6 +45,12 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         self.height = 200
         self.text = text
         self.exist = exist
+
+    def append(self,text):
+        self.text += text
+
+    def pop(self):
+        self.text = self.text[0:len(self.text)-1]
 
     def textSpacing(self, font = textFont, color=(0,0,0)):
         """
@@ -95,6 +104,7 @@ class Button(TextBox):
 
     """
 
+
     def __init__(self,**kw):
         super(Button,self).__init__(**kw) # we eventually want to use this method instead of writing everything out
         # pass all arguments from textbox: color, position
@@ -136,7 +146,34 @@ class BackButton(Button):
         # self.exist = exist
         # self.text = text
 
+class ResponseButton(Button):
+    """
+    This lets the user type the words that appear on the button
 
+    """
+    def __init__(self,**kw):
+        super(ResponseButton,self).__init__(**kw)#, text, exist, color)
+        #shouldn't have optional arguments, just call button with fixed position
+        self.y = 400
+        self.x = 0
+        self.width = 200
+        self.height = 100
+
+    def whatTyping(self):
+        if self.exist:
+            if event.type == pygame.KEYDOWN:
+                if event.key == 8:
+                    self.pop()
+                elif event.key == 13:
+                    pass
+                else:
+                    self.append(event.unicode)
+                #self.text += event.unicode
+
+    def enter(self):
+        if event.type == pygame.KEYDOWN:
+            if event.key == 13:
+                return True
 
 class State():
     """
@@ -144,10 +181,11 @@ class State():
 
     * Not currently in use
     """
-    def __init__(self, level, inventory, location):
-        self.level = level
-        self.inventory = inventory
-        self.location = location
+    def __init__(self, name, hair):
+        self.level = 0
+        self.location = bathroom
+        self.name = name
+        self.hair = hair
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
@@ -195,7 +233,7 @@ def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dic
     newItems = dictionary[dictkey] # gathers values (textboxes & buttons) based on dictionary key
     buttonList = []
     for item in newItems:
-        if type(item) == Button:
+        if type(item) == Button or type(item) == ResponseButton:
             buttonList.append(item) # putting the buttons into a separate list
     buttonPlacement(buttonList) # spaces the buttons evenly on the screen
     for item in newItems: #draws the textboxes and buttons
@@ -210,12 +248,23 @@ def isAnythingClick(screenButtons,dictionary):
 
     """
     for item in screenButtons:
-        if type(item) == Button or type(item) == BackButton:
+        if type(item) == Button or type(item) == BackButton or type(item) == ResponseButton:
+            if type(item) == ResponseButton:
+                item.whatTyping()
             if item.isOver(pos):
                 item.draw(win,(255,0,0)) #Red outline if hovering over button
             else:
                 item.draw(win,(0,0,0)) #Black outline in normal state
+            if type(item) == ResponseButton:
+                if item.enter():
+                    win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
+                    pygame.display.update()
+                    newButtons = newScreen(item,dictionary,screenButtons)
+                    return newButtons
             if item.isClick(pos):
+                win.blit(pygame.transform.scale(pic, (width, height)), (0, 0))
+                pygame.display.update()
+                time.sleep(.1)
                 newButtons = newScreen(item,dictionary,screenButtons)
                 return newButtons
     return screenButtons #if nothing is clicked, the screen stays the same
@@ -237,14 +286,15 @@ def buttonPlacement(screenButtons):
         item.y = buttonY
         spacerIndex += buttonWidth + space
 
-
-
 #button color default, what is minimum you need to make story work, need: rooms with text and buttons to other screens
 """
 Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
 """
-StartDescription = TextBox(text='You wake up in a bathroom and are confused. You do not know where you are')
-Start = Button()
+Intro = Button()
+IntroDescription = TextBox(text = 'What is your name?')
+IntroName = ResponseButton()
+
+StartDescription = TextBox(text= str(IntroName.text) + 'wakes up in a bathroom and is confused. You do not know where you are')
 StartBack = BackButton(text='Back to Start')
 
 BedroomDescription = TextBox(text='The room is messy and the lights are dim. Did something move in the corner')
@@ -278,7 +328,7 @@ BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
 Screens is our initial dictionary with key and buttons/ textboxes as the values
 """
 
-Screens = {Start : StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
+Screens = {Intro:[IntroName,IntroDescription], IntroName: StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 
 
 
@@ -288,20 +338,24 @@ if __name__ == '__main__':
 #     newScreen(item,screen)
 #
     # a = TextBox(text='AAAAAAAA AAAAAAA AAAAAAAA AAAAAA')
-
-
-#     b = Button(text='B')
-#     d = Button(text='D')
-#     c = Button(text='C')
-#
-#     ItemDictionary = {a : [b,c], b: [c,d],c : [d,a], d: [a,b]}
-#
-#     newScreen(d,ItemDictionary)
-#     oldScreen = ItemDictionary[d]
+    # start = TextBox()
+    # startText = TextBox(text = 'What is your name?')
+    # a = ResponseButton(exist = True)
+    # b = Button(text='B')
+    # d = Button(text='D')
+    # c = Button(text='C')
+    #
+    # ItemDictionary = {start:[startText,a], a:[b,c,d]}
+    #
+    # newScreen(start,ItemDictionary)
+    # oldScreen = ItemDictionary[start]
 
     # pygame.init()
-    newScreen(Start, Screens)
-    oldScreen = Screens[Start]
+
+    #
+    newScreen(Intro, Screens)
+    oldScreen = Screens[Intro]
+
     while True:
         pygame.display.update()
 
@@ -314,9 +368,13 @@ if __name__ == '__main__':
 
             oldScreen = isAnythingClick(oldScreen,Screens)
 
+            StartDescription = TextBox(text= str(IntroName.text) + ' wakes up in a bathroom and is confused. You do not know where you are')
 
+            StartRoom = [StartDescription, Bedroom, Kitchen]
+            KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
+            BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
 
-
+            Screens = {Intro:[IntroName,IntroDescription], IntroName: StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 
 
 
