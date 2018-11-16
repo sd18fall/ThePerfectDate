@@ -23,76 +23,106 @@ class State():
 
 
 
-
-#map of entire space, and update
-class Room(): #screen? has information about what to do next
+class Stage():
     """
-    Stores the information for room
+    Stores all the information that will be used to project onto the screen to help user move
+    along in the game
 
-    * Not currently in use
     """
-    def __init__(self, name, description, picture, artifacts):
-        self.name = name
-        self.picture = picture
-        self.description = description
-        self.artifacts = artifacts
-
-
-
-
-class Artifact():
-    """
-    Stores information about the items that the user interacts with to help them
-
-    * Not currently in use
-    """
-    def __init__(self, name, description, picture):
+    def __init__(self, name, description, picture, buttonmapping, backbuttonmapping):
         self.name = name
         self.description = description
         self.picture = picture
-        # self.choices = choices #TO implement
+        self.buttonmapping = buttonmapping
+        self.backbuttonmapping = backbuttonmapping
+
+
+class MappingObject():
+    """
+    Contains information about text the button displays and what stage is leads
+    to
+    """
+    def __init__(self, StageMapTo, buttontext):
+        self.StageMapTo = StageMapTo
+        self.buttontext = buttontext
+
+# cla Room(): #screen? has information about what to do next
+#     """
+#     Stores the information for room
+#
+#     * Not currently in use
+#     """
+#     def __init__(self, name, description, picture, artifacts):
+#         self.name = name
+#         self.picture = picture
+#         self.description = description
+#         self.artifacts = artifacts
+#
+#
+#
+# class Artifact():
+#     """
+#     Stores information about the items that the user interacts with to help them
+#
+#     * Not currently in use
+#     """
+#     def __init__(self, name, description, picture):
+#         self.name = name
+#         self.description = description
+#         self.picture = picture
+#         # self.choices = choices #TO implement
+
+
+# map of entire space, update
+
+
+
+
+
+
+
 
 
 
 
 #button color default, what is minimum you need to make story work, need: rooms with text and buttons to other screens
-"""
-Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
-"""
-StartDescription = TextBox(text='You wake up in a bathroom and are confused. You do not know where you are')
-Start = Button()
-StartBack = BackButton(text='Back to Start')
-
-BedroomDescription = TextBox(text='The room is messy and the lights are dim. Did something move in the corner')
-Bedroom = Button(text='Go towards the bedroom')
-
-Diary = Button(text='Open up her diary')
-DiaryDescription = TextBox(text='The diary appears to be locked, but it feels nice to hold')
-DiaryBack = BackButton(text='Go back to exploring the bedroom')
-
-Pillow = Button(text='Scream into the pillow on the bed')
-PillowDescription = TextBox(text='The pillow is old and flat')
-PillowBack = BackButton(text='Go back to exploring the bedroom')
-
-Kitchen = Button(text='Go towards the weird smelling kitchen')
-KitchenDescription = TextBox(text='The kitchen smells weird, just like you expected. There are dirty dishes everywhere')
-
-Fork = Button(text='Use a fork as a weapon')
-ForkDescription = TextBox(text='The fork is oddly sharp and you stare at your reflection. You hold it close to your face and then slowly put it back down')
-ForkBack = BackButton(text='Go back to exploring the kitchen')
-
-Fridge = Button(text='Put head in fridge, look around')
-FridgeDescription = TextBox(text='There is mold everywhere. Uh oh you touched some mold')
-FridgeBack = BackButton(text='Go back to exploring the kitchen')
-
-
-StartRoom = [StartDescription, Bedroom, Kitchen]
-KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
-BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
-
-"""
-Screens is our initial dictionary with key and buttons/ textboxes as the values
-"""
+# """
+# Here we created the text boxes and buttons that we will display on the screen, and add them to dictionaries in order to establish a mapping for the buttons.
+# """
+# StartDescription = TextBox(text='You wake up in a bathroom and are confused. You do not know where you are')
+# Start = Button()
+# StartBack = BackButton(text='Back to Start')
+#
+# BedroomDescription = TextBox(text='The room is messy and the lights are dim. Did something move in the corner')
+# Bedroom = Button(text='Go towards the bedroom')
+#
+# Diary = Button(text='Open up her diary')
+# DiaryDescription = TextBox(text='The diary appears to be locked, but it feels nice to hold')
+# DiaryBack = BackButton(text='Go back to exploring the bedroom')
+#
+# Pillow = Button(text='Scream into the pillow on the bed')
+# PillowDescription = TextBox(text='The pillow is old and flat')
+# PillowBack = BackButton(text='Go back to exploring the bedroom')
+#
+# Kitchen = Button(text='Go towards the weird smelling kitchen')
+# KitchenDescription = TextBox(text='The kitchen smells weird, just like you expected. There are dirty dishes everywhere')
+#
+# Fork = Button(text='Use a fork as a weapon')
+# ForkDescription = TextBox(text='The fork is oddly sharp and you stare at your reflection. You hold it close to your face and then slowly put it back down')
+# ForkBack = BackButton(text='Go back to exploring the kitchen')
+#
+# Fridge = Button(text='Put head in fridge, look around')
+# FridgeDescription = TextBox(text='There is mold everywhere. Uh oh you touched some mold')
+# FridgeBack = BackButton(text='Go back to exploring the kitchen')
+#
+#
+# StartRoom = [StartDescription, Bedroom, Kitchen]
+# KitchenRoom = [StartBack, KitchenDescription,Fork,Fridge]
+# BedroomRoom = [StartBack, BedroomDescription,Pillow,Diary]
+#
+# """
+# Screens is our initial dictionary with key and buttons/ textboxes as the values
+# """
 
 Screens = {Start : StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 

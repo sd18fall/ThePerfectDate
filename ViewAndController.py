@@ -5,7 +5,7 @@ An interactive video game! #name files differently
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
-from Model import*
+from Model import *
 
 
 pygame.init() #add it in the main or write game function that init the pygame
@@ -66,7 +66,7 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
             x = pos[0]  # Reset the x.
             y += word_height  # Start on new row.
 
-    def draw(self,win,outline=None): #each button is responsible for drawing itself
+    def draw(self,win= win,outline=None): #each button is responsible for drawing itself
         #Call this method to draw the button on the screen
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
@@ -81,11 +81,6 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
         if self.text != '':
             self.textSpacing()
-
-
-
-    # def __str__(self):
-    #     return self.text
 
     def __repr__(self): #print textbox with self.text
         return self.text
@@ -125,36 +120,42 @@ class BackButton(Button):
         # self.text = text
 
 
-class Screen(Room,State):
+class Screen(Stage,State):
+    """
+    takes information from Stage and displays everything
+    """
     def __init__():
-        self.description = TextBox(Room.description)
+        TextBox(Stage.description).draw()
+        win.blit(pygame.transform.scale(Stage.picture, (width, height)), (0, 0))
+
+        screenButtons = []
+        for text in Stage.buttonmapping:
+            screenButtons.append(Button(text))
+
+        buttonPlacement(screenButtons)
+        self.screenButtons = screenButtons
+        self.screenButtons.draw()
+
+        self.backButton = BackButton(Stage.backbuttonmapping.buttontext)
+        self.backButton.draw()
 
 
-    def buttonPlacement(screenButtons):
-        """
-        This function evenly places the buttons on the screen
-        depending on the number of buttons there are
+def buttonPlacement(screenButtons):
+    """
+    This function evenly places the buttons on the screen
+    depending on the number of buttons there are
 
-        """
-        #Calculates the amount of space that will not be taken up by buttons
-        totalSpace = width - buttonWidth*len(screenButtons)
-        space = totalSpace/(len(screenButtons)+1)
+    """
+    #Calculates the amount of space that will not be taken up by buttons
+    totalSpace = width - buttonWidth*len(screenButtons)
+    space = totalSpace/(len(screenButtons)+1)
 
-        spacerIndex = space
-        #Goes through and adjusts the x-coordinates for each button placement
-        for item in screenButtons:
-            item.x = spacerIndex
-            item.y = buttonY
-            spacerIndex += buttonWidth + space
-
-
-    pass
-
-
-
-
-
-
+    spacerIndex = space
+    #Goes through and adjusts the x-coordinates for each button placement
+    for item in screenButtons:
+        item.x = spacerIndex
+        item.y = buttonY
+        spacerIndex += buttonWidth + space
 
 #To Fix and implement
 def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dictkey and dictionary
