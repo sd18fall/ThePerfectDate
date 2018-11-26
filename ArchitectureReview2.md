@@ -5,17 +5,17 @@ Quick Background: A meta video game is a type of game that leads the player to b
 
 **Structural architecture includes:**
 1. Model
-   a. State Class: stores historical info, choices made by the user
-   b. Key: Room buttons
-   c. Key: Room buttons
+   - State Class: stores historical info, choices made by the user
+   - Key: Room buttons
+   - Key: Room buttons
 2. Viewer
-   a. Textbox Classes
-   b. Button/ Backbutton / Response Button Classes
-   c. Screen Class
-   d. New Screen Function
-   e. Button Placement Function
+   - Textbox Classes
+   - Button/ Backbutton / Response Button Classes
+   - Screen Class
+   - New Screen Function
+   - Button Placement Function
 3. Controller
-   a. Functions that deal with user mouse interactions
+   - Functions that deal with user mouse interactions
 
 Up until now, we have completed a MVP that is able to transition between different screens depending on the choices the user selects. This is the backbone of our project as we have achieved the most basic form of our game. We were also able to add some visuals such as making the letters of the story appear one by one, having the buttons light up when scrolled over and implementing some background photos.
 
