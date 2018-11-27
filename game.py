@@ -58,21 +58,17 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         """
         words = [word.split(' ') for word in self.text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
-        pos = self.x + space ,self.y + space
+        position = self.x + space ,self.y + space
         max_width, max_height = self.width+self.x,self.height+self.y
-        x, y = pos
+        x, y = position
         for line in words:
             for word in line:
+                print(word)
                 word_surface = font.render(word, 0, color)
                 word_width, word_height = word_surface.get_size()
                 if x + word_width >= max_width:
-                    x = pos[0]  # Reset the x.
+                    x = position[0]  # Reset the x.
                     y += word_height  # Start on new row.
-                # if type(self) == ResponseButton:
-                # 
-                #     if word_width >= max_width:
-                #         print('WOW')
-                #         break
                 for letter in word:
                     letter_surface = font.render(letter, 0, color)
                     letter_width, letter_height = letter_surface.get_size()
@@ -80,7 +76,7 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                     x+=letter_width
                     self.typePause(.05)
                 x += space
-            x = pos[0]  # Reset the x.
+            x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
             self.typePause(.5)
 
@@ -187,8 +183,8 @@ class ResponseButton(Button):
                     self.pop()
                     #self.currentWord = #self.currentWord[0:len(self.currentWord)-1]
                     #print(self.currentWord)
-                elif event.key == 13: #enter
-                    pass
+                # elif event.key == 13: #enter
+                #     pass
                 else:
                     self.append(event.unicode)
                     #self.currentWord += event.unicode
