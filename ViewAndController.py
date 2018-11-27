@@ -25,7 +25,7 @@ textBoxY = 125
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
 pic = pygame.image.load("Creepy.jpg") #the background image for our game - there will eventually be different backgrounds as the player progresses
-
+# currentScreen = Screen()
 
 
 
@@ -92,13 +92,16 @@ class Button(TextBox):
 
     """
 
-    def __init__(self,**kw):
-        super(Button,self).__init__(**kw) # we eventually want to use this method instead of writing everything out
-        # pass all arguments from textbox: color, position
+    def __init__(self,Stage, text='', exist = False, color = (255,255,255)):
+        # super(Button,self).__init__(**kw)
+        self.color = color
+        self.text = text
+        self.exist = exist
         self.y = 400
         self.x = 0
         self.width = 200
         self.height = 100
+        self.stage = Stage
 
 
 
@@ -109,13 +112,17 @@ class BackButton(Button):
     doesn't need positioning
 
     """
-    def __init__(self,**kw):
-        super(BackButton,self).__init__(**kw)#, text, exist, color)
+    def __init__(self,Stage, text='', exist = False, color = (255,255,255)):   #**kw):
+        #super(BackButton,self).__init__(**kw)#, text, exist, color)
         #shouldn't have optional arguments, just call button with fixed position
+        self.color = color
+        self.text = text
+        self.exist = exist
         self.y = 25
         self.x = 625
         self.width = 150
         self.height = 100
+        self.stage = Stage
         # self.exist = exist
         # self.text = text
 
@@ -125,18 +132,24 @@ class Screen(Stage,State):
     takes information from Stage and displays everything
     """
     def __init__():
-        TextBox(Stage.description).draw()
-        win.blit(pygame.transform.scale(Stage.picture, (width, height)), (0, 0))
+
+
+        self.screenBox = TextBox(Stage.description)
 
         screenButtons = []
-        for text in Stage.buttonmapping:
-            screenButtons.append(Button(text))
+        for mappingObj in Stage.buttonmapping:
+            screenButtons.append(Button(mappingObj.StageMapTo, mappingObj.buttontext))
 
         buttonPlacement(screenButtons)
         self.screenButtons = screenButtons
-        self.screenButtons.draw()
 
-        self.backButton = BackButton(Stage.backbuttonmapping.buttontext)
+        self.backButton = BackButton(Stage.backbuttonmapping.StageMapTo, Stage.backbuttonmapping.buttontext)
+
+    def draw():
+        win.blit(pygame.transform.scale(Stage.picture, (width, height)), (0, 0))
+        self.screenBox.draw()
+        time.sleep(.1)
+        self.screenButtons.draw()
         self.backButton.draw()
 
 
@@ -158,25 +171,39 @@ def buttonPlacement(screenButtons):
         spacerIndex += buttonWidth + space
 
 #To Fix and implement
-def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dictkey and dictionary
+def drawScreen(button, State, oldScreen = None): #old screen = none; change dictkey and dictionary
     """
     This function clears the last display and
     puts up a new screen after the user selects an option
 
     """
-    win.blit(pygame.transform.scale(pic, (width, height)), (0, 0)) #photo background for screens
-    for item in oldScreen:
-        item.exist = False # eliminates the buttons in the previous screen
-    newItems = dictionary[dictkey] # gathers values (textboxes & buttons) based on dictionary key
-    buttonList = []
-    for item in newItems:
-        if type(item) == Button:
-            buttonList.append(item) # putting the buttons into a separate list
-    buttonPlacement(buttonList) # spaces the buttons evenly on the screen
-    for item in newItems: #draws the textboxes and buttons
-        item.draw(win,(0,0,0))
-        item.exist = True
-    return newItems
+    if oldScreen != None:
+        for button in oldScreen.screenButtons:
+            button.exist = False
+        oldScreen.backButton.exist = False
+
+    currentScreen = Screen(button.stage,State)
+    for object in currentScreen.screenButtons:
+        object.exist = True
+    currentScreen.backButton.exist = True
+
+    currentScreen.draw()
+
+
+
+
+
+
+    # newItems = dictionary[dictkey] # gathers values (textboxes & buttons) based on dictionary key
+    # buttonList = []
+    # for item in newItems:
+    #     if type(item) == Button:
+    #         buttonList.append(item) # putting the buttons into a separate list
+    # buttonPlacement(buttonList) # spaces the buttons evenly on the screen
+    # for item in newItems: #draws the textboxes and buttons
+    #     item.draw(win,(0,0,0))
+    #     item.exist = True
+    # return newItems
 
 
 
@@ -186,21 +213,22 @@ def newScreen(dictkey,dictionary,oldScreen = []): #old screen = none; change dic
 
 #################Controller Stuff
 
-    def isOver(self,pos):
-        # Pos is the mouse position or a tuple of (x,y) coordinates
-            if pos[0] > self.x and pos[0] < self.x + self.width:
-                if pos[1] > self.y and pos[1] < self.y + self.height:
-                    return True
+def isOver(button,pos):
+    # Pos is the mouse position or a tuple of (x,y) coordinates
+        if pos[0] > button.x and pos[0] < button.x + button.width:
+            if pos[1] > button.y and pos[1] < button.y + button.height:
+                return True
+        return False
+
+def isClick(button,pos): #controller stuff?
+    # Will recognize when the user pushes down on the mouse
+    if button.exist:
+        if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
+            if button.isOver(pos):
+                return True
+        else:
             return False
 
-    def isClick(self,pos): #controller stuff?
-        # Will recognize when the user pushes down on the mouse
-        if self.exist:
-            if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
-                if self.isOver(pos):
-                    return True
-            else:
-                return False
 def isAnythingClick(screenButtons,dictionary):
     """
     This function detects if any of the buttons are clicked,
@@ -239,8 +267,19 @@ if __name__ == '__main__':
 #     oldScreen = ItemDictionary[d]
 
     # pygame.init()
-    newScreen(Start, Screens)
-    oldScreen = Screens[Start]
+    # BedroomObject =
+    diarybackbutton = MappingObject('Bedroom', 'back')
+    Diary = Stage('Diary', 'asdfasdf', [], diarybackbutton)
+
+    DiaryObject = MappingObject('Diary', 'Check out the Diary', diarybackbutton)
+
+    Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', [DiaryObject], diarybackbutton)
+    
+
+    state = None
+    currentScreen = Screen(Bedroom, state)
+
+
     while True:
         pygame.display.update()
 
@@ -253,8 +292,12 @@ if __name__ == '__main__':
                run = False
                pygame.quit()
                quit()
+        drawScreen(currentScreen.backButton, stage)
 
-            oldScreen = isAnythingClick(oldScreen,Screens)
+
+
+
+            # oldScreen = isAnythingClick(oldScreen,Screens)
 
 
 

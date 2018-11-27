@@ -22,14 +22,13 @@ class State():
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
 
 
-
 class Stage():
     """
     Stores all the information that will be used to project onto the screen to help user move
     along in the game
 
     """
-    def __init__(self, name, description, picture, buttonmapping, backbuttonmapping):
+    def __init__(self, name, description, picture, buttonmapping = None, backbuttonmapping):
         self.name = name
         self.description = description
         self.picture = picture
@@ -124,7 +123,7 @@ class MappingObject():
 # Screens is our initial dictionary with key and buttons/ textboxes as the values
 # """
 
-Screens = {Start : StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
+#Screens = {Start : StartRoom, Bedroom : BedroomRoom, Kitchen : KitchenRoom, Pillow : [PillowDescription, PillowBack], Diary : [DiaryDescription, DiaryBack], Fork : [ForkDescription, ForkBack], Fridge : [FridgeDescription,FridgeBack], StartBack : StartRoom, ForkBack : KitchenRoom , FridgeBack : KitchenRoom, DiaryBack:BedroomRoom,PillowBack: BedroomRoom}
 
 
 
