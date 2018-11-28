@@ -221,7 +221,7 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if currentScreen.screenButtons != None:
         for object in currentScreen.screenButtons:
             object.exist = True
-        currentScreen.backButton.exist = True
+    currentScreen.backButton.exist = True
 
     return currentScreen
 
@@ -262,7 +262,7 @@ def isClick(button,pos):
     # Will recognize when the user pushes down on the mouse
     if button.exist:
         if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
-            if button.isOver(pos):
+            if isOver(button,pos):
                 return True
         else:
             return False
@@ -293,7 +293,7 @@ def isClick(button,pos):
 if __name__ == '__main__':
 
 
-    Diary = Stage('Diary', 'Her diary', 'kitchen.png')
+    Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
 
     DiaryObject = MappingObject(Diary, 'Check out the Diary')
 
@@ -306,7 +306,7 @@ if __name__ == '__main__':
     state = None
     currentScreen = Screen(Diary, state)
 
-
+    currentScreen = drawScreen(currentScreen.stage, state)
 
     while True:
         pygame.display.update()
@@ -315,9 +315,15 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
-            for button in currentScreen.screenButtons:
-                if isClick(button,pos):
-                    currentScreen = drawScreen(button.stage, state, currentScreen)
+
+            if currentScreen.screenButtons != None:
+                for button in currentScreen.screenButtons:
+                    if isClick(button,pos):
+                        currentScreen = drawScreen(button.stage, state, currentScreen)
+
+            if isClick(currentScreen.backButton,pos):
+                print('CLICK')
+                currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
 
 
             if event.type == pygame.QUIT:
@@ -325,8 +331,6 @@ if __name__ == '__main__':
                pygame.quit()
                quit()
 
-
-        drawScreen(currentScreen.stage, state)
 
 
 
