@@ -28,7 +28,7 @@ class Stage():
     along in the game
 
     """
-    def __init__(self, name, description, picture, buttonmapping = None, backbuttonmapping):
+    def __init__(self, name, description, picture, buttonmapping = None, backbuttonmapping = None):
         self.name = name
         self.description = description
         self.picture = picture
@@ -41,8 +41,8 @@ class MappingObject():
     Contains information about text the button displays and what stage is leads
     to
     """
-    def __init__(self, StageMapTo, buttontext):
-        self.StageMapTo = StageMapTo
+    def __init__(self, stageMapTo, buttontext):
+        self.stageMapTo = stageMapTo
         self.buttontext = buttontext
 
 # cla Room(): #screen? has information about what to do next

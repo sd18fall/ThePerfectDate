@@ -5,6 +5,7 @@ An interactive video game! #name files differently
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
+import time
 from Model import *
 
 
@@ -92,7 +93,7 @@ class Button(TextBox):
 
     """
 
-    def __init__(self,Stage, text='', exist = False, color = (255,255,255)):
+    def __init__(self, stage = None, text='', exist = False, color = (255,255,255)):
         # super(Button,self).__init__(**kw)
         self.color = color
         self.text = text
@@ -101,7 +102,7 @@ class Button(TextBox):
         self.x = 0
         self.width = 200
         self.height = 100
-        self.stage = Stage
+        self.stage = stage
 
 
 
@@ -112,7 +113,7 @@ class BackButton(Button):
     doesn't need positioning
 
     """
-    def __init__(self,Stage, text='', exist = False, color = (255,255,255)):   #**kw):
+    def __init__(self,stage= None, text='', exist = False, color = (255,255,255)):   #**kw):
         #super(BackButton,self).__init__(**kw)#, text, exist, color)
         #shouldn't have optional arguments, just call button with fixed position
         self.color = color
@@ -122,35 +123,46 @@ class BackButton(Button):
         self.x = 625
         self.width = 150
         self.height = 100
-        self.stage = Stage
+        self.stage = stage
         # self.exist = exist
         # self.text = text
 
 
-class Screen(Stage,State):
+class Screen():
     """
     takes information from Stage and displays everything
     """
-    def __init__():
+    def __init__(self,stage,state):
+        self.stage = stage
+        self.state = state
+        self.screenBox = TextBox(self.stage.description)
 
+    def buttonDecider(self):
+        if self.stage.buttonmapping != None:
+            screenButtons = []
+            for mappingObj in self.stage.buttonmapping:
+                screenButtons.append(Button(mappingObj.stageMapTo, mappingObj.buttontext))
 
-        self.screenBox = TextBox(Stage.description)
+            buttonPlacement(screenButtons)
+            self.screenButtons = screenButtons
+        else:
+            self.screenButtons = None
 
-        screenButtons = []
-        for mappingObj in Stage.buttonmapping:
-            screenButtons.append(Button(mappingObj.StageMapTo, mappingObj.buttontext))
+        if self.stage.backbuttonmapping != None:
+            self.backButton = BackButton(self.stage.backbuttonmapping.stageMapTo, self.stage.backbuttonmapping.buttontext)
 
-        buttonPlacement(screenButtons)
-        self.screenButtons = screenButtons
+        else:
+            self.backButton = None
 
-        self.backButton = BackButton(Stage.backbuttonmapping.StageMapTo, Stage.backbuttonmapping.buttontext)
-
-    def draw():
-        win.blit(pygame.transform.scale(Stage.picture, (width, height)), (0, 0))
+    def draw(self):
+        self.buttonDecider()
+        win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (width, height)), (0, 0))
         self.screenBox.draw()
         time.sleep(.1)
-        self.screenButtons.draw()
-        self.backButton.draw()
+        if self.screenButtons != None:
+            self.screenButtons.draw()
+        if self.backButton != None:
+            self.backButton.draw()
 
 
 def buttonPlacement(screenButtons):
@@ -171,23 +183,26 @@ def buttonPlacement(screenButtons):
         spacerIndex += buttonWidth + space
 
 #To Fix and implement
-def drawScreen(button, State, oldScreen = None): #old screen = none; change dictkey and dictionary
+def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictkey and dictionary
     """
     This function clears the last display and
     puts up a new screen after the user selects an option
 
     """
     if oldScreen != None:
-        for button in oldScreen.screenButtons:
-            button.exist = False
+        for object in oldScreen.screenButtons:
+            object.exist = False
         oldScreen.backButton.exist = False
 
-    currentScreen = Screen(button.stage,State)
-    for object in currentScreen.screenButtons:
-        object.exist = True
-    currentScreen.backButton.exist = True
-
+    currentScreen = Screen(stage,state)
     currentScreen.draw()
+
+    if currentScreen.screenButtons != None:
+        for object in currentScreen.screenButtons:
+            object.exist = True
+        currentScreen.backButton.exist = True
+
+    # currentScreen.draw()
 
 
 
@@ -268,16 +283,20 @@ if __name__ == '__main__':
 
     # pygame.init()
     # BedroomObject =
-    diarybackbutton = MappingObject('Bedroom', 'back')
-    Diary = Stage('Diary', 'asdfasdf', [], diarybackbutton)
 
-    DiaryObject = MappingObject('Diary', 'Check out the Diary', diarybackbutton)
+    Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
 
-    Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', [DiaryObject], diarybackbutton)
-    
+    DiaryObject = MappingObject(Diary, 'Check out the Diary')
+
+    Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', 'Creepy.jpg', [DiaryObject])
+
+    diarybackbutton = MappingObject(Bedroom, 'back')
+
+    Diary.backbuttonmapping = diarybackbutton
 
     state = None
-    currentScreen = Screen(Bedroom, state)
+    currentScreen = Screen(Diary, state)
+
 
 
     while True:
@@ -292,7 +311,8 @@ if __name__ == '__main__':
                run = False
                pygame.quit()
                quit()
-        drawScreen(currentScreen.backButton, stage)
+
+        drawScreen(currentScreen.stage, state)
 
 
 
