@@ -46,26 +46,47 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         self.text = text
         self.exist = exist
 
+    def append(self,text):
+        self.text += text
+
+    def pop(self):
+        self.text = self.text[0:len(self.text)-1]
+
     def textSpacing(self, font = textFont, color=(0,0,0)):
         """
         Method able to adjust the lines of text to fit in text box.
         """
         words = [word.split(' ') for word in self.text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
-        pos = self.x + space ,self.y + space
+        position = self.x + space ,self.y + space
         max_width, max_height = self.width+self.x,self.height+self.y
-        x, y = pos
+        x, y = position
         for line in words:
             for word in line:
                 word_surface = font.render(word, 0, color)
                 word_width, word_height = word_surface.get_size()
                 if x + word_width >= max_width:
-                    x = pos[0]  # Reset the x.
+                    x = position[0]  # Reset the x.
                     y += word_height  # Start on new row.
-                win.blit(word_surface,(x, y))
-                x += word_width + space
-            x = pos[0]  # Reset the x.
+                for letter in word:
+                    letter_surface = font.render(letter, 0, color)
+                    letter_width, letter_height = letter_surface.get_size()
+                    win.blit(letter_surface,(x, y))
+                    x+=letter_width
+                    self.typePause(.05)
+                x += space
+            x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
+            self.typePause(.5)
+
+    def typePause(self,pause):
+        if type(self) == Button:
+            pass
+        elif type(self) == BackButton:
+            pass
+        elif type(self) == TextBox:
+            pygame.display.update()
+            time.sleep(pause)
 
     def draw(self,win= win,outline=None): #each button is responsible for drawing itself
         #Call this method to draw the button on the screen
@@ -202,6 +223,8 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
             object.exist = True
         currentScreen.backButton.exist = True
 
+    return currentScreen
+
     # currentScreen.draw()
 
 
@@ -235,7 +258,7 @@ def isOver(button,pos):
                 return True
         return False
 
-def isClick(button,pos): #controller stuff?
+def isClick(button,pos):
     # Will recognize when the user pushes down on the mouse
     if button.exist:
         if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
@@ -244,47 +267,33 @@ def isClick(button,pos): #controller stuff?
         else:
             return False
 
-def isAnythingClick(screenButtons,dictionary):
-    """
-    This function detects if any of the buttons are clicked,
-    if a button is clicked, then it will return a new screen
+# def ifButtonClicked():
 
-    """
-    for item in screenButtons:
-        if type(item) == Button or type(item) == BackButton:
-            if item.isOver(pos):
-                item.draw(win,(255,0,0)) #Red outline if hovering over button
-            else:
-                item.draw(win,(0,0,0)) #Black outline in normal state
-            if item.isClick(pos):
-                newButtons = newScreen(item,dictionary,screenButtons)
-                return newButtons
-    return screenButtons #if nothing is clicked, the screen stays the same
+
+# def isAnythingClick(screenButtons,dictionary):
+#     """
+#     This function detects if any of the buttons are clicked,
+#     if a button is clicked, then it will return a new screen
+#
+#     """
+#     for item in screenButtons:
+#         if type(item) == Button or type(item) == BackButton:
+#             if item.isOver(pos):
+#                 item.draw(win,(255,0,0)) #Red outline if hovering over button
+#             else:
+#                 item.draw(win,(0,0,0)) #Black outline in normal state
+#             if item.isClick(pos):
+#                 newButtons = newScreen(item,dictionary,screenButtons)
+#                 return newButtons
+#     return screenButtons #if nothing is clicked, the screen stays the same
 
 
 
 
 if __name__ == '__main__':
 
-##    FOR TESTING PURPOSES
-#     newScreen(item,screen)
-#
-    # a = TextBox(text='AAAAAAAA AAAAAAA AAAAAAAA AAAAAA')
 
-
-#     b = Button(text='B')
-#     d = Button(text='D')
-#     c = Button(text='C')
-#
-#     ItemDictionary = {a : [b,c], b: [c,d],c : [d,a], d: [a,b]}
-#
-#     newScreen(d,ItemDictionary)
-#     oldScreen = ItemDictionary[d]
-
-    # pygame.init()
-    # BedroomObject =
-
-    Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
+    Diary = Stage('Diary', 'Her diary', 'kitchen.png')
 
     DiaryObject = MappingObject(Diary, 'Check out the Diary')
 
@@ -306,13 +315,20 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
+            for button in currentScreen.screenButtons:
+                if isClick(button,pos):
+                    currentScreen = drawScreen(button.stage, state, currentScreen)
+
 
             if event.type == pygame.QUIT:
                run = False
                pygame.quit()
                quit()
 
+
         drawScreen(currentScreen.stage, state)
+
+
 
 
 
