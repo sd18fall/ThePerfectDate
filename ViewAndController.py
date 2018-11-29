@@ -181,7 +181,8 @@ class Screen():
         self.screenBox.draw()
         time.sleep(.1)
         if self.screenButtons != None:
-            self.screenButtons.draw()
+            for button in self.screenButtons:
+                button.draw()
         if self.backButton != None:
             self.backButton.draw()
 
@@ -210,7 +211,7 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     puts up a new screen after the user selects an option
 
     """
-    if oldScreen != None:
+    if oldScreen != None and oldScreen.screenButtons != None:
         for object in oldScreen.screenButtons:
             object.exist = False
         oldScreen.backButton.exist = False
