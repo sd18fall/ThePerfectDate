@@ -214,6 +214,7 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if oldScreen != None and oldScreen.screenButtons != None:
         for object in oldScreen.screenButtons:
             object.exist = False
+    if oldScreen != None and oldScreen.backButton != None:
         oldScreen.backButton.exist = False
 
     currentScreen = Screen(stage,state)
@@ -222,7 +223,8 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if currentScreen.screenButtons != None:
         for object in currentScreen.screenButtons:
             object.exist = True
-    currentScreen.backButton.exist = True
+    if currentScreen.backButton != None:
+        currentScreen.backButton.exist = True
 
     return currentScreen
 
@@ -261,7 +263,7 @@ def isOver(button,pos):
 
 def isClick(button,pos):
     # Will recognize when the user pushes down on the mouse
-    if button.exist:
+    if button != None and button.exist:
         if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
             if isOver(button,pos):
                 return True
@@ -323,7 +325,6 @@ if __name__ == '__main__':
                         currentScreen = drawScreen(button.stage, state, currentScreen)
 
             if isClick(currentScreen.backButton,pos):
-                print('CLICK')
                 currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
 
 
