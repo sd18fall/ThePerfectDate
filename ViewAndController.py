@@ -255,6 +255,7 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
 #################Controller Stuff
 
 def isOver(button,pos):
+    if button != None:
     # Pos is the mouse position or a tuple of (x,y) coordinates
         if pos[0] > button.x and pos[0] < button.x + button.width:
             if pos[1] > button.y and pos[1] < button.y + button.height:
@@ -269,6 +270,23 @@ def isClick(button,pos):
                 return True
         else:
             return False
+
+def whatTyping(button):
+    if button.exist:
+        if event.type == pygame.KEYDOWN:
+            if event.key == 8: #delete
+                button.pop()
+            else:
+                button.append(event.unicode)
+
+def monitor(buttonList,pos):
+    if buttonList != None and buttonList != [None]:
+        print('hello')
+        for button in buttonList:
+            if isOver(button,pos):
+                button.draw(win,(255,0,0))
+            else:
+                button.draw(win,(0,0,0))
 
 # def ifButtonClicked():
 
@@ -327,6 +345,8 @@ if __name__ == '__main__':
             if isClick(currentScreen.backButton,pos):
                 currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
 
+            monitor(currentScreen.screenButtons,pos)
+            monitor([currentScreen.backButton],pos)
 
             if event.type == pygame.QUIT:
                run = False
