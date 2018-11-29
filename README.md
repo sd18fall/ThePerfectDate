@@ -4,6 +4,10 @@
 
 For our final project, we want to create a type of video game known as a "meta" video game. Essentially, the game starts off as one genre and surprises the player by switching to another genre at a certain point in the game. Our game is mainly text based as we want the player to form connections with the characters in the game, so they will be more surprised.
 
+## Project Website
+
+https://cyong2.wixsite.com/perfectdatevideogame
+
 ## To Get Started:
 There is 1 library that is needed for this project:
 
