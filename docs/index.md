@@ -1,10 +1,13 @@
+
+[How to Play](#How-to-Play)
+
 # Images or Video of game
 
 # How it All Started
 
 We wanted to create an interactive, text based video game to combine our love for video games and to explore what we can do with python!
 
-# Meet the Team!
+# Meet the Team !
 
 ## Sabrina Pereira
 
@@ -17,3 +20,7 @@ Sophie is a lover of raspberries and musicals. She likes to work on finicky gra
 ## Cynthia Yong
 
 Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to grow her own food and be an incredible plant mom!
+
+# Curious about Code?
+
+# How to Play
