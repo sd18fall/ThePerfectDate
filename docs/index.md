@@ -5,7 +5,7 @@
 
 # How it All Started
 
-We wanted to create an interactive, text based video game to combine our love for video games and to explore what we can do with python!
+We wanted to create an interactive, text based video game to combine our love for video games and to explore what we can do with python! 
 
 # Meet the Team !
 
@@ -23,4 +23,26 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. She
 
 # Curious about Code?
 
+Here, we will be discussing in depth the architecture of the game  - specifically explaining the classes and data storage method. We will update it once we finalize our game design.
+
 # How to Play
+
+To get started, please download:  
+
+```
+pip install pygame
+```
+
+To PLAY, please run:
+
+```
+python3 game.py
+```
+
+# Questions?
+
+TBD (will add once we merge the game plot )
+
+# Special Thanks to ...
+
+TBD
