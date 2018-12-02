@@ -7,6 +7,7 @@ Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 import pygame
 import time
 from Model import *
+from stageobject_mappings import *
 
 
 pygame.init() #add it in the main or write game function that init the pygame
@@ -37,7 +38,7 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
     """
 
-    def __init__(self, text='', exist = False, color = (255,255,255)):
+    def __init__(self, text='', exist = False, color = (255,222,222)):
         self.color = color
         self.x = 200
         self.y = 125
@@ -73,11 +74,11 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    self.typePause(.05)
+                    self.typePause(.03)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
-            self.typePause(.5)
+            self.typePause(.3)
 
     def typePause(self,pause):
         if type(self) == Button:
@@ -95,12 +96,6 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
         pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
 
-        # if self.text != '':
-        #     #Set font and size of button text, display centered
-        #     font = textFont
-        #     text = font.render(self.text, 1, (0,0,0))
-        #     win.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))
-
         if self.text != '':
             self.textSpacing()
 
@@ -114,7 +109,7 @@ class Button(TextBox):
 
     """
 
-    def __init__(self, stage = None, text='', exist = False, color = (255,255,255)):
+    def __init__(self, stage = None, text='', exist = False, color = (255,222,222)):
         # super(Button,self).__init__(**kw)
         self.color = color
         self.text = text
@@ -145,9 +140,6 @@ class BackButton(Button):
         self.width = 150
         self.height = 100
         self.stage = stage
-        # self.exist = exist
-        # self.text = text
-
 
 class Screen():
     """
@@ -156,16 +148,18 @@ class Screen():
     def __init__(self,stage,state):
         self.stage = stage
         self.state = state
-        self.screenBox = TextBox(self.stage.description)
 
     def buttonDecider(self):
+
         if self.stage.buttonmapping != None:
             screenButtons = []
-            for mappingObj in self.stage.buttonmapping:
-                screenButtons.append(Button(mappingObj.stageMapTo, mappingObj.buttontext))
-
+            for buttonMapping in self.stage.buttonmapping:
+                for level in buttonMapping.levels:
+                    if level == self.state.level or level == 0:
+                        screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext))
             buttonPlacement(screenButtons)
             self.screenButtons = screenButtons
+
         else:
             self.screenButtons = None
 
@@ -175,8 +169,16 @@ class Screen():
         else:
             self.backButton = None
 
+    def textboxDecider(self):
+
+        if self.stage.description.get(self.state.level) == None:
+            self.screenBox = TextBox(self.stage.description[0])
+        else:
+            self.screenBox = TextBox(self.stage.description[self.state.level])
+
     def draw(self):
         self.buttonDecider()
+        self.textboxDecider()
         win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (width, height)), (0, 0))
         self.screenBox.draw()
         time.sleep(.1)
@@ -228,29 +230,6 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
 
     return currentScreen
 
-    # currentScreen.draw()
-
-
-
-
-
-
-    # newItems = dictionary[dictkey] # gathers values (textboxes & buttons) based on dictionary key
-    # buttonList = []
-    # for item in newItems:
-    #     if type(item) == Button:
-    #         buttonList.append(item) # putting the buttons into a separate list
-    # buttonPlacement(buttonList) # spaces the buttons evenly on the screen
-    # for item in newItems: #draws the textboxes and buttons
-    #     item.draw(win,(0,0,0))
-    #     item.exist = True
-    # return newItems
-
-
-
-
-
-
 
 #################Controller Stuff
 
@@ -281,51 +260,31 @@ def whatTyping(button):
 
 def monitor(buttonList,pos):
     if buttonList != None and buttonList != [None]:
-        print('hello')
         for button in buttonList:
             if isOver(button,pos):
                 button.draw(win,(255,0,0))
             else:
                 button.draw(win,(0,0,0))
 
-# def ifButtonClicked():
-
-
-# def isAnythingClick(screenButtons,dictionary):
-#     """
-#     This function detects if any of the buttons are clicked,
-#     if a button is clicked, then it will return a new screen
-#
-#     """
-#     for item in screenButtons:
-#         if type(item) == Button or type(item) == BackButton:
-#             if item.isOver(pos):
-#                 item.draw(win,(255,0,0)) #Red outline if hovering over button
-#             else:
-#                 item.draw(win,(0,0,0)) #Black outline in normal state
-#             if item.isClick(pos):
-#                 newButtons = newScreen(item,dictionary,screenButtons)
-#                 return newButtons
-#     return screenButtons #if nothing is clicked, the screen stays the same
-
-
-
 
 if __name__ == '__main__':
 
 
-    Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
+    # Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
+    #
+    # DiaryObject = MappingObject(Diary, 'Check out the Diary')
+    #
+    # Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', 'Creepy.jpg', [DiaryObject])
+    #
+    # diarybackbutton = MappingObject(Bedroom, 'back')
+    #
+    # Diary.backbuttonmapping = diarybackbutton
+    #
+    # state = None
 
-    DiaryObject = MappingObject(Diary, 'Check out the Diary')
+    state = State(level=1)
 
-    Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', 'Creepy.jpg', [DiaryObject])
-
-    diarybackbutton = MappingObject(Bedroom, 'back')
-
-    Diary.backbuttonmapping = diarybackbutton
-
-    state = None
-    currentScreen = Screen(Diary, state)
+    currentScreen = Screen(StartingPage, state)
 
     currentScreen = drawScreen(currentScreen.stage, state)
 
@@ -352,18 +311,6 @@ if __name__ == '__main__':
                run = False
                pygame.quit()
                quit()
-
-
-
-
-
-
-
-            # oldScreen = isAnythingClick(oldScreen,Screens)
-
-
-
-
 
 
 
