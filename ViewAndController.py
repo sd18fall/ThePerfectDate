@@ -129,7 +129,7 @@ class BackButton(Button):
     doesn't need positioning
 
     """
-    def __init__(self,stage= None, text='', exist = False, color = (255,255,255)):   #**kw):
+    def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):   #**kw):
         #super(BackButton,self).__init__(**kw)#, text, exist, color)
         #shouldn't have optional arguments, just call button with fixed position
         self.color = color
@@ -262,9 +262,9 @@ def monitor(buttonList,pos):
     if buttonList != None and buttonList != [None]:
         for button in buttonList:
             if isOver(button,pos):
-                button.draw(win,(255,0,0))
+                button.draw(win,(255,255,255))
             else:
-                button.draw(win,(0,0,0))
+                button.draw(win,(255,222,222))
 
 
 if __name__ == '__main__':

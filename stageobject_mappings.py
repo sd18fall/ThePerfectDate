@@ -7,7 +7,7 @@ Garden = Stage('Garden', {0: 'You have a beautiful flower garden in your backyar
 
 Trash = Stage('Trash', {0: 'You want to empty out the trash tonight, so everything is absolutely perfect! However, when you look into the trash can, you notice bouquets of flowers in the trash. Suddenly, you hear a noise from upstairs...'},'kitchen.png')
 
-Kitchen = Stage('Kitchen', {0: 'Nothing screams cozy and comfy like a home cooked meal! You have been learning how to cook since you were child and am super eager to wow your date with your deliciously hypnotizing dishes!'},'livingroom.png',[MappingObject(Cookbook, 'Check out your favorite cookbook for a recipe to cook for tonight!', [1,2]), MappingObject(Garden, 'Head to your garden to choose a flower for tonight!', [1,2]), MappingObject(Trash, 'Take out the trash so the kitchen doesn’t smell weird later', [2])])
+Kitchen = Stage('Kitchen', {0: 'Nothing screams cozy and comfy like a home cooked meal! You have been learning how to cook since you were child and am super eager to wow your date with your deliciously hypnotizing dishes!'},'kitchen.png',[MappingObject(Cookbook, 'Check out your favorite cookbook for a recipe to cook for tonight!', [1,2]), MappingObject(Garden, 'Head to your garden to choose a flower for tonight!', [1,2]), MappingObject(Trash, 'Take out the trash so the kitchen doesn’t smell weird later', [2])])
 
 Hallway = Stage('Hallway', {0: 'Where do you want to go'},'livingroom.png',[MappingObject(Kitchen, 'Go downstairs to begin preparations for tonight!', [0])])
 
