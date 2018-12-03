@@ -7,7 +7,7 @@ Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 import pygame
 import time
 from Model import *
-from stageobject_mappings import *
+from stageobject_mappings import StartingPage
 
 
 pygame.init() #add it in the main or write game function that init the pygame
@@ -108,14 +108,10 @@ class Button(TextBox):
     allow user interactivity
 
     """
-
     def __init__(self, stage = None, text='', exist = False, color = (255,222,222)):
-        # super(Button,self).__init__(**kw)
-        self.color = color
-        self.text = text
-        self.exist = exist
-        self.y = 400
-        self.x = 0
+        super(Button,self).__init__(text,exist,color)
+        self.y = 400 # the same
+        self.x = 0 # changes
         self.width = 200
         self.height = 100
         self.stage = stage
@@ -129,17 +125,13 @@ class BackButton(Button):
     doesn't need positioning
 
     """
-    def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):   #**kw):
-        #super(BackButton,self).__init__(**kw)#, text, exist, color)
+    def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):
+        super(BackButton,self).__init__(stage,text,exist,color)
         #shouldn't have optional arguments, just call button with fixed position
-        self.color = color
-        self.text = text
-        self.exist = exist
         self.y = 25
         self.x = 625
         self.width = 150
         self.height = 100
-        self.stage = stage
 
 class Screen():
     """
@@ -230,6 +222,10 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
 
     return currentScreen
 
+    #take out none
+
+    #view class has update
+    #active list of items that you can interact with and move things out of it
 
 #################Controller Stuff
 

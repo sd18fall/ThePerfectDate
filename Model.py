@@ -27,6 +27,8 @@ class Stage():
     Stores all the information that will be used to project onto the screen to help user move
     along in the game
 
+    fix doc strings
+
     """
     def __init__(self, name, description, picture, buttonmapping = None, backbuttonmapping = None):
         self.name = name
