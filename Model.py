@@ -51,6 +51,38 @@ class MappingObject():
 
 
 
-def choiceSelection(oldstage,stage):
-    for mappingobj in stage.buttonmapping:
-        if mappingobj
+def goBack(stage):
+    if stage.backStep == 1:
+        return stage.back
+    else:
+        return goBack(stage.back)
+
+def choiceSelection(stage):
+    stage.backStep = 1 #might hardcode
+    oldBackStage = goBack(stage)
+    for mappingobj in oldBackStage.buttonmapping:
+        if mappingobj.stageMapTo = stage:
+            stagemappingobj = mappingobj
+
+    stage.backStep = 2 #might hardcode 2
+    newBackStage = goBack(stage)
+
+    for mappingobj in newBackStage.buttonmapping:
+        if mappingobj.stageMapTo = oldBackStage:
+            newBackStage.buttonmapping.remove(mappingobj)
+            newBackStage.buttonmapping.append(stagemappingobj)
+
+    stage.back = newBackStage
+
+
+
+
+
+
+
+
+
+
+
+
+sdfsds
