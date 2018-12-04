@@ -30,12 +30,13 @@ class Stage():
     fix doc strings
 
     """
-    def __init__(self, name, description, picture, buttonmapping = None, backbuttonmapping = None):
+    def __init__(self, name, description, picture, buttonmapping = None, back = None, backStep = 1):
         self.name = name
         self.description = description
         self.picture = picture
         self.buttonmapping = buttonmapping
-        self.backbuttonmapping = backbuttonmapping
+        self.back = back
+        self.backStep = backStep
 
 
 class MappingObject():
@@ -47,3 +48,9 @@ class MappingObject():
         self.stageMapTo = stageMapTo
         self.buttontext = buttontext
         self.levels = levels
+
+
+
+def choiceSelection(oldstage,stage):
+    for mappingobj in stage.buttonmapping:
+        if mappingobj
