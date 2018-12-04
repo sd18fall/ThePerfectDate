@@ -74,11 +74,11 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    self.typePause(.03)
+                    #self.typePause(.03)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
-            self.typePause(.3)
+            #self.typePause(.3)
 
     def typePause(self,pause):
         if type(self) == Button:
