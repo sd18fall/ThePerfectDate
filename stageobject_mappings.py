@@ -3,9 +3,9 @@ from Model import*
 
 Lasagna = Stage('Lasagna', {0: 'Making the Lovers Lasagna takes a biiit longer than you expected, but once it is in the oven the room immediatly smells delicious'},'kitchen.png')
 
-Salad = Stage('Pizza', {0: 'Oof, there may or may not be some tomato sauce in your hair. You hadetter go clean up, but it is going to be totally worth it when the Platonic Pizza is done it will be totally worth it!'},'kitchen.png')
+Pizza = Stage('Pizza', {0: 'Oof, there may or may not be some tomato sauce in your hair. You had better go clean up, but it is going to be totally worth it when the Platonic Pizza is done it will be totally worth it!'},'kitchen.png')
 
-Pizza = Stage('Salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'kitchen.png')
+Salad = Stage('Salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'kitchen.png')
 
 Cookbook = Stage('Grandma Smith’s CookBook', {0: 'The Grandma Smith CookBook is what you worship religiously. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'kitchen.png',[MappingObject(Lasagna, 'Makes some delicious homemade Lovers Lasagna!', [1]), MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [1]), MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [1])])
 
@@ -48,6 +48,7 @@ StartingPage = Stage('Start', {0 : 'The Perfect Date: Ever wanted to bring your 
 
 #Cookbook.backbuttonmapping = MappingObject(Kitchen, 'Back to Kitchen', [0])
 #Garden.backbuttonmapping = MappingObject(Kitchen, 'Back to Kitchen', [0])
+
 Lasagna.backbuttonmapping = MappingObject(Kitchen, 'Back to Kitchen', [0])
 Salad.backbuttonmapping = MappingObject(Kitchen, 'Back to Kitchen', [0])
 Pizza.backbuttonmapping = MappingObject(Kitchen, 'Back to Kitchen', [0])
@@ -64,6 +65,7 @@ Kitchen.backbuttonmapping = MappingObject(Hallway, 'Back to Hallway', [0])
 
 #OutfitMakeup.backbuttonmapping = MappingObject(Bedroom, 'Back to Bedroom', [0])
 #Diary.backbuttonmapping = MappingObject(Bedroom, 'Back to Bedroom', [0])
+
 SunDress.backbuttonmapping = MappingObject(Bedroom, 'Back to Bedroom', [0])
 TShirt.backbuttonmapping = MappingObject(Bedroom, 'Back to Bedroom', [0])
 PowerSuit.backbuttonmapping = MappingObject(Bedroom, 'Back to Bedroom', [0])
