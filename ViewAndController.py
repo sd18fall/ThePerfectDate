@@ -83,8 +83,8 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
     def typePause(self,pause):
         if type(self) == Button:
             pass
-        elif type(self) == BackButton:
-            pass
+        # elif type(self) == BackButton:
+        #     pass
         elif type(self) == TextBox:
             pygame.display.update()
             time.sleep(pause)
@@ -108,30 +108,31 @@ class Button(TextBox):
     allow user interactivity
 
     """
-    def __init__(self, stage = None, text='', exist = False, color = (255,222,222)):
+    def __init__(self, stage = None, backButton = False, text='', exist = False, color = (255,222,222)):
         super(Button,self).__init__(text,exist,color)
         self.y = 400 # the same
         self.x = 0 # changes
         self.width = 200
         self.height = 100
         self.stage = stage
+        self.backButton = backButton
 
 
-
-class BackButton(Button):
-    """
-    This button allows the user to go back to the previous page
-    It has it's own class because it remains static in the corner and
-    doesn't need positioning
-
-    """
-    def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):
-        super(BackButton,self).__init__(stage,text,exist,color)
-        #shouldn't have optional arguments, just call button with fixed position
-        self.y = 25
-        self.x = 625
-        self.width = 150
-        self.height = 100
+#
+# class BackButton(Button):
+#     """
+#     This button allows the user to go back to the previous page
+#     It has it's own class because it remains static in the corner and
+#     doesn't need positioning
+#
+#     """
+#     def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):
+#         super(BackButton,self).__init__(stage,text,exist,color)
+#         #shouldn't have optional arguments, just call button with fixed position
+#         self.y = 25
+#         self.x = 625
+#         self.width = 150
+#         self.height = 100
 
 class Screen():
     """
@@ -155,8 +156,8 @@ class Screen():
         else:
             self.screenButtons = None
 
-        if self.stage.backbuttonmapping != None:
-            self.backButton = BackButton(self.stage.backbuttonmapping.stageMapTo, self.stage.backbuttonmapping.buttontext)
+        # if self.stage.backbuttonmapping != None:
+        #     self.backButton = BackButton(self.stage.backbuttonmapping.stageMapTo, self.stage.backbuttonmapping.buttontext)
 
         else:
             self.backButton = None
@@ -177,8 +178,8 @@ class Screen():
         if self.screenButtons != None:
             for button in self.screenButtons:
                 button.draw()
-        if self.backButton != None:
-            self.backButton.draw()
+        # if self.backButton != None:
+        #     self.backButton.draw()
 
 
 def buttonPlacement(screenButtons):
@@ -188,6 +189,14 @@ def buttonPlacement(screenButtons):
 
     """
     #Calculates the amount of space that will not be taken up by buttons
+    for item in screenButtons:
+        if item.backButton:
+            screenButtons.remove(item)
+            items.y = 25
+            item.x = 625
+            item.width = 150
+            item.height = 100
+
     totalSpace = width - buttonWidth*len(screenButtons)
     space = totalSpace/(len(screenButtons)+1)
 
@@ -208,8 +217,8 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if oldScreen != None and oldScreen.screenButtons != None:
         for object in oldScreen.screenButtons:
             object.exist = False
-    if oldScreen != None and oldScreen.backButton != None:
-        oldScreen.backButton.exist = False
+    # if oldScreen != None and oldScreen.backButton != None:
+    #     oldScreen.backButton.exist = False
 
     currentScreen = Screen(stage,state)
     currentScreen.draw()
@@ -217,8 +226,8 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if currentScreen.screenButtons != None:
         for object in currentScreen.screenButtons:
             object.exist = True
-    if currentScreen.backButton != None:
-        currentScreen.backButton.exist = True
+    # if currentScreen.backButton != None:
+    #     currentScreen.backButton.exist = True
 
     return currentScreen
 
@@ -297,11 +306,11 @@ if __name__ == '__main__':
                     if isClick(button,pos):
                         currentScreen = drawScreen(button.stage, state, currentScreen)
 
-            if isClick(currentScreen.backButton,pos):
-                currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
+            # if isClick(currentScreen.backButton,pos):
+            #     currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
 
             monitor(currentScreen.screenButtons,pos)
-            monitor([currentScreen.backButton],pos)
+            # monitor([currentScreen.backButton],pos)
 
             if event.type == pygame.QUIT:
                run = False
