@@ -67,7 +67,9 @@ def goBack(stage):
     else:
         return goBack(stage.back)
 
-def choiceSelection(stage):
+def choiceSelection(stage,state):
+
+    storeDecision(stage,state)
     #finds mapping object that represents the object chosen
     oldBackStage = stage.back
     for mappingobj in oldBackStage.buttonMapping:
@@ -84,13 +86,13 @@ def choiceSelection(stage):
                     newBackStage.buttonMapping[n].stageMapTo = stagemappingobj.stageMapTo
 
 def storeDecision(stage,state):
-    state.decision[state.back.name] = state.name
+    state.decisions[stage.back.name] = stage.name
 
-def checkStageConditions(stage):
+def checkStageConditions(stage,state):
     """marks current stage as having been seen and checks if any choice is a permanent change"""
     stage.clicked = True
     if stage.backStep == 2:
-        choiceSelection(stage)
+        choiceSelection(stage, state)
 
 
 

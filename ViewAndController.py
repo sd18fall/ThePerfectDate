@@ -139,15 +139,23 @@ class Screen():
             self.screenButtons = None
 
     def textboxDecider(self):
+        print(self.state.decisions)
+
         if self.stage.description.get(self.state.level) == None:
             text = self.stage.description[0]
         else:
             text = self.stage.description[self.state.level]
 
-        if state.decisions != None:
-            for key in state.decisions:
-                if key in text:
-                    text.replace(key, stage.decisions[key])
+        print("Original text:",text)
+
+        if self.state.decisions != None:
+            for key in self.state.decisions:
+                print("Key:",key)
+                print("Value:", str(self.state.decisions[key]))
+                if str(key) in text:
+                    text.replace(str(key), str(self.state.decisions[key]))
+
+        print("Modified text:",text)
 
         self.screenBox = TextBox(text)
 
@@ -260,7 +268,7 @@ def monitor(buttonList,pos):
 if __name__ == '__main__':
 
 
-    state = State(level=3)
+    state = State(level=1)
 
     currentScreen = Screen(StartingPage, state)
 
@@ -273,7 +281,7 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
-            checkStageConditions(currentScreen.stage)
+            checkStageConditions(currentScreen.stage, currentScreen.state)
 
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:

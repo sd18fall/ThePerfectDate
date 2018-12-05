@@ -85,10 +85,7 @@ Bedroom = Stage('Bedroom', {0: 'There is a big sign on the door that says, "Juli
     MappingObject(Diary, 'Take a look at the Diary!', [1,2,3]),
     MappingObject(Notes, 'You notice a stack of notes on the table', [2,3])])
 
-Approach6 = Stage('Approach6',{0: 'You use your weapon to try to subdue her, she rams into you, and your instincts take her. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is unconscious.'},'bedroom.png',
-[MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
-MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
-MappingObject(Approach6,'Stay rational',[0])])
+Approach6 = Stage('Approach6',{0: 'You use your weapon to try to subdue her, she rams into you, and your instincts take her. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is unconscious.'},'bedroom.png')
 
 Approach5 = Stage('Approach5',{0: 'She manages to dodge your hug and scratches you on the cheek. You see her looking for an escape.'},'bedroom.png',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
