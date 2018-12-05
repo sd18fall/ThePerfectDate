@@ -153,7 +153,7 @@ class Screen():
                 print("Key:",key)
                 print("Value:", str(self.state.decisions[key]))
                 if str(key) in text:
-                    text.replace(str(key), str(self.state.decisions[key]))
+                    text = text.replace(str(key), str(self.state.decisions[key]))
 
         print("Modified text:",text)
 
