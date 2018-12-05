@@ -7,7 +7,7 @@ Pizza = Stage('Pizza', {0: 'Oof, there may or may not be some tomato sauce in yo
 
 Salad = Stage('Salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'kitchen.png', None, 2)
 
-Cookbook = Stage('Grandma Smith’s CookBook', {0: 'The Grandma Smith CookBook is what you worship religiously. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'kitchen.png',
+Cookbook = Stage('DISH', {0: 'The Grandma Smith CookBook is what you worship religiously. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'kitchen.png',
 [MappingObject(Lasagna, 'Makes some delicious homemade Lovers Lasagna!', [1]),
     MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [1]),
     MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [1])])
@@ -18,7 +18,7 @@ Daisy = Stage('Daisy', {0: 'A Daisy can put up little resistance to your giant h
 
 Sunflower= Stage('Sunflower', {0: 'Nothing says, "I like you" like a flower as big as your face. The Sunflower you picked is a giant monster flower and you are proud of yourself'},'garden.jpeg', None, 2)
 
-Garden = Stage('Garden', {0: 'There is a beautiful flower garden in the backyard. You are obsessed with the way flowers look and have always treated them with tenderness and love. Which flower are you going to chose to use tonight? '},'garden.jpeg',
+Garden = Stage('FLOWERS', {0: 'There is a beautiful flower garden in the backyard. You are obsessed with the way flowers look and have always treated them with tenderness and love. Which flower are you going to chose to use tonight? '},'garden.jpeg',
 [MappingObject(Rose, 'Roses are a classic!', [1]),
     MappingObject(Daisy, 'A Daisy is simple and elegant', [1]),
     MappingObject(Sunflower,'Sunflowers are big and beautiful', [1])])
@@ -44,13 +44,13 @@ Polish = Stage('Polish', {0: 'This silverware is looking a little dull. Nothing 
 LightCandles = Stage('LightCandles', {0: 'These candles really set the mood. Classy. Elegant. You hear footsteps echo from the Bedroom'},'kitchen.png',
 [MappingObject(Polish,'Polish the silverware',[0])])
 
-SetTable = Stage('SetTable', {0: 'You start to set the table for tonight. Everything has to be perfect. You hear a door slam'},'kitchen.png',
+SetTable = Stage('SetTable', {0: 'You start to set the table for tonight. Everything has to be perfect. The FLOWERS you picked out earlier are the perfect centerpieces. You hear a door slam'},'kitchen.png',
 [MappingObject(LightCandles,'Time to light some candles',[0])])
 
 TableCloth = Stage('TableCloth', {0: 'The table cloth is floral and almost matches the plates! Did you just see a shadow coming from upstairs?'},'kitchen.png',
 [MappingObject(SetTable,'Set the table',[0])])
 
-PrepareFood = Stage('PrepareFood', {0: 'You take the food out of oven, and it is to die for! Well done! There is rustling noises coming from upstairs'}, 'kitchen.png',
+PrepareFood = Stage('PrepareFood', {0: 'You take the DISH out of oven, and it is to die for! Well done! There is rustling noises coming from upstairs'}, 'kitchen.png',
 [MappingObject(TableCloth,'Lay out a beautiful tablecloth',[0])])
 
 EndKitchen = Stage('Kitchen', {0:'You hear a loud crashing sound from upstairs!!'}, 'kitchen.png',
@@ -62,7 +62,7 @@ TShirt= Stage('TShirt', {0: 'T Shirt and Jeans is just a classic Julia outfit, a
 
 PowerSuit= Stage('PowerSuit', {0: 'Go big or go home. Nothing screams confidence like a bright red suit. And the best part is it basically matches everything!'},'bedroom.png', None, 2)
 
-OutfitMakeup = Stage('Outfit and Makeup', {0: 'You have always loved picking out dresses, ever since you were little and you would dress up your dolls. Well tonight is the real deal and it is time to get serious about fashion. Which should you pick out for tonight?'},'bedroom.png',
+OutfitMakeup = Stage('OUTFIT', {0: 'You have always loved picking out dresses, ever since you were little and you would dress up your dolls. Well tonight is the real deal and it is time to get serious about fashion. Which should you pick out for tonight?'},'bedroom.png',
 [MappingObject(SunDress, 'Sun Dress', [1]),
     MappingObject(TShirt, 'T Shirt', [1]),
     MappingObject(PowerSuit,'Power Suit', [1])])
@@ -80,14 +80,31 @@ Diary = Stage('Diary', {0: 'You have already read through this diary so many tim
 
 Notes = Stage('Notes', {0: 'Have those notes always been there? They are percariously stacked up on the nightstand and are spilling over onto the floor. What do you do with the notes?'},'bedroom.png')
 
-Bedroom = Stage('Bedroom', {0: 'There is big sign on the door that says, "Julias room". Wow this room is a mess! You better clean up if you want to impress that Special Someone. Yes you are definitly going to clean. As soon as you are done picking out a dress. Oh who are you kidding?'} ,'bedroom.png',
+Bedroom = Stage('Bedroom', {0: 'There is a big sign on the door that says, "Julias room". Wow this room is a mess! You better clean up if you want to impress that Special Someone. Yes you are definitly going to clean. As soon as you are done picking out a dress. Oh who are you kidding?'} ,'bedroom.png',
 [MappingObject(OutfitMakeup, 'Time to choose what to wear for this special Night!', [1,2,3]),
     MappingObject(Diary, 'Take a look at the Diary!', [1,2,3]),
     MappingObject(Notes, 'You notice a stack of notes on the table', [2,3])])
 
-Approach2 = Stage('Approach2',{0: 'Y'},'bedroom.png',
-[MappingObject(Diary,'Force her to calm down',[0]),
-MappingObject(Diary,'"WHAT ARE YOU DOING HERE?"',[0])])
+Approach6 = Stage('Approach6',{0: 'You use your weapon to try to subdue her, she rams into you, and your instincts take her. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is unconscious.'},'bedroom.png',
+[MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
+MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
+MappingObject(Approach6,'Stay rational',[0])])
+
+Approach5 = Stage('Approach5',{0: 'She manages to dodge your hug and scratches you on the cheek. You see her looking for an escape.'},'bedroom.png',
+[MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
+MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
+MappingObject(Approach6,'Stay rational',[0])])
+
+Approach4 = Stage('Approach4',{0: 'She manages to dodge your hug and scratches you on the cheek. You see her looking for an escape.'},'bedroom.png',
+[MappingObject(Approach5,'SHE IS RUINING EVERYTHING!',[0]),
+MappingObject(Approach5,'WHY IS SHE BEING SUCH A BITCH!',[0]),
+MappingObject(Approach5,'Stay rational',[0])])
+
+Approach3 = Stage('Approach3',{0: 'You say, "But Julia, this is OUR house. I cannot leave. I am still not done preparing for our perfect date, and you did not even put on the OUTFIT I put out for you. If you don\'t calm down, I will have to put you back into the closet."'},'bedroom.png',
+[MappingObject(Approach4,'Hug it out',[0])])
+
+Approach2 = Stage('Approach2',{0: 'She screams, "GET...OUT...OF...MY HOUSE!!!" You are very confused at this point.'},'bedroom.png',
+[MappingObject(Approach3,'Threaten her to calm down',[0])])
 
 Approach = Stage('Approach',{0: 'She says "...CRAZY...FLOWERS...GET OUT, LEAVE ME ALONE". She does not know whats happening. She needs to be calmed down'},'bedroom.png',
 [MappingObject(Approach2,'Force her to calm down',[0]),
@@ -102,7 +119,7 @@ EndBedroom = Stage('Bedroom', {0:'She is staggering out of the closet. What is s
 MappingObject(Corner, 'Stay still',[0]),
 MappingObject(Corner,'"What are you doing here?"',[0])])
 
-Hallway = Stage('Hallway', {1: 'Where do you want to go',2: 'Where do you want to go', 3: 'The oven timer is going off! Time to go check on your cooking.', 4: 'Where do you want to go'}, 'livingroom.png', [MappingObject(Kitchen, 'Go downstairs to the kitchen!', [1,2]),
+Hallway = Stage('Hallway', {1: 'Where do you want to go',2: 'Where do you want to go', 3: 'The oven timer is going off! Time to go check on your DISH.', 4: 'Where do you want to go'}, 'livingroom.png', [MappingObject(Kitchen, 'Go downstairs to the kitchen!', [1,2]),
     MappingObject(Bedroom, 'Go upstairs to the bedroom!', [1,2,3]),
     MappingObject(EndKitchen,'Go downstairs to the kitchen!',[3,4]),
     MappingObject(EndBedroom,'Go upstairs to the bedroom!',[4])])

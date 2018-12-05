@@ -13,9 +13,11 @@ class State():
 
     * Not currently in use
     """
-    def __init__(self, level, flower = None):
+    def __init__(self, level, decisions = None):
         self.level = level
-        self.flower = flower
+
+        if decisions == None:
+            self.decisions = {}
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
@@ -82,6 +84,8 @@ def choiceSelection(stage):
                 if i == mappingobj:
                     newBackStage.buttonMapping[n].stageMapTo = stagemappingobj.stageMapTo
 
+def storeDecision(stage,state):
+    state.decision[state.back.name] = state.name
 
 def checkStageConditions(stage):
     """marks current stage as having been seen and checks if any choice is a permanent change"""

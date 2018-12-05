@@ -139,11 +139,21 @@ class Screen():
             self.screenButtons = None
 
     def textboxDecider(self):
-
         if self.stage.description.get(self.state.level) == None:
-            self.screenBox = TextBox(self.stage.description[0])
+            text = self.stage.description[0]
         else:
-            self.screenBox = TextBox(self.stage.description[self.state.level])
+            text = self.stage.description[self.state.level]
+
+        if state.decisions != None:
+            for key in state.decisions:
+                if key in text:
+                    text.replace(key, stage.decisions[key])
+
+        self.screenBox = TextBox(text)
+
+
+
+
 
     def draw(self):
         self.buttonDecider()
