@@ -18,7 +18,6 @@ class State():
 
         if decisions == None:
             self.decisions = {}
-
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
 
