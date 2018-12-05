@@ -7,7 +7,8 @@ Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 import pygame
 import time
 from Model import *
-from stageobject_mappings import StartingPage
+from stageobject_mappings import *
+#from stageobject_mappings import StartingPage
 
 
 pygame.init() #add it in the main or write game function that init the pygame
@@ -26,7 +27,7 @@ textBoxHeight = 200
 textBoxY = 125
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
-pic = pygame.image.load("Creepy.jpg") #the background image for our game - there will eventually be different backgrounds as the player progresses
+#the background image for our game - there will eventually be different backgrounds as the player progresses
 # currentScreen = Screen()
 
 
@@ -38,14 +39,14 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
     """
 
-    def __init__(self, text='', exist = False, color = (255,222,222)):
+    def __init__(self, text='', color = (255,222,222)):
         self.color = color
         self.x = 200
         self.y = 125
         self.width = 400
         self.height = 200
         self.text = text
-        self.exist = exist
+
 
     def append(self,text):
         self.text += text
@@ -83,8 +84,6 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
     def typePause(self,pause):
         if type(self) == Button:
             pass
-        # elif type(self) == BackButton:
-        #     pass
         elif type(self) == TextBox:
             pygame.display.update()
             time.sleep(pause)
@@ -108,8 +107,8 @@ class Button(TextBox):
     allow user interactivity
 
     """
-    def __init__(self, stage = None, backButton = False, text='', exist = False, color = (255,222,222)):
-        super(Button,self).__init__(text,exist,color)
+    def __init__(self, stage = None, text='',color = (255,222,222),backButton = False):
+        super(Button,self).__init__(text,color)
         self.y = 400 # the same
         self.x = 0 # changes
         self.width = 200
@@ -117,22 +116,6 @@ class Button(TextBox):
         self.stage = stage
         self.backButton = backButton
 
-
-#
-# class BackButton(Button):
-#     """
-#     This button allows the user to go back to the previous page
-#     It has it's own class because it remains static in the corner and
-#     doesn't need positioning
-#
-#     """
-#     def __init__(self,stage= None, text='', exist = False, color = (255,222,222)):
-#         super(BackButton,self).__init__(stage,text,exist,color)
-#         #shouldn't have optional arguments, just call button with fixed position
-#         self.y = 25
-#         self.x = 625
-#         self.width = 150
-#         self.height = 100
 
 class Screen():
     """
@@ -144,23 +127,16 @@ class Screen():
 
     def buttonDecider(self):
 
-        if self.stage.buttonmapping != None:
+        if self.stage.buttonMapping != None:
             screenButtons = []
-            for buttonMapping in self.stage.buttonmapping:
+            for buttonMapping in self.stage.buttonMapping:
                 for level in buttonMapping.levels:
                     if level == self.state.level or level == 0:
-                        screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext))
+                        screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext,backButton = buttonMapping.backButton))
             buttonPlacement(screenButtons)
             self.screenButtons = screenButtons
-
         else:
             self.screenButtons = None
-
-        # if self.stage.backbuttonmapping != None:
-        #     self.backButton = BackButton(self.stage.backbuttonmapping.stageMapTo, self.stage.backbuttonmapping.buttontext)
-
-        else:
-            self.backButton = None
 
     def textboxDecider(self):
 
@@ -178,8 +154,6 @@ class Screen():
         if self.screenButtons != None:
             for button in self.screenButtons:
                 button.draw()
-        # if self.backButton != None:
-        #     self.backButton.draw()
 
 
 def buttonPlacement(screenButtons):
@@ -189,13 +163,17 @@ def buttonPlacement(screenButtons):
 
     """
     #Calculates the amount of space that will not be taken up by buttons
+
     for item in screenButtons:
         if item.backButton:
+            back = item
             screenButtons.remove(item)
-            items.y = 25
+            item.y = 25
             item.x = 625
             item.width = 150
             item.height = 100
+        else:
+            back = None
 
     totalSpace = width - buttonWidth*len(screenButtons)
     space = totalSpace/(len(screenButtons)+1)
@@ -206,6 +184,8 @@ def buttonPlacement(screenButtons):
         item.x = spacerIndex
         item.y = buttonY
         spacerIndex += buttonWidth + space
+    if back != None:
+        screenButtons.append(back)
 
 #To Fix and implement
 def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictkey and dictionary
@@ -217,8 +197,6 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if oldScreen != None and oldScreen.screenButtons != None:
         for object in oldScreen.screenButtons:
             object.exist = False
-    # if oldScreen != None and oldScreen.backButton != None:
-    #     oldScreen.backButton.exist = False
 
     currentScreen = Screen(stage,state)
     currentScreen.draw()
@@ -226,8 +204,6 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     if currentScreen.screenButtons != None:
         for object in currentScreen.screenButtons:
             object.exist = True
-    # if currentScreen.backButton != None:
-    #     currentScreen.backButton.exist = True
 
     return currentScreen
 
@@ -248,7 +224,7 @@ def isOver(button,pos):
 
 def isClick(button,pos):
     # Will recognize when the user pushes down on the mouse
-    if button != None and button.exist:
+    if button != None:
         if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
             if isOver(button,pos):
                 return True
@@ -256,7 +232,6 @@ def isClick(button,pos):
             return False
 
 def whatTyping(button):
-    if button.exist:
         if event.type == pygame.KEYDOWN:
             if event.key == 8: #delete
                 button.pop()
@@ -275,19 +250,7 @@ def monitor(buttonList,pos):
 if __name__ == '__main__':
 
 
-    # Diary = Stage('Diary', 'Her diary', 'Creepy.jpg')
-    #
-    # DiaryObject = MappingObject(Diary, 'Check out the Diary')
-    #
-    # Bedroom = Stage('Bedroom', 'The room is messy and the lights are dim.', 'Creepy.jpg', [DiaryObject])
-    #
-    # diarybackbutton = MappingObject(Bedroom, 'back')
-    #
-    # Diary.backbuttonmapping = diarybackbutton
-    #
-    # state = None
-
-    state = State(level=1)
+    state = State(level=3)
 
     currentScreen = Screen(StartingPage, state)
 
@@ -300,22 +263,21 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
+            checkStageConditions(currentScreen.stage)
 
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
                     if isClick(button,pos):
                         currentScreen = drawScreen(button.stage, state, currentScreen)
 
-            # if isClick(currentScreen.backButton,pos):
-            #     currentScreen = drawScreen(currentScreen.backButton.stage, state, currentScreen)
-
             monitor(currentScreen.screenButtons,pos)
-            # monitor([currentScreen.backButton],pos)
 
             if event.type == pygame.QUIT:
                run = False
                pygame.quit()
                quit()
+
+            levelConditions(state,currentScreen.stage)
 
 
 
