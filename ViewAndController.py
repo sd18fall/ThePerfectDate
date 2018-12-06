@@ -17,8 +17,8 @@ pygame.init() #add it in the main or write game function that init the pygame
 #doesn't need to be here, create dictionary: default settings - refer to it
 #Setting the standard sizes for the text boxes and buttons
 textFont = pygame.font.SysFont('comicsans', 30)
-width = 1000
-height = 800
+width = 800
+height = 600
 buttonWidth = 200
 buttonHeight = 100
 buttonY = 400
