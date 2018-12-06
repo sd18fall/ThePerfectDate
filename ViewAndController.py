@@ -139,23 +139,16 @@ class Screen():
             self.screenButtons = None
 
     def textboxDecider(self):
-        print(self.state.decisions)
-
         if self.stage.description.get(self.state.level) == None:
             text = self.stage.description[0]
         else:
             text = self.stage.description[self.state.level]
 
-        print("Original text:",text)
-
         if self.state.decisions != None:
             for key in self.state.decisions:
-                print("Key:",key)
-                print("Value:", str(self.state.decisions[key]))
                 if str(key) in text:
                     text = text.replace(str(key), str(self.state.decisions[key]))
 
-        print("Modified text:",text)
 
         self.screenBox = TextBox(text)
 
@@ -181,7 +174,6 @@ def buttonPlacement(screenButtons):
 
     """
     #Calculates the amount of space that will not be taken up by buttons
-
     for item in screenButtons:
         if item.backButton:
             back = item

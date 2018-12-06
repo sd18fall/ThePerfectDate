@@ -156,7 +156,7 @@ def checkStageConditions(stage,state):
     and checks if any choice is a permanent change
     """
     stage.clicked = True
-    if stage.backStep == 2:
+    if stage.backStep > 1 :
         choiceSelection(stage, state)
 
 
