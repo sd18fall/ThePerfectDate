@@ -12,15 +12,15 @@ Cookbook = Stage('COOKEDMEAL', {0: 'The Grandma Smith CookBook is what you worsh
     MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [1]),
     MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [1])])
 
-Rose = Stage('rose', {0: 'You prick your fingers trying to pick the Rose, but no flower can defeat you!'},'garden.jpeg',None, 2)
+Rose = Stage('roses', {0: 'You prick your fingers trying to pick the rose, but no flower can defeat you!'},'garden.jpeg',None, 2)
 
-Daisy = Stage('daisy', {0: 'A Daisy can put up little resistance to your giant hedge clippers.'},'garden.jpeg', None, 2)
+Daisy = Stage('daisies', {0: 'A daisy can put up little resistance to your giant hedge clippers.'},'garden.jpeg', None, 2)
 
-Sunflower= Stage('sunflower', {0: 'Nothing says, "I like you" like a flower as big as your face. The Sunflower you picked is a giant monster flower and you are proud of yourself'},'garden.jpeg', None, 2)
+Sunflower= Stage('sunflowers', {0: 'Nothing says, "I like you" like a flower as big as your face. The sunflower you picked is a giant monster flower and you are proud of yourself'},'garden.jpeg', None, 2)
 
 Garden = Stage('FLOWER', {0: 'There is a beautiful flower garden in the backyard. You are obsessed with the way flowers look and have always treated them with tenderness and love. Which flower are you going to chose to use tonight? '},'garden.jpeg',
 [MappingObject(Rose, 'Roses are a classic!', [1]),
-    MappingObject(Daisy, 'A Daisy is simple and elegant', [1]),
+    MappingObject(Daisy, 'Daisies is simple and elegant', [1]),
     MappingObject(Sunflower,'Sunflowers are big and beautiful', [1])])
 
 Trash = Stage('Trash', {0: 'You want to empty out the trash tonight, so everything is absolutely perfect! However, when you look into the trash can, you notice bouquets of FLOWERs in the trash. These don\'t belong in the trash, they are good as new! Suddenly, you hear a noise from upstairs...'},'kitchen.png')
@@ -82,11 +82,11 @@ Diary = Stage('Diary', {0: 'You have already read through this diary so many tim
     MappingObject(Dreams, '"I keep having the same dream..."', [1,2]),
     MappingObject(LoveLife,'"I cannot stop thinking about Steven!...""', [1,2])])
 
-NoteSteven = Stage('NoteSteven', {0: '"Dear Julia, what are you doing with Steven??? Don\'t you know that he isn\'t good for you?? I am the one giving you good advice, and sending you FLOWERs when you have a bad day. You belong with me."'},'bedroom.png')
+NoteSteven = Stage('NoteSteven', {0: '"Dear Julia, what are you doing with Steven??? Don\'t you know that he isn\'t good for you?? I am the one giving you good advice, and sending you FLOWER when you have a bad day. You belong with me. -Your Beloved"'},'bedroom.png')
 
-NoteGarden = Stage('NoteGarden', {0: '"Dear Julia, your flower garden is coming along swimmingly! I am a big fan of the FLOWERs! You are so good at gardening, you must have a green thumb!"'},'bedroom.png')
+NoteGarden = Stage('NoteGarden', {0: '"Dear Julia, your flower garden is coming along swimmingly! I am a big fan of the FLOWER, those are my favorite! You are so good at gardening, you must have a green thumb! -Your Beloved"'},'bedroom.png')
 
-NotePark = Stage('NotePark', {0: '"Dear Julia, I saw you in the park the today. You looked beautiful in your OUTFIT. Why did you wear your hair in a ponytail? It looks better down, I already told you that. You should really listen to me more"'},'bedroom.png')
+NotePark = Stage('NotePark', {0: '"Dear Julia, I saw you in the park the today. You looked beautiful in your OUTFIT. I love it when you wear OUTFITs. Why did you wear your hair in a ponytail? It looks better down, I already wrote to you about that. You should really listen to me more. Your Beloved "'},'bedroom.png')
 
 ReadNotes = Stage('Notes', {0: 'Which note should you read?'},'bedroom.png',
 [MappingObject(NoteSteven,'"What are you doing with Steven???"',[0]),
@@ -95,7 +95,7 @@ MappingObject(NotePark,'I saw you in the park today"',[0])],2)
 
 NeatNotes = Stage('NeatNotes', {0: 'You take care to make sure no note is lost. They are obviously written with love and are full of fond memories.'},'bedroom.png',None,2)
 
-Notes = Stage('Notes', {0: 'Have those notes always been there? They are percariously stacked up on the nightstand and are spilling over onto the floor. What do you do with the notes?'},'bedroom.png',
+Notes = Stage('Notes', {0: 'Have those letters always been there? They are percariously stacked up on the nightstand and are spilling over onto the floor. What do you do with the letters?'},'bedroom.png',
 [MappingObject(NeatNotes,'Stack them up in a nice pile',[0]),
 MappingObject(ReadNotes,'Read the notes',[0])])
 
@@ -130,7 +130,7 @@ Approach4 = Stage('Approach4',{0: 'Julia manages to dodge your hug and scratches
 MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
 MappingObject(Approach5,'Stay rational',[0])])
 
-Approach3 = Stage('Approach3',{0: 'You say, "But Julia, this is OUR house. I cannot leave. I am still not done preparing for our perfect date, and you did not even put on the OUTFIT I put out for you. If you don\'t calm down, I will have to put you back into the closet."'},'bedroom.png',
+Approach3 = Stage('Approach3',{0: 'You say, "But Julia, this is OUR house. I cannot leave. I am still not done preparing for our perfect date, and you didn\'t even put on the OUTFIT I put out for you. If you don\'t calm down, I will have to tie you and put you back into the closet." She says, "YOU CRAZY PSYCHO. I\'LL CALL THE POLICE!"'},'bedroom.png',
 [MappingObject(Approach4,'Hug it out',[0]),
 MappingObject(ForkAttack,'Use the fork',[5])])
 
@@ -146,7 +146,7 @@ Corner = Stage('Corner',{0: 'She mumbles something under her breath and backs aw
 [MappingObject(Approach,'Calm her down',[0]),
 MappingObject(Approach,'"What Are You Doing Here?"',[0])])
 
-EndBedroom = Stage('Bedroom', {0:'She is staggering out of the closet. What is she doing here?'} ,'bedroom.png',
+EndBedroom = Stage('Bedroom', {0:'She is staggering out of the closet. What\'s she doing out here?'} ,'bedroom.png',
 [MappingObject(Corner,'Try and calm her down',[0]),
 MappingObject(Corner, 'Stay still',[0]),
 MappingObject(Corner,'"What are you doing here?"',[0])])
@@ -159,7 +159,7 @@ Hallway = Stage('Hallway', {1: 'Where do you want to go',2: 'Where do you want t
 Intro2 = Stage('Intro2', {0 : 'She comes every monday to drop off groceries, but she never stays long. Anyways time to get ready! Tonight is a big night!'},'livingroom.png',
 [MappingObject(Hallway, 'Start the preparations!', [0])])
 
-Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You hear a voice from downstairs, "Goodmorning Julia! Are you still in bed, you sleepy head. I brought you some groceries to start your week! Anyways, love you sweetheart. Call your mom soon, I miss you"'},'livingroom.png', [MappingObject(Intro2, 'Aww so cute', [0])])
+Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You hear a voice from downstairs, "Goodmorning Julia! Are you still in bed, you sleepy head. I brought you some groceries to start your week! Anyways, love you sweetheart. Call me soon, I miss you and a mother deserves at least a weekly phone call from her only daughter"'},'livingroom.png', [MappingObject(Intro2, 'Aww so cute', [0])])
 
 StartingPage = Stage('Start', {0 : 'The Perfect Date: Ever wanted to bring your dream date to reality?'},'livingroom.png', [MappingObject(Intro, 'Start Game', [0])])
 

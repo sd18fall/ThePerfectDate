@@ -260,7 +260,7 @@ def monitor(buttonList,pos):
 if __name__ == '__main__':
 
 
-    state = State(level=1)
+    state = State(level=3)
 
     currentScreen = Screen(StartingPage, state)
 
