@@ -47,7 +47,7 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         self.height = 300
         self.text = text
 
-
+    # the codes below handle how the text is able to stay in the textbox rather than going off
     def append(self,text):
         self.text += text
 
@@ -88,8 +88,10 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
             pygame.display.update()
             time.sleep(pause)
 
-    def draw(self,win= win,outline=None): #each button is responsible for drawing itself
-        #Call this method to draw the button on the screen
+    def draw(self,win= win,outline=None):
+        """
+        This function will draw each button onto the screen
+        """
         if outline:
             pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
 
@@ -98,13 +100,15 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         if self.text != '':
             self.textSpacing()
 
-    def __repr__(self): #print textbox with self.text
+    def __repr__(self):
+        """
+        This function prints the textbox with self.text
+        """
         return self.text
 
 class Button(TextBox):
     """
-    This class inherits from the textbox class to display the buttons and
-    allow user interactivity
+    This class inherits from the textbox class and displays the buttons onto the screen
 
     """
     def __init__(self, stage = None, text='',color = (255,222,222),backButton = False):
@@ -150,10 +154,6 @@ class Screen():
 
 
         self.screenBox = TextBox(text)
-
-
-
-
 
     def draw(self):
         self.buttonDecider()
