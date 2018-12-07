@@ -168,7 +168,7 @@ def checkStageConditions(stage,state):
         choiceSelection(stage, state)
 
 def checkInventory(stage,state):
-    if stage.clicked and stage.inventoryPic not in state.inventory:
+    if stage.clicked and stage.inventoryPic != None and stage.inventoryPic not in state.inventory:
         state.inventory.append(stage.inventoryPic)
 
 

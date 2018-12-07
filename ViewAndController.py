@@ -155,12 +155,12 @@ class Screen():
 
         self.screenBox = TextBox(text)
 
-    def inventoryDecide(state):
-
-        spacer = 0
-        for picture in state.inventory:
-            win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (40, 40)), (spacer, 0)))
-            spacer =+ 40
+    def inventoryDecide(self):
+        spacer = 10
+        if self.state.inventory != []:
+            for picture in self.state.inventory:
+                win.blit(pygame.transform.scale(pygame.image.load(picture), (60, 60)), (spacer, 10))
+                spacer += 70
 
 
     def draw(self):
@@ -281,6 +281,9 @@ if __name__ == '__main__':
             pygame.display.update()
 
             checkStageConditions(currentScreen.stage, currentScreen.state)
+            checkInventory(currentScreen.stage,currentScreen.state)
+
+            currentScreen.inventoryDecide()
 
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
