@@ -16,15 +16,15 @@ pygame.init() #add it in the main or write game function that init the pygame
 
 #doesn't need to be here, create dictionary: default settings - refer to it
 #Setting the standard sizes for the text boxes and buttons
-textFont = pygame.font.SysFont('comicsans', 30)
-width = 800
-height = 600
-buttonWidth = 200
-buttonHeight = 100
-buttonY = 400
-textBoxWidth = 400
-textBoxHeight = 200
-textBoxY = 125
+textFont = pygame.font.SysFont('comicsans', 40)
+width = 1200
+height = 800
+buttonWidth = 300
+buttonHeight = 75
+buttonY = 550
+textBoxWidth = 800
+textBoxHeight = 300
+textBoxY = 500
 textBoxX = (width - textBoxWidth)/2
 win = pygame.display.set_mode((width,height))
 #the background image for our game - there will eventually be different backgrounds as the player progresses
@@ -41,10 +41,10 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
     def __init__(self, text='', color = (255,222,222)):
         self.color = color
-        self.x = 200
-        self.y = 125
-        self.width = 400
-        self.height = 200
+        self.x = 300
+        self.y = 150
+        self.width = 600
+        self.height = 300
         self.text = text
 
 
@@ -75,7 +75,7 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    #self.typePause(.03)
+                    #self.typePause(.01)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
@@ -109,13 +109,12 @@ class Button(TextBox):
     """
     def __init__(self, stage = None, text='',color = (255,222,222),backButton = False):
         super(Button,self).__init__(text,color)
-        self.y = 400 # the same
+        self.y = 450 # the same
         self.x = 0 # changes
-        self.width = 200
-        self.height = 100
+        self.width = 300
+        self.height = 150
         self.stage = stage
         self.backButton = backButton
-
 
 class Screen():
     """
@@ -178,10 +177,10 @@ def buttonPlacement(screenButtons):
         if item.backButton:
             back = item
             screenButtons.remove(item)
-            item.y = 25
-            item.x = 625
-            item.width = 150
-            item.height = 100
+            item.y = 50
+            item.x = 950
+            item.width = 200
+            item.height = 150
         else:
             back = None
 
