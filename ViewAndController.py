@@ -155,6 +155,14 @@ class Screen():
 
         self.screenBox = TextBox(text)
 
+    def inventoryDecide(state):
+
+        spacer = 0
+        for picture in state.inventory:
+            win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (40, 40)), (spacer, 0)))
+            spacer =+ 40
+
+
     def draw(self):
         self.buttonDecider()
         self.textboxDecider()

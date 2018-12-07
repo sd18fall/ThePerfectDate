@@ -19,12 +19,17 @@ class State():
     decisions: Decisions are made when the user chooses certain answers when prompted.
     Their answer will be stored in a dictionary in this class.
 
+    inventory:
+
     """
-    def __init__(self, level, decisions = None):
+    def __init__(self, level, decisions = None, inventory = None):
         self.level = level
 
         if decisions == None:
             self.decisions = {}
+
+        if inventory == None:
+            self.inventory = []
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
@@ -52,8 +57,10 @@ class Stage():
     back: this is used to generate the back button and direct the user from the current
     screen to the previous screen.
 
+    inventorypic:
+
     """
-    def __init__(self, name, description, picture, buttonMapping = None, backStep = 1, clicked = False, back = None):
+    def __init__(self, name, description, picture, buttonMapping = None, backStep = 1, inventoryPic = None, clicked = False, back = None):
         self.name = name
         self.description = description
         self.picture = picture
@@ -61,6 +68,7 @@ class Stage():
         self.backStep = backStep
         self.clicked = clicked
         self.back = back
+        self.inventoryPic = inventoryPic
 
     def __str__(self):
         return self.name
@@ -158,6 +166,10 @@ def checkStageConditions(stage,state):
     stage.clicked = True
     if stage.backStep > 1 :
         choiceSelection(stage, state)
+
+def checkInventory(stage,state):
+    if stage.clicked and stage.inventoryPic not in state.inventory:
+        state.inventory.append(stage.inventoryPic)
 
 
 
