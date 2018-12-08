@@ -117,7 +117,7 @@ class Button(TextBox):
         self.y = 450 # the same
         self.x = 0 # changes
         self.width = 300
-        self.height = 150
+        self.height = 175
         self.stage = stage
         self.backButton = backButton
 
