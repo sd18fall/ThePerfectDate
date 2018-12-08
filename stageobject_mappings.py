@@ -8,9 +8,9 @@ Pizza = Stage('pizza', {0: 'Oof, there may or may not be some tomato sauce in yo
 Salad = Stage('salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'kitchen.png', None, 2,'salad.png')
 
 Cookbook = Stage('COOKEDMEAL', {0: 'The Grandma Smith CookBook is decades old. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'kitchen.png',
-[MappingObject(Lasagna, 'Makes some delicious homemade Lovers Lasagna!', [1]),
-    MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [1]),
-    MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [1])])
+[MappingObject(Lasagna, 'Makes some delicious homemade Lovers Lasagna!', [0]),
+    MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [0]),
+    MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [0])])
 
 Rose = Stage('roses', {0: 'You prick your fingers trying to pick the rose, but no flower can defeat you! On your way back to the house a neighbor gives you a funny look, but you just stick your toungue out at him'},'garden.jpeg',None, 2,'rose.png')
 
@@ -111,7 +111,7 @@ Pulled = Stage('Pulled',{0: 'You pull Julia onto the ground. Hard. There is a lo
 [MappingObject(TryAgain,'Try again',[0]),
 MappingObject(NotOver,'This isn\'t over',[0])])
 
-Bottle2 = Stage('Bottle2',{0: 'While you are distracted Julia grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head and everything goes dark'},'Black.jpg',
+Bottle2 = Stage('Bottle2',{0: 'While you are distracted Julia grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head and everything goes dark.'},'Black.jpg',
 [MappingObject(TheEnd,'The End',[0])])
 
 Bottle = Stage('Bottle',{0: 'You jump up and grab the bottle before Julia. You didn\'t want to have to use it but she reached for it first. This is breaking your heart.'},'Dark.jpeg',
@@ -160,7 +160,7 @@ Hallway = Stage('Hallway', {1: 'Time to get ready! Where do you want to go?',2: 
     MappingObject(Bedroom, 'Go upstairs to clean the bedroom!', [2]),
     MappingObject(EndBedroom,'Go upstairs to the bedroom!',[4,5])])
 
-Intro3 = Stage('Intro3', {0 : 'There is no time to worry about brunch on a day like today! Tonight is a big night !'},'livingroom.png',
+Intro3 = Stage('Intro3', {0 : 'There is no time to worry about brunch on a day like today! Tonight is a big night!'},'livingroom.png',
 [MappingObject(Hallway, 'Start the preparations!', [0])])
 
 Intro2 = Stage('Intro2', {0 : '"Good morning Julia, it\'s mom! Are you still in bed, you sleepy head? You missed our family brunch. Anyways, love you sweetheart. Call me soon"'}, 'livingroom.png', [MappingObject(Intro3, 'Aww so cute', [0])])

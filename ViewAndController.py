@@ -60,12 +60,12 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         """
         words = [word.split(' ') for word in self.text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
-        position = self.x + space ,self.y + space
-        max_width, max_height = self.width+self.x,self.height+self.y
+        position = self.x + space + 15,self.y + space + 25
+        max_width, max_height = self.width+self.x-15,self.height+self.y
         x, y = position
         for line in words:
             for word in line:
-                word_surface = font.render(word, 0, color)
+                word_surface = font.render(word,0, color)
                 word_width, word_height = word_surface.get_size()
                 if x + word_width >= max_width:
                     x = position[0]  # Reset the x.
@@ -75,11 +75,11 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    #self.typePause(.01)
+                    self.typePause(.01)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
-            #self.typePause(.3)
+            self.typePause(.3)
 
     def typePause(self,pause):
         if type(self) == Button:
@@ -93,9 +93,10 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
         This function will draw each button onto the screen
         """
         if outline:
-            pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
-
-        pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
+            # pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
+            win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(self.width, self.height)),(self.x, self.y))
+        # pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
+        win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
 
         if self.text != '':
             self.textSpacing()
@@ -167,6 +168,7 @@ class Screen():
         self.buttonDecider()
         self.textboxDecider()
         win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (width, height)), (0, 0))
+        self.inventoryDecide()
         self.screenBox.draw()
         time.sleep(.1)
         if self.screenButtons != None:
@@ -211,9 +213,6 @@ def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictk
     puts up a new screen after the user selects an option
 
     """
-    if oldScreen != None and oldScreen.screenButtons != None:
-        for object in oldScreen.screenButtons:
-            object.exist = False
 
     currentScreen = Screen(stage,state)
     currentScreen.draw()
@@ -259,15 +258,15 @@ def monitor(buttonList,pos):
     if buttonList != None and buttonList != [None]:
         for button in buttonList:
             if isOver(button,pos):
-                button.draw(win,(255,255,255))
+                win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
             else:
-                button.draw(win,(255,222,222))
+                win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
 
 
 if __name__ == '__main__':
 
 
-    state = State(level=4)
+    state = State(level=1)
 
     currentScreen = Screen(StartingPage, state)
 
@@ -282,6 +281,7 @@ if __name__ == '__main__':
 
             checkStageConditions(currentScreen.stage, currentScreen.state)
             checkInventory(currentScreen.stage,currentScreen.state)
+
 
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
