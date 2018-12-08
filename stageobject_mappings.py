@@ -112,7 +112,7 @@ Pulled = Stage('Pulled',{0: 'You pull Julia onto the ground. Hard. There is a lo
 MappingObject(NotOver,'This isn\'t over',[0])])
 
 Bottle2 = Stage('Bottle2',{0: 'While you are distracted Julia grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head and everything goes dark'},'Black.jpg',
-[MappingObject(TheEn d,'The End',[0])])
+[MappingObject(TheEnd,'The End',[0])])
 
 Bottle = Stage('Bottle',{0: 'You jump up and grab the bottle before Julia. You didn\'t want to have to use it but she reached for it first. This is breaking your heart.'},'Dark.jpeg',
 [MappingObject(Bottle2 ,'Use the bottle',[0])],1,'beer-bottle.png')
