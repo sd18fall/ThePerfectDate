@@ -267,7 +267,7 @@ def monitor(buttonList,pos):
 if __name__ == '__main__':
 
 
-    state = State(level=1)
+    state = State(level=4)
 
     currentScreen = Screen(StartingPage, state)
 
@@ -283,12 +283,12 @@ if __name__ == '__main__':
             checkStageConditions(currentScreen.stage, currentScreen.state)
             checkInventory(currentScreen.stage,currentScreen.state)
 
-            currentScreen.inventoryDecide()
-
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
                     if isClick(button,pos):
                         currentScreen = drawScreen(button.stage, state, currentScreen)
+
+            currentScreen.inventoryDecide()
 
             monitor(currentScreen.screenButtons,pos)
 
