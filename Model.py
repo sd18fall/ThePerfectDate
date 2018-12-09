@@ -92,12 +92,15 @@ class MappingObject():
 
     backButton: Indicates whether the Button object created from the MappingObject will be a backButton or not.
 
+    responseButton: Indicates whether the Button object created from the MappingObject will be a responseButton or not.
+
     """
-    def __init__(self, stageMapTo, buttontext,levels,backButton = False):
+    def __init__(self, stageMapTo, buttontext,levels,backButton = False, responseButton = False):
         self.stageMapTo = stageMapTo
         self.buttontext = buttontext
         self.levels = levels
         self.backButton = backButton
+        self.responseButton = responseButton
 
     def __str__(self):
         return str(self.stageMapTo)
@@ -148,11 +151,10 @@ def choiceSelection(stage,state):
         Choice selection: (LASAGNA)
     After choice selection: (KITCHEN -> LASAGNA)
     """
-
     storeDecision(stage,state) #stores choice made by user
 
-
     #Store the MappingObject from previous stage associated with the button linked to current stage
+    stagemappingobj = None
     oldBackStage = stage.backStage
     for mappingobj in oldBackStage.buttonMapping:
         if mappingobj.stageMapTo == stage:
@@ -162,11 +164,12 @@ def choiceSelection(stage,state):
     newBackStage = goBack(stage)
 
     #Changes the target stage mapping with the stage related to the user's selected option
-    for mappingobj in newBackStage.buttonMapping:
-        if mappingobj.stageMapTo == oldBackStage:
-            for index, newBackStageMappingObj in enumerate(newBackStage.buttonMapping):
-                if newBackStageMappingObj == mappingobj:
-                    newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
+    if stagemappingobj != None:
+        for mappingobj in newBackStage.buttonMapping:
+            if mappingobj.stageMapTo == oldBackStage:
+                for index, newBackStageMappingObj in enumerate(newBackStage.buttonMapping):
+                    if newBackStageMappingObj == mappingobj:
+                        newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
 
 
 

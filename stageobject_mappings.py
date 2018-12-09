@@ -80,7 +80,7 @@ EndKitchen = Stage('Kitchen', {0:'You hear a loud crashing sound from upstairs!!
 
 SunDress= Stage('sun dress', {0: 'What a cute sun dress! Yellow with pink flowers, this warm summery look will light up any room!'},'bedroom.png', None, 2,'dress.png')
 
-TShirt= Stage('T shirt', {0: 'T shirt and jeans is just a classic Julia outfit, and why mess with a classic??'},'bedroom.png', None, 2,'shirt.png')
+TShirt= Stage('T shirt', {0: 'T shirt and jeans is just a classic NAME outfit, and why mess with a classic??'},'bedroom.png', None, 2,'shirt.png')
 
 PowerSuit= Stage('power suit', {0: 'Go big or go home. Nothing screams confidence like a bright red suit. And the best part is it basically matches everything!'},'bedroom.png', None, 2,'suit.png')
 
@@ -89,22 +89,22 @@ Outfit = Stage('OUTFIT', {0: 'You have always loved picking out dresses, ever si
     MappingObject(TShirt, 'T Shirt', [1]),
     MappingObject(PowerSuit,'Power Suit', [1])])
 
-Stranger= Stage('Stranger', {0: '"Dear Diary, I was talking to Steven on the phone in the park today and I saw a very Handsome Stranger! He was staring right at me, he had striking blue eyes. But he kept staring a little too long and gave me a kind of creepy smile. -Love Julia"'},'bedroom.png')
+Stranger= Stage('Stranger', {0: '"Dear Diary, I was talking to Steven on the phone in the park today and I saw a very Handsome Stranger! He was staring right at me, he had striking blue eyes. But he kept staring a little too long and gave me a kind of creepy smile. -Love NAME"'},'bedroom.png')
 
-Dreams= Stage('Dreams', {0: '"Dear Diary, I keep having the same dream over and over agian. I am sitting in my kitchen and I am having THE most amazing date.. I sure hope that it\'s foreshadowing! -Love Julia"'},'bedroom.png')
+Dreams= Stage('Dreams', {0: '"Dear Diary, I keep having the same dream over and over agian. I am sitting in my kitchen and I am having THE most amazing date.. I sure hope that it\'s foreshadowing! -Love NAME"'},'bedroom.png')
 
-LoveLife= Stage('LoveLife', {0: '"Dear Diary, I cannot stop thinking about Steven! When we talked on the phone last week I had butterflies for hours! I sure hope he asks me on a date soon... -Love Julia"'},'bedroom.png')
+LoveLife= Stage('LoveLife', {0: '"Dear Diary, I cannot stop thinking about Steven! When we talked on the phone last week I had butterflies for hours! I sure hope he asks me on a date soon... -Love NAME"'},'bedroom.png')
 
 Diary = Stage('Diary', {0: 'You have already read through this diary so many times you almost have it memorized. Which section do you want to reread?'},'bedroom.png',
 [MappingObject(Stranger, '"I saw a very Handsome Stranger the other day...""', [1,2]),
     MappingObject(Dreams, '"I keep having the same dream..."', [1,2]),
     MappingObject(LoveLife,'"I cannot stop thinking about Steven!...""', [1,2])])
 
-NoteSteven = Stage('NoteSteven', {0: '"Dear Julia, what are you doing with Steven??? Don\'t you know that he isn\'t good for you?? I am the one giving you good advice, and sending you FLOWER when you have a bad day. You belong with me. -Your Beloved"'},'bedroom.png')
+NoteSteven = Stage('NoteSteven', {0: '"Dear NAME, what are you doing with Steven??? Don\'t you know that he isn\'t good for you?? I am the one giving you good advice, and sending you FLOWER when you have a bad day. You belong with me. -Your Beloved"'},'bedroom.png')
 
-NoteGarden = Stage('NoteGarden', {0: '"Dear Julia, your flower garden is coming along swimmingly! I am a big fan of the FLOWER, those are my favorite! You are so good at gardening, you must have a green thumb! -Your Beloved"'},'bedroom.png')
+NoteGarden = Stage('NoteGarden', {0: '"Dear NAME, your flower garden is coming along swimmingly! I am a big fan of the FLOWER, those are my favorite! You are so good at gardening, you must have a green thumb! -Your Beloved"'},'bedroom.png')
 
-NotePark = Stage('NotePark', {0: '"Dear Julia, I saw you in the park today. You looked beautiful in your OUTFIT. I love it when you wear OUTFITs. Why did you wear your hair in a ponytail? It looks better down, I already wrote to you about that. You should really listen to me more. -Your Beloved "'},'bedroom.png')
+NotePark = Stage('NotePark', {0: '"Dear NAME, I saw you in the park today. You looked beautiful in your OUTFIT. I love it when you wear OUTFITs. Why did you wear your hair in a ponytail? It looks better down, I already wrote to you about that. You should really listen to me more. -Your Beloved "'},'bedroom.png')
 
 Notes = Stage('Notes', {0: 'There are a ton of letters all over. Some are percariously stacked up on the nightstand and are spilling over onto the floor. Which letter do you want to read before putting them away?'},'bedroom.png',
 [MappingObject(NoteSteven,'"What are you doing with Steven???"',[0]),
@@ -116,56 +116,56 @@ Bedroom = Stage('Bedroom', {1: 'The room is extremely cozy and great for cuddlin
     MappingObject(Diary, 'Take a look at the Diary!', [1]),
     MappingObject(Notes, 'Tidy up the stack of letters in a messy pile on the table', [2,3])])
 
-NotOver = Stage('NotOver',{0: 'No reason to ruin a perfectly good date over a little spat. You help Julia get dressed in her OUTFIT and bring her downstairs to share some delicious COOKEDMEAL!'},'kitchen.png')
+NotOver = Stage('NotOver',{0: 'No reason to ruin a perfectly good date over a little spat. You help NAME get dressed in her OUTFIT and bring her downstairs to share some delicious COOKEDMEAL!'},'kitchen.png')
 
 TryAgain = Stage('TryAgain',{0: 'Better luck with the next girl. Try again?'},'bedroom.png')
 
 TheEnd = Stage('TheEnd',{0: 'The End'},'Black.jpg')
 
-ForkAttack = Stage('ForkAttack',{0: 'You use fork to stab Julia once in the stomach. She staggers back. Your instincts take over. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is not breathing.'},'Dark.jpeg',
+ForkAttack = Stage('ForkAttack',{0: 'You use fork to stab NAME once in the stomach. She staggers back. Your instincts take over. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is not breathing.'},'Dark.jpeg',
 [MappingObject(TryAgain,'Try again',[0]),
 MappingObject(NotOver,'This isn\'t over',[0])])
 
-Pulled = Stage('Pulled',{0: 'You pull Julia onto the ground. Hard. There is a loud cracking noise and her arms go limp.'},'Dark.jpeg',
+Pulled = Stage('Pulled',{0: 'You pull NAME onto the ground. Hard. There is a loud cracking noise and her arms go limp.'},'Dark.jpeg',
 [MappingObject(TryAgain,'Try again',[0]),
 MappingObject(NotOver,'This isn\'t over',[0])])
 
-Bottle2 = Stage('Bottle2',{0: 'While you are distracted Julia grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head and everything goes dark.'},'Black.jpg',
+Bottle2 = Stage('Bottle2',{0: 'While you are distracted NAME grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head and everything goes dark.'},'Black.jpg',
 [MappingObject(TheEnd,'The End',[0])])
 
-Bottle = Stage('Bottle',{0: 'You jump up and grab the bottle before Julia. You didn\'t want to have to use it but she reached for it first. This is breaking your heart.'},'Dark.jpeg',
+Bottle = Stage('Bottle',{0: 'You jump up and grab the bottle before NAME. You didn\'t want to have to use it but she reached for it first. This is breaking your heart.'},'Dark.jpeg',
 [MappingObject(Bottle2 ,'Use the bottle',[0])],1,'beer-bottle.png')
 
-Approach8 = Stage('Approach8',{0: 'You touch the back of your head and your fingers are red with blood. Everything is in slow motion. Julia lunges for the beer bottle'},'Dark.jpeg',
+Approach8 = Stage('Approach8',{0: 'You touch the back of your head and your fingers are red with blood. Everything is in slow motion. NAME lunges for the beer bottle.'},'Dark.jpeg',
 [MappingObject(Pulled,'Pull her down',[0]),
 MappingObject(Bottle,'Get the bottle first',[0])])
 
-Approach7 = Stage('Approach7',{0: 'You try to push Julia away but she trips you. You are trying to explain to her, you love her, you only want what is best for her, as she kicks you in the head'},'Dark.jpeg',
+Approach7 = Stage('Approach7',{0: 'You try to push NAME away but she trips you. You are trying to explain to her, you love her, you only want what is best for her, as she kicks you in the head.'},'Dark.jpeg',
 [MappingObject(Approach8,'Check on your head',[0])])
 
-Approach6 = Stage('Approach6',{0: 'You scream and pull Julia towards you. She rams into you and grabs you by the arms. She is reaching for an empty beer bottle on the nightstand. You try to turn her around and push her against the wall.'},'Dark.jpeg',
+Approach6 = Stage('Approach6',{0: 'You scream and pull NAME towards you. She rams into you and grabs you by the arms. She is reaching for an empty beer bottle on the nightstand. You try to turn her around and push her against the wall.'},'Dark.jpeg',
 [MappingObject(Approach7,'Subdue her',[0]),
 MappingObject(ForkAttack,'Use the fork',[5])])
 
-Approach5 = Stage('Approach5',{0: 'Julia struggles to get away but you do not let go'},'Dark.jpeg',
+Approach5 = Stage('Approach5',{0: 'NAME struggles to get away but you do not let go.'},'Dark.jpeg',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
 MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0])])
 
-Approach4 = Stage('Approach4',{0: 'Julia manages to dodge your hug and scratches you on the cheek. You see her looking for an escape. You grab her by the arm'},'Dark.jpeg',
+Approach4 = Stage('Approach4',{0: 'NAME manages to dodge your hug and scratches you on the cheek. You see her looking for an escape. You grab her by the arm.'},'Dark.jpeg',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
 MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
 MappingObject(Approach5,'Stay rational',[0])])
 
-Approach3 = Stage('Approach3',{0: 'You say, "Julia, I am still not done preparing for our perfect date, and you didn\'t even put on the OUTFIT I put out for you. If you don\'t calm down, I will have to tie you up again and put you back into the closet. I need time to finish getting ready for you" She says, "I\'LL CALL THE POLICE!"'},'Dark.jpeg',
+Approach3 = Stage('Approach3',{0: 'You say, "NAME, I am still not done preparing for our perfect date, and you didn\'t even put on the OUTFIT I put out for you. If you don\'t calm down, I will have to tie you up again and put you back into the closet. I need time to finish getting ready for you" She says, "I\'LL CALL THE POLICE!"'},'Dark.jpeg',
 [MappingObject(Approach4,'Hug it out',[0])])
 
 Approach2 = Stage('Approach2',{0: 'She screams, "GET...OUT...OF...MY HOUSE!!!" You are very confused at this point. You say, "But, it\'s just me, Your Beloved. And you are supposed to be waiting for me to come pick you up for our date."'},'bedroom.png',
 [MappingObject(Approach3,'Threaten her to calm down',[0])])
 
-Approach = Stage('Approach',{0: 'She says "Stay away from me! First you send me all those stupid flowers, then the letters, now youv\'e resorted to locking me in my own closet!? You need to leave. Now!". She does not know whats happening. She needs to be calmed down'},'bedroom.png',
+Approach = Stage('Approach',{0: 'She says "Stay away from me! First you send me all those stupid flowers, then the letters, now youv\'e resorted to locking me in my own closet!? You need to leave. Now!". She does not know whats happening. She needs to be calmed down.'},'bedroom.png',
 [MappingObject(Approach2,'Force her to calm down',[0])])
 
-Corner = Stage('Corner',{0: 'She mumbles something under her breath and backs away from you into a corner of the room. She is looking back and forth between you and the chair in the closet'},'bedroom.png',
+Corner = Stage('Corner',{0: 'She mumbles something under her breath and backs away from you into a corner of the room. She is looking back and forth between you and the chair in the closet.'},'bedroom.png',
 [MappingObject(Approach,'Calm her down',[0])])
 
 EndBedroom = Stage('Bedroom', {0:'It\'s hard to focus on dinner when it feels like something is wrong upstairs. You walk up to the bedroom and feel a pit in your stomach. You think you know what the noise coming from the closet is and you\'re right. She is staggering out of the closet. What\'s she doing?'} ,'bedroom.png',
@@ -182,13 +182,20 @@ Hallway = Stage('Hallway', {1: 'Time to get ready! Where do you want to go?',2: 
 Intro3 = Stage('Intro3', {0 : 'There is no time to worry about brunch on a day like today! Tonight is a big night!'},'livingroom.png',
 [MappingObject(Hallway, 'Start the preparations!', [0])])
 
-Intro2 = Stage('Intro2', {0 : '"Good morning Julia, it\'s mom! Are you still in bed, you sleepy head? You missed our family brunch. Anyways, love you sweetheart. Call me soon"'}, 'livingroom.png', [MappingObject(Intro3, 'Aww so cute', [0])])
+Intro2 = Stage('Intro2', {0 : '"Good morning NAME, it\'s mom! Are you still in bed, you sleepy head? You missed our family brunch. Anyways, love you sweetheart. Call me soon."'}, 'livingroom.png', [MappingObject(Intro3, 'Aww so cute', [0])])
 
-Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You wink once at your reflection and admire how nice you look today! Your blue eyes are especially vibrant. You hear a phone ring and go to voice mail'},'livingroom.png', [MappingObject(Intro2, '"Hm I bet I know who that is!"', [0])])
+Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You wink once at your reflection and admire how nice you look today! Your blue eyes are especially vibrant. You hear a phone ring and go to voice mail.'},'livingroom.png', [MappingObject(Intro2, '"Hm I bet I know who that is!"', [0])])
 
-StartingPage = Stage('Start', {0 : 'The Perfect Date: Ever wanted to bring your dream date to reality?'},'livingroom.png', [MappingObject(Intro, 'Start Game', [0])])
+StartingPage2 = Stage('', {0 : 'What is your favorite girls name?'},'livingroom.png', [MappingObject(Intro, '', [0],False, responseButton = True)],2)
 
-LoopApproach5 = Stage('LoopApproach5',{0: 'Julia continues to struggle to get away but you still do not let go'},'Dark.jpeg',
+
+StartingPage = Stage('Intro', {0 : 'Ever wanted to bring your dream date to reality?'},'livingroom.png', [MappingObject(StartingPage2, 'Yes', [0])])
+
+Name = Stage('NAME', {0 : ''},'livingroom.png', [MappingObject(StartingPage, 'Start', [0])])
+
+Name2 = Stage('NAME', {0 : ''},'', [MappingObject(Name, '', [0])])
+
+LoopApproach5 = Stage('LoopApproach5',{0: 'NAME continues to struggle to get away but you still do not let go'},'Dark.jpeg',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
 MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
 MappingObject(Approach5,'Stay rational',[0])])
@@ -202,6 +209,9 @@ This part connects all stages in a hierarchy, assigning the bottomest tier stage
 """
 
 #Beginning kitchen mappings
+StartingPage2.backStage = Name
+Name.backStage = Name2
+
 Cookbook.backStage = Kitchen
 Garden.backStage = Kitchen
 
@@ -279,10 +289,13 @@ def allBackButtonGen (backButtonList):
         backButtonGen(stage)
 
 
+allBackButtonGen(backButtonList) #generates backbuttons for all stages in backButtonList
+
+
 def levelConditions(state,stage):
     """
     This is specifically created for purpose of the game plot. It sets the conditions for when
-    the game level changes and the plot moves forward. 
+    the game level changes and the plot moves forward.
     """
     if state.level == 1 and Diary.clicked and Outfit.clicked and Garden.clicked and Cookbook.clicked:
         state.level = 2 #Trash and Notes appear
@@ -293,11 +306,12 @@ def levelConditions(state,stage):
     elif state.level == 4 and Weapon.clicked:
         state.level = 5 #Unlocks weapon options
 
-
-
-allBackButtonGen(backButtonList)
-
-
+def checkEvents(state,stage):
+    """
+    Checks for specific events in the game that triggers a specific graphic
+    """
+    # if Name.clicked:
+    #     win.blit(pygame.transform.scale(pygame.image.load('Logo.png'),(100,80)),(200, 100))
 
 
 

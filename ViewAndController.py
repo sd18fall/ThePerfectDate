@@ -46,15 +46,24 @@ class TextBox():
     """The methods below handle how the text is able to stay in the textbox rather than running off the page."""
     # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe
     #
-    # def append(self,text):
-    #     self.text += text
-    #
-    # def pop(self):
-    #     self.text = self.text[0:len(self.text)-1]
+    def append(self,text):
+        """
+        Method that adds text to the preexisting text
+        """
+        self.text += text
+
+    def pop(self):
+        """
+        Method that removes the last letter of the text
+        """
+        self.text = self.text[0:len(self.text)-1]
 
     def textSpacing(self, font = textFont, color=(0,0,0)):
         """
         Method able to adjust the lines of text to fit in text box.
+
+        font: the font th text should be written in
+        Color: the color of the text
         """
         words = [word.split(' ') for word in self.text.splitlines()]  # 2D array where each row is a list of words.
         space = font.size(' ')[0]  # The width of a space.
@@ -77,7 +86,7 @@ class TextBox():
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
-            self.typePause(.3)
+            self.typePause(.01)
 
     def typePause(self,pause):
         """
@@ -98,6 +107,8 @@ class TextBox():
         #     win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(self.width, self.height)),(self.x, self.y))
         win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
 
+        #time.sleep(.01)
+
         if self.text != '':
             self.textSpacing()
 
@@ -117,8 +128,12 @@ class Button(TextBox):
     color: Hex code that corresponds to color textbox should be. Default is a pink (255,222,222) used throughout our game.
 
     x, y, width, height: In pixels. Pre-set.
+
+    backButton: Indicates whether the Button object will be a backButton or not.
+
+    responseButton: Indicates whether the Button object will be a responseButton or not.(a button that can be typed in but not clicked)
     """
-    def __init__(self, stage = None, text='',color = (255,222,222),backButton = False):
+    def __init__(self, stage = None, text='',color = (255,222,222),backButton = False,responseButton = False):
         super(Button,self).__init__(text,color)
         self.y = 450 # stays the same
         self.x = 0 # changes
@@ -126,6 +141,7 @@ class Button(TextBox):
         self.height = 175
         self.stage = stage
         self.backButton = backButton
+        self.responseButton = responseButton
 
 class Screen():
     """
@@ -183,7 +199,7 @@ class Screen():
             for buttonMapping in self.stage.buttonMapping:
                 for level in buttonMapping.levels:
                     if level == self.state.level or level == 0:
-                        screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext,backButton = buttonMapping.backButton))
+                            screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext,backButton = buttonMapping.backButton,responseButton = buttonMapping.responseButton))
             self.buttonPlacement(screenButtons)
             self.screenButtons = screenButtons
         else:
@@ -270,23 +286,35 @@ def isClick(button,pos):
         else:
             return False
 
-# def whatTyping(button):
-#     """
-#     This function detects if the user is typing a name.
-#     """
-#         if event.type == pygame.KEYDOWN:
-#             if event.key == 8: #delete
-#                 button.pop()
-#             else:
-#                 button.append(event.unicode)
-
-def monitor(buttonList,pos):
+def whatTyping(button,stage):
     """
-    This function will generate a white outline when the user hovers the mouse over a button.
+    This function detects if the user is typing and appends the button description and stage name to match what is being typed.
+    """
+    if event.type == pygame.KEYDOWN:
+        if event.key == 8: #delete
+            button.pop()
+        else:
+            button.append(event.unicode)
+        stage.name = button.text
+
+def enter():
+    """
+    This function checks if a key was pressed and if it was enter, and if it was it returns true
+    """
+    if event.type == pygame.KEYDOWN:
+        if event.key == 13:
+            return True
+
+def monitor(buttonList,stage,pos):
+    """
+    This function will generate a white outline when the user hovers the mouse over a button and update the text on a button if it is a response button
     """
     if buttonList != None and buttonList != [None]: #ASK SOPHIE
         for button in buttonList:
-            if isOver(button,pos):
+            if button.responseButton:
+                whatTyping(button,stage)
+                button.draw()
+            elif isOver(button,pos):
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
             else:
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
@@ -319,12 +347,15 @@ if __name__ == '__main__':
             levelConditions(state,currentScreen.stage)
             checkInventory(currentScreen.stage,currentScreen.state)
             currentScreen.inventoryDecide()
-            monitor(currentScreen.screenButtons,pos)
+            monitor(currentScreen.screenButtons,currentScreen.stage,pos)
 
             # Check to see if a button is clicked, show the next approprate screen
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
-                    if isClick(button,pos):
+                    if button.responseButton:
+                        if enter():
+                            currentScreen = nextScreen(button.stage, state, currentScreen)
+                    elif isClick(button,pos):
                         currentScreen = nextScreen(button.stage, state, currentScreen)
 
             if event.type == pygame.QUIT:
