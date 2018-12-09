@@ -1,11 +1,22 @@
 
+### Ever wondered how it feels like to design *your* perfect date? Come check us out!
+
+Take a look at our [GITHUB PAGE](https://github.com/sd18fall/ThePerfectDate/tree/master)
+
+
+#### Table of Contents:
+
 [How to Play](#How-to-Play)
 
-# Images or Video of game
+
+#### Test Image:
+![alt text](https://github.com/sd18fall/ThePerfectDate/blob/master/bedroom.png)
 
 # How it All Started
 
-We wanted to create an interactive, text based video game to combine our love for video games and to explore what we can do with python! 
+We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
+
+
 
 # Meet the Team !
 
@@ -19,11 +30,34 @@ Sophie is a lover of raspberries and musicals. She likes to work on finicky gra
 
 ## Cynthia Yong
 
-Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to grow her own food and be an incredible plant mom!
+Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to eventually grow her own food and be an incredible plant mom!
+
+
 
 # Curious about Code?
 
-Here, we will be discussing in depth the architecture of the game  - specifically explaining the classes and data storage method. We will update it once we finalize our game design.
+Our code is divided into 3 different sections:
+
+1. **MODEL**
+
+  This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
+
+| CLASSES       | MAIN FUNCTION | X  |
+| ------------- |:-------------:| -----:|
+| STAGE  | asdfsdf | asdf |
+| STATE      | sdf      |   sdfs |
+| MAPPINGOBJECT | sdfsd      |    sdfsd |
+| DECISION FUNCTIONS |
+
+2. **VIEWER & CONTROLLER**
+
+  This file has the classes and functions that form the graphics of our game.
+
+3. **GAME DATA**
+
+  This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
+
+
 
 # How to Play
 
@@ -36,13 +70,21 @@ pip install pygame
 To PLAY, please run:
 
 ```
-python3 game.py
+python3 ViewerandController.py
 ```
+
+
 
 # Questions?
 
-TBD (will add once we merge the game plot )
+**Q**: Are there multiple endings?
+**A**: Yes! Depending on the options you select!
+
+**Q**: How long is the game?
+**A**: ~ 10 - 15 minutes
 
 # Special Thanks to ...
 
 TBD
+
+## NOT INTENDED FOR THE EASILY DISTURBED.
