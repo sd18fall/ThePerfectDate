@@ -1,16 +1,14 @@
 
-### Ever wondered how it feels like to design *your* perfect date? Come check us out!
-
-Take a look at our [GITHUB PAGE](https://github.com/sd18fall/ThePerfectDate/tree/master)
+### Ever wondered how it feels like to design *YOUR* perfect date? Come check us out!
 
 
-#### Table of Contents:
+### Table of Contents:
 
 [How to Play](#How-to-Play)
 
 
-#### Test Image:
-![alt text](https://github.com/sd18fall/ThePerfectDate/blob/master/bedroom.png)
+### Test Image:
+![](bedroom;png)
 
 # How it All Started
 
@@ -38,22 +36,30 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. She
 
 Our code is divided into 3 different sections:
 
-1. **MODEL**
+**MODEL**
 
   This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
 
-| CLASSES       | MAIN FUNCTION | X  |
-| ------------- |:-------------:| -----:|
-| STAGE  | asdfsdf | asdf |
-| STATE      | sdf      |   sdfs |
-| MAPPINGOBJECT | sdfsd      |    sdfsd |
-| DECISION FUNCTIONS |
+| CLASSES & FUNCTION   | WHAT IT DOES |
+| --------|-------| -----|
+|STAGE | Stores information about the rooms/screens that will be used to generate the visuals
+|STATE | Stores information about player progress to advance plot     
+|MAPPINGOBJECT | This links screens to one another. It contains the text for the buttons on the screen and the stages that come next
+|DECISION FUNCTIONS | Series of functions that allow the player's choices to affect what part of the game they will be shown.
 
-2. **VIEWER & CONTROLLER**
+**VIEWER & CONTROLLER**
 
   This file has the classes and functions that form the graphics of our game.
 
-3. **GAME DATA**
+  | CLASSES   | MAIN FUNCTION | X  |
+  | --------|:-------:| -----:|
+  |STAGE  | asdfsdf | asdf |
+  | STATE | sdf      |   sdfs |
+  | MAPPINGOBJECT | sdfsd      |    sdfsd |
+  | DECISION FUNCTIONS |
+
+
+**GAME DATA**
 
   This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
 
@@ -78,9 +84,11 @@ python3 ViewerandController.py
 # Questions?
 
 **Q**: Are there multiple endings?
+
 **A**: Yes! Depending on the options you select!
 
 **Q**: How long is the game?
+
 **A**: ~ 10 - 15 minutes
 
 # Special Thanks to ...
