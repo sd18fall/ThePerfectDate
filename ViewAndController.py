@@ -8,51 +8,49 @@ import pygame
 import time
 from Model import *
 from stageobject_mappings import *
-#from stageobject_mappings import StartingPage
+# from stageobject_mappings import StartingPage
+
+pygame.init() # Included at top such that we can generate fonts with pygame
+textFont = pygame.font.SysFont('comicsans', 40) #Setting the standard sizes for the text boxes and buttons
+
+# Initializing screen size
+screenWidth = 1200
+screenHeight = 800
+win = pygame.display.set_mode((screenWidth,screenHeight))
 
 
-pygame.init() #add it in the main or write game function that init the pygame
+# =========================================================================================
+#                                VIEWER CODE
+# =========================================================================================
 
-
-#doesn't need to be here, create dictionary: default settings - refer to it
-#Setting the standard sizes for the text boxes and buttons
-textFont = pygame.font.SysFont('comicsans', 40)
-width = 1200
-height = 800
-buttonWidth = 300
-buttonHeight = 75
-buttonY = 550
-textBoxWidth = 800
-textBoxHeight = 300
-textBoxY = 500
-textBoxX = (width - textBoxWidth)/2
-win = pygame.display.set_mode((width,height))
-#the background image for our game - there will eventually be different backgrounds as the player progresses
-# currentScreen = Screen()
-
-
-
-class TextBox(): #scatter and gather : what does user need at minimum to display textbox; what is actually mandatory: gather optionals into dictionary and call it: dictionary update method
+class TextBox():
     """
-    This is used to display text on the screen.
-    Requires textbox dimensions, color, text, location
+    Used to display text on the screen. Size and placement of text boxes are set.
+
+    text: String to be displayed as text on screen. Will be taken from description of a stage object.
+
+    color: Hex code that corresponds to color textbox should be. Default is a pink (255,222,222) used throughout our game.
+
+    x, y, width, height: In pixels. Pre-set.
 
     """
 
     def __init__(self, text='', color = (255,222,222)):
+        self.text = text
         self.color = color
         self.x = 300
         self.y = 150
         self.width = 600
         self.height = 300
-        self.text = text
 
-    # the codes below handle how the text is able to stay in the textbox rather than going off
-    def append(self,text):
-        self.text += text
-
-    def pop(self):
-        self.text = self.text[0:len(self.text)-1]
+    """The methods below handle how the text is able to stay in the textbox rather than running off the page."""
+    # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe
+    #
+    # def append(self,text):
+    #     self.text += text
+    #
+    # def pop(self):
+    #     self.text = self.text[0:len(self.text)-1]
 
     def textSpacing(self, font = textFont, color=(0,0,0)):
         """
@@ -82,6 +80,9 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
             self.typePause(.3)
 
     def typePause(self,pause):
+        """
+        Allows small pause between putting letters on screen to simulate typing effect.
+        """
         if type(self) == Button:
             pass
         elif type(self) == TextBox:
@@ -90,12 +91,11 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
     def draw(self,win= win,outline=None):
         """
-        This function will draw each button onto the screen
+        This function will draw each button onto the screen.
         """
-        if outline:
-            # pygame.draw.rect(win, outline, (self.x-2,self.y-2,self.width+4,self.height+4),0)
-            win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(self.width, self.height)),(self.x, self.y))
-        # pygame.draw.rect(win, self.color, (self.x,self.y,self.width,self.height),0)
+        # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeee
+        # if outline:
+        #     win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(self.width, self.height)),(self.x, self.y))
         win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
 
         if self.text != '':
@@ -109,12 +109,18 @@ class TextBox(): #scatter and gather : what does user need at minimum to display
 
 class Button(TextBox):
     """
-    This class inherits from the textbox class and displays the buttons onto the screen
+    This class inherits from the textbox class, used to display interactive buttons on screen.
+    Size is set, placement of text boxes must be
 
+    text: String to be displayed as text on screen. Will be taken from description of a stage object.
+
+    color: Hex code that corresponds to color textbox should be. Default is a pink (255,222,222) used throughout our game.
+
+    x, y, width, height: In pixels. Pre-set.
     """
     def __init__(self, stage = None, text='',color = (255,222,222),backButton = False):
         super(Button,self).__init__(text,color)
-        self.y = 450 # the same
+        self.y = 450 # stays the same
         self.x = 0 # changes
         self.width = 300
         self.height = 175
@@ -123,26 +129,72 @@ class Button(TextBox):
 
 class Screen():
     """
-    takes information from Stage and displays everything
+    This class takes information from a stage and state, then turns the information from these into textboxes,
+    buttons and the background to be displayed.
+
+    stage: Current Stage object that should be represented graphically on screen.
+
+    state: State object that influences what will be shown on the screen.
+
     """
     def __init__(self,stage,state):
         self.stage = stage
         self.state = state
 
-    def buttonDecider(self):
+    def buttonPlacement(self, screenButtons, buttonWidth = 300, buttonY = 550):
+        """
+        This function evenly places the buttons onto the screen
+        depending on the number of buttons in the screenButtons list.
+        """
 
+        # Removes backButton from screenButton list and sets specific position for the backButton to be displayed
+        for button in screenButtons:
+            if button.backButton:
+                back = button
+                screenButtons.remove(button)
+                button.y = 50
+                button.x = 950
+                button.width = 200
+                button.height = 150
+            else:
+                back = None
+
+        # Calculates the amount of space that will not be taken up by buttons
+        totalSpace = screenWidth - buttonWidth*len(screenButtons)
+        space = totalSpace/(len(screenButtons)+1)
+
+        # Adjusts the x-coordinates for each button placement
+        spacerIndex = space
+
+        for button in screenButtons:
+            button.x = spacerIndex
+            button.y = buttonY
+            spacerIndex += buttonWidth + space
+        if back != None:
+            screenButtons.append(back)
+
+    def buttonDecider(self):
+        """
+        This function checks the level the user is on and generates a list of buttons (screenButtons)
+        that goes on the screen.
+        """
         if self.stage.buttonMapping != None:
             screenButtons = []
             for buttonMapping in self.stage.buttonMapping:
                 for level in buttonMapping.levels:
                     if level == self.state.level or level == 0:
                         screenButtons.append(Button(buttonMapping.stageMapTo, buttonMapping.buttontext,backButton = buttonMapping.backButton))
-            buttonPlacement(screenButtons)
+            self.buttonPlacement(screenButtons)
             self.screenButtons = screenButtons
         else:
             self.screenButtons = None
 
     def textboxDecider(self):
+        """
+        This function checks the level the user is currently on and creates a TextBox object
+        with the correct text description. It searches through the text description
+        and replaces the state.decisions key with the value.
+        """
         if self.stage.description.get(self.state.level) == None:
             text = self.stage.description[0]
         else:
@@ -153,10 +205,13 @@ class Screen():
                 if str(key) in text:
                     text = text.replace(str(key), str(self.state.decisions[key]))
 
-
         self.screenBox = TextBox(text)
 
     def inventoryDecide(self):
+        """
+        This function takes the pictures in the state.inventory list and displays them on
+        the top left hand corner of the screen after the user has selected an option.
+        """
         spacer = 10
         if self.state.inventory != []:
             for picture in self.state.inventory:
@@ -165,9 +220,12 @@ class Screen():
 
 
     def draw(self):
+        """
+        This function draws the entire screen complete with text, buttons, and background.
+        """
         self.buttonDecider()
         self.textboxDecider()
-        win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (width, height)), (0, 0))
+        win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (screenWidth, screenHeight)), (0, 0))
         self.inventoryDecide()
         self.screenBox.draw()
         time.sleep(.1)
@@ -175,62 +233,25 @@ class Screen():
             for button in self.screenButtons:
                 button.draw()
 
-
-def buttonPlacement(screenButtons):
+def nextScreen(stage, state, oldScreen = None):
     """
-    This function evenly places the buttons on the screen
-    depending on the number of buttons there are
-
+    This function clears the last screen and uses the draw function in Screen class
+    to generate the new screen.
     """
-    #Calculates the amount of space that will not be taken up by buttons
-    for item in screenButtons:
-        if item.backButton:
-            back = item
-            screenButtons.remove(item)
-            item.y = 50
-            item.x = 950
-            item.width = 200
-            item.height = 150
-        else:
-            back = None
-
-    totalSpace = width - buttonWidth*len(screenButtons)
-    space = totalSpace/(len(screenButtons)+1)
-
-    spacerIndex = space
-    #Goes through and adjusts the x-coordinates for each button placement
-    for item in screenButtons:
-        item.x = spacerIndex
-        item.y = buttonY
-        spacerIndex += buttonWidth + space
-    if back != None:
-        screenButtons.append(back)
-
-#To Fix and implement
-def drawScreen(stage, state, oldScreen = None): #old screen = none; change dictkey and dictionary
-    """
-    This function clears the last display and
-    puts up a new screen after the user selects an option
-
-    """
-
     currentScreen = Screen(stage,state)
     currentScreen.draw()
 
-    if currentScreen.screenButtons != None:
-        for object in currentScreen.screenButtons:
-            object.exist = True
-
     return currentScreen
 
-    #take out none
 
-    #view class has update
-    #active list of items that you can interact with and move things out of it
-
-#################Controller Stuff
+# =========================================================================================
+#                                CONTROLLER CODE
+# =========================================================================================
 
 def isOver(button,pos):
+    """
+    This function determines if the user mouse is over a button.
+    """
     if button != None:
     # Pos is the mouse position or a tuple of (x,y) coordinates
         if pos[0] > button.x and pos[0] < button.x + button.width:
@@ -239,23 +260,31 @@ def isOver(button,pos):
         return False
 
 def isClick(button,pos):
-    # Will recognize when the user pushes down on the mouse
+    """
+    This function will recognize when the user pushes down on the mouse.
+    """
     if button != None:
-        if event.type == pygame.MOUSEBUTTONDOWN: #download pygame in other file
+        if event.type == pygame.MOUSEBUTTONDOWN:
             if isOver(button,pos):
                 return True
         else:
             return False
 
-def whatTyping(button):
-        if event.type == pygame.KEYDOWN:
-            if event.key == 8: #delete
-                button.pop()
-            else:
-                button.append(event.unicode)
+# def whatTyping(button):
+#     """
+#     This function detects if the user is typing a name.
+#     """
+#         if event.type == pygame.KEYDOWN:
+#             if event.key == 8: #delete
+#                 button.pop()
+#             else:
+#                 button.append(event.unicode)
 
 def monitor(buttonList,pos):
-    if buttonList != None and buttonList != [None]:
+    """
+    This function will generate a white outline when the user hovers the mouse over a button.
+    """
+    if buttonList != None and buttonList != [None]: #ASK SOPHIE
         for button in buttonList:
             if isOver(button,pos):
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
@@ -263,14 +292,19 @@ def monitor(buttonList,pos):
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
 
 
+
+# =========================================================================================
+#                                RUNNING THE GAME
+# =========================================================================================
+
 if __name__ == '__main__':
 
-
+    # Indicates what level to start at. Level 1 will start at the beginning.
     state = State(level=1)
 
+    # Initializes starting screen
     currentScreen = Screen(StartingPage, state)
-
-    currentScreen = drawScreen(currentScreen.stage, state)
+    currentScreen = nextScreen(currentScreen.stage, state)
 
     while True:
         pygame.display.update()
@@ -279,25 +313,24 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
+
+            # Runs through various functions to check conditions
             checkStageConditions(currentScreen.stage, currentScreen.state)
+            levelConditions(state,currentScreen.stage)
             checkInventory(currentScreen.stage,currentScreen.state)
+            currentScreen.inventoryDecide()
+            monitor(currentScreen.screenButtons,pos)
 
-
+            # Check to see if a button is clicked, show the next approprate screen
             if currentScreen.screenButtons != None:
                 for button in currentScreen.screenButtons:
                     if isClick(button,pos):
-                        currentScreen = drawScreen(button.stage, state, currentScreen)
-
-            currentScreen.inventoryDecide()
-
-            monitor(currentScreen.screenButtons,pos)
+                        currentScreen = nextScreen(button.stage, state, currentScreen)
 
             if event.type == pygame.QUIT:
                run = False
                pygame.quit()
                quit()
-
-            levelConditions(state,currentScreen.stage)
 
 
 
