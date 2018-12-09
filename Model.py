@@ -13,13 +13,13 @@ class State():
     Stores the information of what has already happened, so the game will
     know when to move forward in the game.
 
-    level: There are multiple levels in the game because different things happen in each level
-    in order to move the game along.
+    level: Keeps track of the level the user is on to advance the game.
 
     decisions: Decisions are made when the user chooses certain answers when prompted.
-    Their answer will be stored in a dictionary in this class.
+    Their answer will be stored as a string in a dictionary in this class. The dictionary is also
+    used to replace certain words in the displayed text with the user's choices.
 
-    inventory:
+    inventory: Stores the .png files for the icons related to the options the user selects.
 
     """
     def __init__(self, level, decisions = None, inventory = None):
@@ -39,35 +39,35 @@ class Stage():
     """
     Stores all the information that is needed to create the game screens
 
-    name: name of the stage
+    name: Refers to the stage
 
-    description: since the game is mainly textbased, the description is what the users
+    description: String of text. Since the game is mainly textbased, the description is what the users
     read to understand the game plot. It is displayed as a textbox onto the screens
 
-    picture: screen background
+    picture: File name for screen background, either a jpg. or png.
 
-    buttonMapping: this is a list that contains the button text and is used to
+    buttonMapping: This is a list that contains objects of the MappingObject class. Will be used to
     generate buttons that lead the user to the next screen.
 
-    backStep:
+    backStep: Signals the number of screens back the back button should take you. Default is 1.
 
-    clicked: will check if stage attached to the button is clicked because it will
-    draw the next stage
+    clicked: Will check if stage attached to the button has been clicked on. Used to keep track of which
+    stages/screens have already been viewed.
 
-    back: this is used to generate the back button and direct the user from the current
+    backStage: This is used to generate the back button and direct the user from the current
     screen to the previous screen.
 
-    inventorypic:
+    inventorypic: Stores the image corresponding the option the user selects.
 
     """
-    def __init__(self, name, description, picture, buttonMapping = None, backStep = 1, inventoryPic = None, clicked = False, back = None):
+    def __init__(self, name, description, picture, buttonMapping = None, backStep = 1, inventoryPic = None, clicked = False, backStage = None):
         self.name = name
         self.description = description
         self.picture = picture
         self.buttonMapping = buttonMapping
         self.backStep = backStep
         self.clicked = clicked
-        self.back = back
+        self.backStage = backStage
         self.inventoryPic = inventoryPic
 
     def __str__(self):
@@ -79,16 +79,15 @@ class Stage():
 
 class MappingObject():
     """
-    As mentioned previously, this class contains the text that the screen buttons display
-    and what stage it leads to. For example, if the user is in the HALLWAY (stage),
-    the MappingObjects will be KITCHEN and BEDROOM.
+    This class connects Stages to each other - each contains the text that the screen buttons display and what stage it leads to.
+    Each object corresponds to a button generated. For example, if the user is in the HALLWAY (stage),
+    the MappingObjects will correspond to buttons leading to the KITCHEN and BEDROOM stages.
 
-    stageMapTo: what stages the buttons lead to (KITCHEN, BEDROOM)
+    stageMapTo: What stage the button leads to (KITCHEN, BEDROOM)
 
-    levels: levels contain different buttons, so we need to specify which level
-    we want the buttons to appear atself.
+    levels: Specify which level the button should appear in. Buttons vary depending on level.
 
-    backButton:
+    backButton: Indicates whether the Button object created from the MappingObject will be a backButton or not.
 
     """
     def __init__(self, stageMapTo, buttontext,levels,backButton = False):
@@ -102,72 +101,85 @@ class MappingObject():
     def __repr__(self):
         return str(self.stageMapTo)
 
-def goBack(stage): #do we need this still?
+def goBack(stage):
     """
-    Most stages have a back button attached to it, which means when it is clicked,
-    it will bring the user to the previous screen they were at. This function
-    is used to indicate how many screens to go backself.
+    This function returns the stage that the user will go back to, depending on the backStep number associated with the input stage.
 
     For example:
 
-    1 = go back one screens
+    1 = returns previous stage (DIARY -> BEDROOM)
 
-    2 = go back two screens
+    2 = returns the stage two stages prior (LASAGNA -> KITCHEN, skips COOKBOOK)
 
     """
     if stage.backStep == 1:
-        return stage.back
+        return stage.backStage
     else:
-        return goBack(stage.back)
+        return goBack(stage.backStage)
 
-def choiceSelection(stage,state):
-    """
-    Once the user selects an input and goes back to the screen where they
-    selected the input, it will replace that screen with the description
-    of the input they selected.
-    """
-
-    storeDecision(stage,state) #finds mapping object that represents the input chosen
-
-    oldBackStage = stage.back
-    for mappingobj in oldBackStage.buttonMapping: #checks each mappingobject in the buttonMapping list of the previous stage with the input options
-        if mappingobj.stageMapTo == stage: #if one of the mappingobject inputs is equal to the current stage, then
-            stagemappingobj = mappingobj #???? ask about this part
-
-    newBackStage = goBack(stage)
-
-    #replaces the screen with the input that was chosen
-    for mappingobj in newBackStage.buttonMapping:
-        if mappingobj.stageMapTo == oldBackStage:
-            for n, i in enumerate(newBackStage.buttonMapping):
-                if i == mappingobj:
-                    newBackStage.buttonMapping[n].stageMapTo = stagemappingobj.stageMapTo
 
 def storeDecision(stage,state):
     """
     This function takes the input selected by the user and stores it in
-    the decisions dictionary in the state class as the value.
+    the decisions dictionary, using the stage.name of the .
 
     For example, after the user chooses a FLOWER, a new screen will pop up
-    with a description of the flower they chose. Then this code will replace
-    the name of the previous screen (FLOWER) with the current stage name (Daisy)
+    with a description of the flower they chose. This will add to the state.decisions
+    dictionary to allow any occurrences of the previous screen's name ("FLOWER") in text
+    descriptions with the selected user input ("Daisy")
 
     For example:
-    {FLOWER : Daisy}
+    {"FLOWER" : "Daisy"} will allow any text descriptions to have the word FLOWER replaced with their input, "Daisy".
 
     """
-    state.decisions[stage.back.name] = stage.name
+    state.decisions[stage.backStage.name] = stage.name
+
+
+def choiceSelection(stage,state):
+    """
+    Once the user selects a choice, the screen where they selected the choice will be replaced with the description
+    of the choice they selected. The mappings between the stages then change such that the intermediary stage no longer exists.
+
+    For example:
+    Beginning mapping: (KITCHEN -> COOKBOOK -> LASAGNA or PIZZA or SALAD)
+        Choice selection: (LASAGNA)
+    After choice selection: (KITCHEN -> LASAGNA)
+    """
+
+    storeDecision(stage,state) #stores choice made by user
+
+
+    #Store the MappingObject from previous stage associated with the button linked to current stage
+    oldBackStage = stage.backStage
+    for mappingobj in oldBackStage.buttonMapping:
+        if mappingobj.stageMapTo == stage:
+            stagemappingobj = mappingobj
+
+    #Look to see which stage the back button in current stage belongs to
+    newBackStage = goBack(stage)
+
+    #Changes the target stage mapping with the stage related to the user's selected option
+    for mappingobj in newBackStage.buttonMapping:
+        if mappingobj.stageMapTo == oldBackStage:
+            for index, newBackStageMappingObj in enumerate(newBackStage.buttonMapping):
+                if newBackStageMappingObj == mappingobj:
+                    newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
+
+
 
 def checkStageConditions(stage,state):
     """
-    This function marks current stage as having been seen
-    and checks if any choice is a permanent change
+    This function marks current stage as having been seen, calls the choiceSelection function if the stage is
+    indicated to be a choice selction stage. Choice selection stages are marked by having a stage.backStep value > 1.
     """
     stage.clicked = True
     if stage.backStep > 1 :
         choiceSelection(stage, state)
 
 def checkInventory(stage,state):
+    """
+    Once the user selects an option, it will add the photo of the option to state.inventory (if applicable).
+    """
     if stage.clicked and stage.inventoryPic != None and stage.inventoryPic not in state.inventory:
         state.inventory.append(stage.inventoryPic)
 

@@ -176,52 +176,52 @@ MappingObject(Approach5,'Stay rational',[0])])
 
 Approach5.buttonMapping.append(MappingObject(LoopApproach5,'Stay rational',[0]))
 
-Cookbook.back = Kitchen
-Garden.back = Kitchen
+Cookbook.backStage = Kitchen
+Garden.backStage = Kitchen
 
-Lasagna.back = Cookbook
-Salad.back = Cookbook
-Pizza.back = Cookbook
+Lasagna.backStage = Cookbook
+Salad.backStage = Cookbook
+Pizza.backStage = Cookbook
 
-Rose.back = Garden
-Daisy.back = Garden
-Sunflower.back = Garden
+Rose.backStage = Garden
+Daisy.backStage = Garden
+Sunflower.backStage = Garden
 
-Trash.back = Kitchen
+Trash.backStage = Kitchen
 
-Kitchen.back = Hallway
+Kitchen.backStage = Hallway
 
 
-Outfit.back = Bedroom
-Diary.back = Bedroom
+Outfit.backStage = Bedroom
+Diary.backStage = Bedroom
 
-SunDress.back = Outfit
-TShirt.back = Outfit
-PowerSuit.back = Outfit
+SunDress.backStage = Outfit
+TShirt.backStage = Outfit
+PowerSuit.backStage = Outfit
 
-Stranger.back = Diary
-Dreams.back= Diary
-LoveLife.back= Diary
+Stranger.backStage = Diary
+Dreams.backStage= Diary
+LoveLife.backStage= Diary
 
-Notes.back = Bedroom
-NoteSteven.back = Notes
-NotePark.back = Notes
-NoteGarden.back = Notes
+Notes.backStage = Bedroom
+NoteSteven.backStage = Notes
+NotePark.backStage = Notes
+NoteGarden.backStage = Notes
 
-Bedroom.back = Hallway
+Bedroom.backStage = Hallway
 
-EndBedroom.back = Hallway
+EndBedroom.backStage = Hallway
 
-EndKitchen.back = Hallway
-PrepareFood.back = EndKitchen
-TableCloth.back = PrepareFood
-SetTable.back = TableCloth
-LightCandles.back = SetTable
-Polish.back = LightCandles
-Napkins.back = Polish
-Weapon.back = Polish
-Dishes.back = Napkins
-Dishes2.back = Dishes
+EndKitchen.backStage = Hallway
+PrepareFood.backStage = EndKitchen
+TableCloth.backStage = PrepareFood
+SetTable.backStage = TableCloth
+LightCandles.backStage = SetTable
+Polish.backStage = LightCandles
+Napkins.backStage = Polish
+Weapon.backStage = Polish
+Dishes.backStage = Napkins
+Dishes2.backStage = Dishes
 
 
 stageList = [Lasagna,Salad,Pizza,Rose,Daisy,Sunflower,Trash,Kitchen,SunDress,TShirt,PowerSuit,Stranger,Dreams,LoveLife,Diary,Notes,Bedroom,EndKitchen,PrepareFood,SetTable,TableCloth,LightCandles,Polish,Weapon,Napkins,Dishes,Dishes2,NoteSteven,NotePark,NoteGarden]
