@@ -9,7 +9,7 @@
 &nbsp;
 
 ### Test video:
-![](https://github.com/sd18fall/ThePerfectDate/master/bedroom.png)
+![](Creepy.jpg)
 
 # How it All Started
 
@@ -118,5 +118,5 @@ python3 ViewerandController.py
 
 TBD
 
-&nbsp; 
+&nbsp;
 ## NOT INTENDED FOR THE EASILY DISTURBED.
