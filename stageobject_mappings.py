@@ -1,5 +1,24 @@
+"""
+MetaGame: Game Data
+Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 
-from Model import*
+
+This file contains all of the Stages and related functions to run the game.
+Think of Model.py and ViewerandController.py as the blueprint for generating a textbased game
+and this file as the data for the game.
+
+ONE IMPORTANT RULE: Be mindful of the order of stages. If you call a stage before it is made, then
+the game will crash. One thing we did was to put the first screen the user sees at the bottom of
+the list because it contains the buttons to everything else.
+
+
+We decided to create a new file for inputting the game data in case users are interested in changing
+the game plot. All they have to do is go in and edit the stages in this file without accidentally
+changing the blueprint of the game. :)
+"""
+
+from Model import *
+
 
 Lasagna = Stage('lasagna', {0: 'Making the Lovers Lasagna takes a biiit longer than you expected, but once it is in the oven the room immediatly smells delicious.'},'kitchen.png', None, 2,'lasagna.png')
 
@@ -174,8 +193,15 @@ LoopApproach5 = Stage('LoopApproach5',{0: 'Julia continues to struggle to get aw
 MappingObject(Approach6,'WHY IS SHE BEING SUCH A BITCH!',[0]),
 MappingObject(Approach5,'Stay rational',[0])])
 
+#Needed to be put at the end as LoopApproach5 was one of the last stages created, but we wanted stage Approach5 to be able to access it.
 Approach5.buttonMapping.append(MappingObject(LoopApproach5,'Stay rational',[0]))
 
+
+"""
+This part connects all stages in a hierarchy, assigning the bottomest tier stages which stage is the one previous. In our case, the HALLWAY stage is at the top of the hierarchy, as all other stages stem from it.
+"""
+
+#Beginning kitchen mappings
 Cookbook.backStage = Kitchen
 Garden.backStage = Kitchen
 
@@ -191,7 +217,7 @@ Trash.backStage = Kitchen
 
 Kitchen.backStage = Hallway
 
-
+#Beginning bedroom mappings
 Outfit.backStage = Bedroom
 Diary.backStage = Bedroom
 
@@ -210,6 +236,7 @@ NoteGarden.backStage = Notes
 
 Bedroom.backStage = Hallway
 
+#End room mappings
 EndBedroom.backStage = Hallway
 
 EndKitchen.backStage = Hallway
@@ -224,22 +251,39 @@ Dishes.backStage = Napkins
 Dishes2.backStage = Dishes
 
 
-stageList = [Lasagna,Salad,Pizza,Rose,Daisy,Sunflower,Trash,Kitchen,SunDress,TShirt,PowerSuit,Stranger,Dreams,LoveLife,Diary,Notes,Bedroom,EndKitchen,PrepareFood,SetTable,TableCloth,LightCandles,Polish,Weapon,Napkins,Dishes,Dishes2,NoteSteven,NotePark,NoteGarden]
+
+
+"""
+The list belows contains all the stages that need back buttons.
+We do not want all stages to have back buttons, for the purpose of gameplay.
+"""
+backButtonList = [Lasagna,Salad,Pizza,Rose,Daisy,Sunflower,Trash,Kitchen,SunDress,TShirt,PowerSuit,Stranger,Dreams,LoveLife,Diary,Notes,Bedroom,EndKitchen,PrepareFood,SetTable,TableCloth,LightCandles,Polish,Weapon,Napkins,Dishes,Dishes2,NoteSteven,NotePark,NoteGarden]
 
 def backButtonGen (stage):
+    """
+    This function adds a MappingObject representing a back button to the stage.buttonMapping list. Back buttons are
+    in a static position while the other buttons in the list will be mathematically placed onto the
+    screen depending on number of buttons and size.
+    """
     backButton = MappingObject(goBack(stage),'Go back to the ' + str(goBack(stage).name),[0],True)
     if stage.buttonMapping != None:
         stage.buttonMapping.append(backButton)
     else:
         stage.buttonMapping = [backButton]
 
-def allBackButtonGen (stageList):
-    for stage in stageList:
+def allBackButtonGen (backButtonList):
+    """
+    This function generates a backbutton for every stage in the backButtonList.
+    """
+    for stage in backButtonList:
         backButtonGen(stage)
 
-allBackButtonGen(stageList)
 
 def levelConditions(state,stage):
+    """
+    This is specifically created for purpose of the game plot. It sets the conditions for when
+    the game level changes and the plot moves forward. 
+    """
     if state.level == 1 and Diary.clicked and Outfit.clicked and Garden.clicked and Cookbook.clicked:
         state.level = 2 #Trash and Notes appear
     elif state.level == 2 and Trash.clicked and Notes.clicked:
@@ -248,3 +292,18 @@ def levelConditions(state,stage):
         state.level =4 #Sound is heard in the bedroom
     elif state.level == 4 and Weapon.clicked:
         state.level = 5 #Unlocks weapon options
+
+
+
+allBackButtonGen(backButtonList)
+
+
+
+
+
+
+
+
+
+
+#end

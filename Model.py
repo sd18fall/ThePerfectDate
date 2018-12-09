@@ -41,8 +41,10 @@ class Stage():
 
     name: Refers to the stage
 
-    description: String of text. Since the game is mainly textbased, the description is what the users
-    read to understand the game plot. It is displayed as a textbox onto the screens
+    description: Dictionary containing strings of text, where the level the player is on is the key, and the text
+    to be displayed is the value. The "0" key indicates the text should remain the same regardless of level. Since
+    the game is mainly textbased, the description is what the users read to understand the game plot. It is displayed
+    as a textbox onto the screens.
 
     picture: File name for screen background, either a jpg. or png.
 
@@ -85,7 +87,8 @@ class MappingObject():
 
     stageMapTo: What stage the button leads to (KITCHEN, BEDROOM)
 
-    levels: Specify which level the button should appear in. Buttons vary depending on level.
+    levels: A list specifying which levels the button should appear in. Buttons shown will vary depending on level. A 0 indicates the
+    Button will display in the appropriate screen regardless of level.
 
     backButton: Indicates whether the Button object created from the MappingObject will be a backButton or not.
 
