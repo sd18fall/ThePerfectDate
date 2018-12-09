@@ -91,7 +91,7 @@ Outfit = Stage('OUTFIT', {0: 'You have always loved picking out dresses, ever si
 
 Stranger= Stage('Stranger', {0: '"Dear Diary, I was talking to Steven on the phone in the park today and I saw a very Handsome Stranger! He was staring right at me, he had striking blue eyes. But he kept staring a little too long and gave me a kind of creepy smile. -Love NAME"'},'bedroom.png')
 
-Dreams= Stage('Dreams', {0: '"Dear Diary, I keep having the same dream over and over agian. I am sitting in my kitchen and I am having THE most amazing date.. I sure hope that it\'s foreshadowing! -Love NAME"'},'bedroom.png')
+Dreams= Stage('Dreams', {0: '"Dear Diary, I keep having the same dream over and over again. I am sitting in my kitchen and I am having THE most amazing date.. I sure hope that it\'s foreshadowing! -Love NAME"'},'bedroom.png')
 
 LoveLife= Stage('LoveLife', {0: '"Dear Diary, I cannot stop thinking about Steven! When we talked on the phone last week I had butterflies for hours! I sure hope he asks me on a date soon... -Love NAME"'},'bedroom.png')
 
