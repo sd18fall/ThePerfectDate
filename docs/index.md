@@ -42,10 +42,10 @@ Our code is divided into 3 different sections:
 
 | CLASSES & FUNCTION   | WHAT IT DOES |
 | --------|-------| -----|
-|STAGE | Stores information about the rooms/screens that will be used to generate the visuals
-|STATE | Stores information about player progress to advance plot     
-|MAPPINGOBJECT | This links screens to one another. It contains the text for the buttons on the screen and the stages that come next
-|DECISION FUNCTIONS | Series of functions that allow the player's choices to affect what part of the game they will be shown.
+| STAGE | Stores information about the rooms/screens that will be used to generate the visuals |
+| STATE | Stores information about player progress to advance plot |    
+| MAPPINGOBJECT | This links screens to one another. It contains the text for the buttons on the screen and the stages that come next |
+| DECISION FUNCTIONS | Series of functions that allow the player's choices to affect what part of the game they will be shown. |
 
 **VIEWER & CONTROLLER**
 
