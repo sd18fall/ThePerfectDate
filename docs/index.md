@@ -41,7 +41,7 @@ Our code is divided into 3 different sections:
   This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
 
 | CLASSES & FUNCTION   | WHAT IT DOES |
-| --------|:-------:| -----:|
+| ---------------|:--------------------------------:| -----:|
 | STAGE | Stores information about the rooms/screens that will be used to generate the visuals |
 | STATE | Stores information about player progress to advance plot |    
 | MAPPINGOBJECT | This links screens to one another. It contains the text for the buttons on the screen and the stages that come next |
