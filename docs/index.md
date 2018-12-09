@@ -91,17 +91,22 @@ python3 ViewerandController.py
 
 **A**: Yes! Depending on the options you select!
 
-
+&nbsp;  
+&nbsp;
 
 **Q**: How long is the game?
 
 **A**: ~ 10 - 15 minutes
 
+&nbsp;  
+&nbsp;
 
 **Q**: Is it fun?
 
 **A**: OF COURSE! DUH.
 
+&nbsp;  
+&nbsp;
 
 **Q**: Will it require a lot of skill to play?
 
