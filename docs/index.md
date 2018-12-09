@@ -6,6 +6,7 @@
 
 [How to Play](#How-to-Play)
 
+&nbsp;
 
 ### Test video:
 ![](https://github.com/sd18fall/ThePerfectDate/master/bedroom.png)
@@ -14,7 +15,7 @@
 
 We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
-
+&nbsp;
 
 # Meet the Team !
 
@@ -30,7 +31,7 @@ Sophie is a lover of raspberries and musicals. She likes to work on finicky gra
 
 Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to eventually grow her own food and be an incredible plant mom!
 
-
+&nbsp;
 
 # Curious about Code?
 
@@ -47,6 +48,7 @@ This file contains all the critical classes that provide information to the View
 | MappingObject Class 	| This links screens to one another. It contains the text for the buttons on the screen and the stages that come next 	|
 | Decision Functions  	| Series of functions that allow the player's choices to affect what part of the game they will be shown.             	|
 
+&nbsp;
 
 **VIEWER & CONTROLLER**
 
@@ -59,13 +61,14 @@ This file has the classes and functions that form the graphics of our game.
 | Screen Class         	| This class takes information from a Stage and State object. It can then store and generate textboxes,buttons and a background to be displayed for the user to see 	|
 | Controller Functions 	| This section contains a series of functions that detect user mouse interactivity with the game and decides what should be done with the option selected           	|
 
-
+&nbsp;
 
 **GAME DATA**
 
 This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
 
 
+&nbsp;
 
 # How to Play
 
@@ -83,7 +86,7 @@ To PLAY, please run:
 python3 ViewerandController.py
 ```
 
-
+&nbsp;
 
 # Questions?
 
@@ -92,29 +95,28 @@ python3 ViewerandController.py
 **A**: Yes! Depending on the options you select!
 
 &nbsp;  
-&nbsp;
 
 **Q**: How long is the game?
 
 **A**: ~ 10 - 15 minutes
 
 &nbsp;  
-&nbsp;
 
 **Q**: Is it fun?
 
 **A**: OF COURSE! DUH.
 
 &nbsp;  
-&nbsp;
 
 **Q**: Will it require a lot of skill to play?
 
 **A**: Nope! It's a text-based game, so you mostly read what is displayed and click on buttons with your mouse to proceed forward.
 
+&nbsp;
 
 # Special Thanks to ...
 
 TBD
 
+&nbsp; 
 ## NOT INTENDED FOR THE EASILY DISTURBED.
