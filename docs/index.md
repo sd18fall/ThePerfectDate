@@ -1,32 +1,30 @@
 
 ### Table of Contents:
 
-[Idea Formation](#part-1)
+[Idea Formation](#HOW-IT-ALL-STARTED)
 
-[Meet the Team]
+[Meet the Team](#MEET-THE-TEAM)
 
-[Code Progress & Architecture]
+[Code Progress & Architecture](#CURIOUS-ABOUT-CODE-?)
 
 [How to Play](#HOW-TO-PLAY)
 
-[FAQ]
+[FAQ](#QUESTIONS-?)
 
-[Special Thanks]
+[Special Thanks](#SPECIAL-THANKS-TO)
 
 &nbsp;
 
 ### CHECK US OUT:
 ![](Creepy.jpg)
 
-# part 1
-
-# How it All Started
+# HOW IT ALL STARTED
 
 We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
 &nbsp;
 
-# Meet the Team !
+# MEET THE TEAM
 
 ## Sabrina Pereira
 
@@ -42,7 +40,7 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. She
 
 &nbsp;
 
-# Curious about Code?
+# CURIOUS ABOUT CODE ?
 ### In the beginning...
 
 
@@ -100,7 +98,7 @@ python3 ViewerandController.py
 
 &nbsp;
 
-# Questions?
+# QUESTIONS ?
 
 **Q**: Are there multiple endings?
 
@@ -126,7 +124,7 @@ python3 ViewerandController.py
 
 &nbsp;
 
-# Special Thanks to ...
+# SPECIAL THANKS TO
 
 TBD
 
