@@ -11,6 +11,7 @@ from stageobject_mappings import *
 # from stageobject_mappings import StartingPage
 
 pygame.init() # Included at top such that we can generate fonts with pygame
+pygame.mixer.init()
 textFont = pygame.font.SysFont('comicsans', 40) #Setting the standard sizes for the text boxes and buttons
 
 # Initializing screen size
@@ -103,13 +104,10 @@ class TextBox():
         This function will draw each button onto the screen.
         """
         # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeee
-        # if outline:
-        #     win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(self.width, self.height)),(self.x, self.y))
-        win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
+        if self.text != '' or type(self) == Button:
 
-        #time.sleep(.01)
+            win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
 
-        if self.text != '':
             self.textSpacing()
 
     def __repr__(self):
@@ -319,8 +317,9 @@ def monitor(buttonList,stage,pos):
             else:
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
 
-
-
+def playMusic(song):
+        pygame.mixer.music.load(song)
+        pygame.mixer.music.play(-1)
 # =========================================================================================
 #                                RUNNING THE GAME
 # =========================================================================================
@@ -330,8 +329,13 @@ if __name__ == '__main__':
     # Indicates what level to start at. Level 1 will start at the beginning.
     state = State(level=1)
 
+    playMusic(state.music)
+
+
+
+
     # Initializes starting screen
-    currentScreen = Screen(StartingPage, state)
+    currentScreen = Screen(Name, state)
     currentScreen = nextScreen(currentScreen.stage, state)
 
     while True:
@@ -341,11 +345,21 @@ if __name__ == '__main__':
             pos = pygame.mouse.get_pos()
             pygame.display.update()
 
-
             # Runs through various functions to check conditions
             checkStageConditions(currentScreen.stage, currentScreen.state)
+
+            if state.level == 3:
+                levelConditions(state,currentScreen.stage)
+                if state.level == 4:
+                    pygame.mixer.Channel(3).play(pygame.mixer.Sound('crash.aiff'))
+                    playMusic(state.music)
+
             levelConditions(state,currentScreen.stage)
+
             checkInventory(currentScreen.stage,currentScreen.state)
+
+
+
             currentScreen.inventoryDecide()
             monitor(currentScreen.screenButtons,currentScreen.stage,pos)
 
@@ -354,8 +368,12 @@ if __name__ == '__main__':
                 for button in currentScreen.screenButtons:
                     if button.responseButton:
                         if enter():
+                            pygame.mixer.Channel(1).play(pygame.mixer.Sound('click.wav'))
+                            time.sleep(.19)
                             currentScreen = nextScreen(button.stage, state, currentScreen)
                     elif isClick(button,pos):
+                        pygame.mixer.Channel(1).play(pygame.mixer.Sound('click.wav'))
+                        time.sleep(.19)
                         currentScreen = nextScreen(button.stage, state, currentScreen)
 
             if event.type == pygame.QUIT:
