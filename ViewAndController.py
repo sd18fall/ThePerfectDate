@@ -8,6 +8,7 @@ import pygame
 import time
 from Model import *
 from stageobject_mappings import *
+from video import *
 # from stageobject_mappings import StartingPage
 
 pygame.init() # Included at top such that we can generate fonts with pygame
@@ -327,11 +328,12 @@ def playMusic(song):
 if __name__ == '__main__':
 
     # Indicates what level to start at. Level 1 will start at the beginning.
-    state = State(level=4)
+    state = State(level=1)
 
     playMusic(state.music)
 
     # Initializes starting screen
+    # currentScreen = Screen(Name, state)
     currentScreen = Screen(Name, state)
     currentScreen = nextScreen(currentScreen.stage, state)
 
@@ -341,6 +343,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             pos = pygame.mouse.get_pos()
             pygame.display.update()
+
 
             # Runs through various functions to check conditions
             checkStageConditions(currentScreen.stage, currentScreen.state)

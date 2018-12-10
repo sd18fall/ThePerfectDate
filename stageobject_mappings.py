@@ -20,13 +20,13 @@ from Model import *
 
 
 
-Lasagna = Stage('lasagna', {0: 'Making the Lovers Lasagna takes a biiit longer than you expected, but once it is in the oven the room immediatly smells delicious.'},'kitchen.png', None, 2,'lasagna.png')
+Lasagna = Stage('lasagna', {0: 'Making the Lovers Lasagna takes a biiit longer than you expected, but once it is in the oven the room immediatly smells delicious.'},'diningarea.png', None, 2,'lasagna.png')
 
 Pizza = Stage('pizza', {0: 'Oof, there may or may not be some tomato sauce in your hair. You had better go clean up, but it is going to be totally worth it when the Platonic Pizza is out of the oven!'},'kitchen.png',None, 2,'pizza.png')
 
-Salad = Stage('salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'kitchen.png', None, 2,'salad.png')
+Salad = Stage('salad', {0: 'Well you made a salad. Even with a cool name like Sweetheart Cesear Salad it is still just a salad, so congrats I guess?'},'diningarea.png', None, 2,'salad.png')
 
-Cookbook = Stage('COOKEDMEAL', {0: 'The Grandma Smith CookBook is decades old. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'kitchen.png',
+Cookbook = Stage('COOKEDMEAL', {0: 'The Grandma Smith CookBook is decades old. All the dishes are killer, and you cannot wait to begin the preparations. What should you make tonight?'},'diningarea.png',
 [MappingObject(Lasagna, 'Makes some delicious homemade Lovers Lasagna!', [0]),
     MappingObject(Pizza, 'Break out the dough and make some savory Platonic Pizza!', [0]),
     MappingObject(Salad, 'Keep it light and whip out a Sweetheart Ceaser Salad', [0])])
@@ -118,7 +118,7 @@ Bedroom = Stage('Bedroom', {1: 'The room is extremely cozy and great for cuddlin
 
 NotOver2 = Stage('NotOver',{0: 'You help NAME get dressed in her OUTFIT and carry her downstairs to share some delicious COOKEDMEAL!'},'kitchen.png')
 
-NotOver = Stage('NotOver',{0: 'No reason to ruin a perfectly good date over a little spat! All couples fight. That\'s right. All couples fight. When she wakes up everything will be okay. For now you had better help NAME get ready for your date'},'bedroom.png',
+NotOver = Stage('NotOver',{0: 'No reason to ruin a perfectly good date over a little spat! All couples fight. That\'s right. All couples fight. When she wakes up everything will be okay. For now you had better help NAME get ready for your date.'},'bedroom.png',
 [MappingObject(NotOver2,'Help her get dressed',[0])])
 
 TryAgain = Stage('TryAgain',{0: 'Hopefully you have better luck with the next girl huh? Try again?'},'bedroom.png')
@@ -188,18 +188,18 @@ Hallway = Stage('Hallway', {1: 'Time to get ready! Where do you want to go?',2: 
     MappingObject(Bedroom, 'Go upstairs to clean the bedroom!', [2]),
     MappingObject(EndBedroom,'Go upstairs to the bedroom!',[4,5])])
 
-Intro3 = Stage('Intro3', {0 : 'There is no time to worry about brunch on a day like today! Tonight is a big night!'},'livingroom.png',
+Intro3 = Stage('Intro3', {0 : 'There is no time to worry about brunch on a day like today! Tonight is a big night!'},'bathroom.png',
 [MappingObject(Hallway, 'Start the preparations!', [0])])
 
-Intro2 = Stage('Intro2', {0 : '"Good morning NAME, it\'s mom! Are you still in bed, you sleepy head? You missed our family brunch. Anyways, love you sweetheart. Call me soon."'}, 'livingroom.png', [MappingObject(Intro3, 'Aww so cute', [0])])
+Intro2 = Stage('Intro2', {0 : '"Good morning NAME, it\'s mom! Are you still in bed, you sleepy head? You missed our family brunch. Anyways, love you sweetheart. Call me soon."'}, 'bathroom.png', [MappingObject(Intro3, 'Aww so cute', [0])])
 
-Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You wink once at your reflection and admire how nice you look today! Your blue eyes are especially vibrant. You hear a phone ring and go to voice mail.'},'livingroom.png', [MappingObject(Intro2, '"Hm I bet I know who that is!"', [0])])
+Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You wink once at your reflection and admire how nice you look today! Your blue eyes are especially vibrant. You hear a phone ring and go to voice mail.'},'bathroom.png', [MappingObject(Intro2, '"Hm I bet I know who that is!"', [0])])
 
-StartingPage2 = Stage('', {0 : 'What is your favorite girls name?'},'livingroom.png', [MappingObject(Intro, '', [0],False, responseButton = True)],2)
+StartingPage2 = Stage('', {0 : 'What is your favorite girls name?'},'bathroom.png', [MappingObject(Intro, '', [0],False, responseButton = True)],2)
 
-StartingPage = Stage('Intro', {0 : 'Ever wanted to bring your dream date to reality?'},'livingroom.png', [MappingObject(StartingPage2, 'Yes', [0])])
+StartingPage = Stage('Intro', {0 : 'Ever wanted to bring your dream date to reality?'},'bathroom.png', [MappingObject(StartingPage2, 'Yes', [0])])
 
-Name2 = Stage('NAME', {0 : 'TRIGGER WARNING: This game is not suitable for the easily disturbed.'},'livingroom.png', [MappingObject(StartingPage, 'I accept the risks', [0])])
+Name2 = Stage('NAME', {0 : 'TRIGGER WARNING: This game is not suitable for the easily disturbed.'},'bathroom.png', [MappingObject(StartingPage, 'I accept the risks', [0])])
 
 Name = Stage('NAME', {0 : ''},'TitleScreen.png', [MappingObject(Name2, 'Start', [0])])
 
@@ -319,7 +319,7 @@ def levelConditions(state,stage):
             state.level = 1
             state.decisions = {}
             state.inventory = []
-
+            ##redefining
 
 
 
