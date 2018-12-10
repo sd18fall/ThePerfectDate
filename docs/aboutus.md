@@ -3,7 +3,7 @@
 
 **We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! If you had to describe us in two words it would be weird and cute (just like our game). We had a blast working, eating, and struggling together.**
 
-### Thank you for visiting our website and we hope you enjoy the game!
+### Thank you for visiting our website, and we hope you enjoy the game!
 
 &nbsp;
 
@@ -31,8 +31,8 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. Whi
 
 # SPECIAL THANKS TO...
 
-**All the losers who tested our game and gave us amazing feedback!**
+**1. All the losers who tested our game and gave us amazing feedback!**
 
-**Ben Hill, Peter Segar, Ashley Swanson, Vivien Chen for their patience and continuous feedback throughout the entire project!**
+**2. Ben Hill, Peter Segar, Ashley Swanson, Vivien Chen for their patience and continuous feedback throughout the entire project!**
 
-**Doki Doki Literature Club, Undertale, and Can Your Pet for the game inspo. We couldn't have done it without your amazing work!**
+**3. Doki Doki Literature Club, Undertale, and Can Your Pet for the game inspiration. We couldn't have done it without your amazing work!**
