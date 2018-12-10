@@ -327,12 +327,9 @@ def playMusic(song):
 if __name__ == '__main__':
 
     # Indicates what level to start at. Level 1 will start at the beginning.
-    state = State(level=1)
+    state = State(level=4)
 
     playMusic(state.music)
-
-
-
 
     # Initializes starting screen
     currentScreen = Screen(Name, state)
@@ -353,6 +350,12 @@ if __name__ == '__main__':
                 if state.level == 4:
                     pygame.mixer.Channel(3).play(pygame.mixer.Sound('crash.aiff'))
                     playMusic(state.music)
+
+            if currentScreen.stage == NotOver:
+                playMusic('happy.mp3')
+
+            if currentScreen.stage == TryAgain:
+                playMusic('happy.mp3')
 
             levelConditions(state,currentScreen.stage)
 
