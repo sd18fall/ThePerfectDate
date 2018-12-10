@@ -5,11 +5,11 @@
 
 [Meet the Team](#MEET-THE-TEAM)
 
-[Code Progress & Architecture](#CURIOUS-ABOUT-CODE-?)
+[Code Progress & Architecture](#CURIOUS-PROGRESS-AND-ARCHITECTURE)
 
 [How to Play](#HOW-TO-PLAY)
 
-[FAQ](#QUESTIONS-?)
+[FAQ](#FAQ)
 
 [Special Thanks](#SPECIAL-THANKS-TO)
 
@@ -40,7 +40,7 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. She
 
 &nbsp;
 
-# CURIOUS ABOUT CODE ?
+# CODE PROGRESS AND ARCHITECTURE
 ### In the beginning...
 
 
@@ -98,7 +98,7 @@ python3 ViewerandController.py
 
 &nbsp;
 
-# QUESTIONS ?
+# FAQ
 
 **Q**: Are there multiple endings?
 
