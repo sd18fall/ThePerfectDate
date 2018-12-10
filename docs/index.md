@@ -1,10 +1,11 @@
 
+
 ### COME CHECK US OUT!
 
 
 ### Table of Contents:
 
-[How to Play](#How-to-Play)
+[How to Play](#how-to-play)
 
 &nbsp;
 
@@ -54,12 +55,12 @@ This file contains all the critical classes that provide information to the View
 
 This file has the classes and functions that form the graphics of our game.
 
-| CLASSES & FUNCTIONS  	| WHAT IT DOES                                                                                                                                                      	|
-|:----------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
-| Textbox Class        	| This is used to display the plot descriptions onto the screen                                                                                                     	|
-| Button Class         	| This class inherits from the Textbox class and is used to display interactive buttons onto the screen                                                             	|
-| Screen Class         	| This class takes information from a Stage and State object. It can then store and generate textboxes,buttons and a background to be displayed for the user to see 	|
-| Controller Functions 	| This section contains a series of functions that detect user mouse interactivity with the game and decides what should be done with the option selected           	|
+| CLASSES & FUNCTIONS  	 | WHAT IT DOES                                                                                                                                                      	|
+|:---------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
+| Textbox Class        	 | This is used to display the plot descriptions onto the screen                                                                                                     	|
+| Button Class         	 | This class inherits from the Textbox class and is used to display interactive buttons onto the screen                                                             	|
+| Screen Class         	 | This class takes information from a Stage and State object. It can then store and generate textboxes,buttons and a background to be displayed for the user to see 	|
+| Controller Functions 	 |  This section contains a series of functions that detect user mouse interactivity with the game and decides what should be done with the option selected           	|
 
 &nbsp;
 
@@ -70,17 +71,17 @@ This file stores all of our game data so the game can be personalized. The first
 
 &nbsp;
 
-# How to Play
+# how to play
 
 To get started, please download:  
 
-### PYGAME: This is needed so the game display can be generated.
+#### PYGAME: This is needed so the game display can be generated.
 
 ```
 pip install pygame
 ```
 
-To PLAY, please run:
+To **PLAY**, please run:
 
 ```
 python3 ViewerandController.py
