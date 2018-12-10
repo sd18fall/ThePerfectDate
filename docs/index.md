@@ -1,8 +1,6 @@
 
-[Home](index.md)
-[Project Evolution & Game Architecture](gameinfo.md)
-[About Us!](aboutus.md)
-
+| [Home](index.md) 	| [Project Evolution & Game Architecture](gameinfo.md) 	| [About Us!](aboutus.md) 	|
+|------------------	|------------------------------------------------------	|-------------------------	|
 
 ### Table of Contents:
 
