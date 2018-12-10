@@ -28,7 +28,7 @@ We are three college students, 2 from Olin College of Engineering and 1 from Bab
 
 ## Sabrina Pereira
 
-![](sab.jpg)
+![](sab.jpg?resize=200,200&classes=right)
 
 Sabrina is a huge fan of turtlenecks and Shakira. She wakes up looking like she just put on make up. She likes... videogames? And this is kind of off topic but she does not get why people like spicy food when it just burns their mouths HOWEVER she really likes sour food. One day she is going to finally be happy, and it will be a good day.
 
