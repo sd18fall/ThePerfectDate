@@ -1,5 +1,8 @@
 
-[Meet the Team!](index2.md)
+[Home](index.md)
+[Project Evolution & Game Architecture](gameinfo.md)
+[About Us!](aboutus.md)
+
 
 ### Table of Contents:
 
@@ -30,13 +33,13 @@ We are three college students, 2 from Olin College of Engineering and 1 from Bab
 
 ## Sabrina Pereira
 
-<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/sab.jpg" style="width:150px;height:150px; />
+<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/sab.jpg" width="150" height="150" />
 
 Sabrina is a huge fan of turtlenecks and Shakira. She wakes up looking like she just put on make up. She likes... videogames? And this is kind of off topic but she does not get why people like spicy food when it just burns their mouths HOWEVER she really likes sour food. One day she is going to finally be happy, and it will be a good day.
 
 ## Sophie Schaffer
 
-<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/sophie.jpg" style="width:150px;height:150px; />
+<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/sophie.jpg" width="150" height="150" />
 
 Sophie is a lover of raspberries and musicals. She likes to work on finicky graphics problems and is annoyed at how long the town hall meeting is going. All she wants to do right now is eat some chocolate and take a nap
 
