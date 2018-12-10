@@ -1,32 +1,35 @@
 
 ### Table of Contents:
 
-[Idea Formation](#HOW-IT-ALL-STARTED)
+[Idea Formation](#how-it-all-started)
 
-[Meet the Team](#MEET-THE-TEAM)
+[Meet the Team](#meet-the-team)
 
-[Code Progress & Architecture](#CURIOUS-PROGRESS-AND-ARCHITECTURE)
+[Code Progress & Architecture](#code-progress-and-architecture)
 
-[How to Play](#HOW-TO-PLAY)
+[How to Play](#how-to-play)
 
-[FAQ](#FAQ)
+[FAQ](#faq)
 
-[Special Thanks](#SPECIAL-THANKS-TO)
+[Special Thanks](#special-thanks-to)
 
 &nbsp;
 
 ### CHECK US OUT:
 ![](Creepy.jpg)
 
-# HOW IT ALL STARTED
+# how it all started
 
 We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
 &nbsp;
 
-# MEET THE TEAM
+### meet the team
 
 ## Sabrina Pereira
+
+<img src="sab.png" alt="Sabrina Pereira"
+	title="About Sab" width="200" height="150" />
 
 Sabrina is a huge fan of turtlenecks and Shakira. She wakes up looking like she just put on make up. She likes... videogames? And this is kind of off topic but she does not get why people like spicy food when it just burns their mouths HOWEVER she really likes sour food. One day she is going to finally be happy, and it will be a good day.
 
@@ -40,8 +43,9 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. She
 
 &nbsp;
 
-# CODE PROGRESS AND ARCHITECTURE
-### In the beginning...
+# code progress and architecture
+
+## In the beginning...
 
 
 
@@ -80,7 +84,7 @@ This file stores all of our game data so the game can be personalized. The first
 
 &nbsp;
 
-# HOW TO PLAY
+# how to play
 
 To get started, please download:
 
@@ -98,7 +102,7 @@ python3 ViewerandController.py
 
 &nbsp;
 
-# FAQ
+# faq
 
 **Q**: Are there multiple endings?
 
@@ -124,7 +128,7 @@ python3 ViewerandController.py
 
 &nbsp;
 
-# SPECIAL THANKS TO
+# special thanks to
 
 TBD
 
