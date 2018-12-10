@@ -15,12 +15,14 @@
 
 Sabrina is a huge fan of turtlenecks and Shakira. She wakes up looking like she just put on make up. She likes... videogames? And this is kind of off topic but she does not get why people like spicy food when it just burns their mouths HOWEVER she really likes sour food. One day she is going to finally be happy, and it will be a good day.
 
+&nbsp;
 ## **Sophie Schaffer**
 
 <img src="sophie.jpg" width="150" height="150" />
 
 Sophie is a lover of raspberries and musicals. Her favorite animal is a puppy cat. She likes to work on finicky graphics problems and is quite the perfectionist when it comes to video games (apparently). All she wants to do right now is eat some chocolate and take a nap.
 
+&nbsp;
 ## **Cynthia Yong**
 
 <img src="cyn.jpg" width="150" height="150" />
