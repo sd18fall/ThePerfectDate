@@ -1,21 +1,24 @@
-### COME CHECK US OUT!
-
 
 ### Table of Contents:
 
-[Idea Formation]
+[Idea Formation](#1.)
+
 [Meet the Team]
+
 [Code Progress & Architecture]
-[How to Play](#How-To-Play)
+
+[How to Play](#how-to-play)
+
 [FAQ]
+
 [Special Thanks]
 
 &nbsp;
 
-### Test video:
+### CHECK US OUT:
 ![](Creepy.jpg)
 
-# How it All Started
+# 1. How it All Started
 
 We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
@@ -77,7 +80,7 @@ This file stores all of our game data so the game can be personalized. The first
 
 &nbsp;
 
-# How To Play
+# how to play
 
 To get started, please download:
 
