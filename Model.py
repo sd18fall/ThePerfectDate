@@ -7,6 +7,9 @@ provide the major information for the other two documents.
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
 import pygame
+import time
+pygame.init()
+pygame.mixer.init()
 
 class State():
     """
@@ -22,7 +25,7 @@ class State():
     inventory: Stores the .png files for the icons related to the options the user selects.
 
     """
-    def __init__(self, level, decisions = None, inventory = None):
+    def __init__(self, level, decisions = None, inventory = None,music = 'happy.mp3'):
         self.level = level
 
         if decisions == None:
@@ -30,6 +33,8 @@ class State():
 
         if inventory == None:
             self.inventory = []
+
+        self.music = music
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
@@ -92,12 +97,16 @@ class MappingObject():
 
     backButton: Indicates whether the Button object created from the MappingObject will be a backButton or not.
 
+    responseButton: Indicates whether the Button object created from the MappingObject will be a responseButton or not.
+
     """
-    def __init__(self, stageMapTo, buttontext,levels,backButton = False):
+    def __init__(self, stageMapTo, buttontext,levels,backButton = False, responseButton = False, dimensions = 1):
         self.stageMapTo = stageMapTo
         self.buttontext = buttontext
         self.levels = levels
         self.backButton = backButton
+        self.responseButton = responseButton
+        self.dimensions = dimensions
 
     def __str__(self):
         return str(self.stageMapTo)
@@ -148,11 +157,10 @@ def choiceSelection(stage,state):
         Choice selection: (LASAGNA)
     After choice selection: (KITCHEN -> LASAGNA)
     """
-
     storeDecision(stage,state) #stores choice made by user
 
-
     #Store the MappingObject from previous stage associated with the button linked to current stage
+    stagemappingobj = None
     oldBackStage = stage.backStage
     for mappingobj in oldBackStage.buttonMapping:
         if mappingobj.stageMapTo == stage:
@@ -162,11 +170,12 @@ def choiceSelection(stage,state):
     newBackStage = goBack(stage)
 
     #Changes the target stage mapping with the stage related to the user's selected option
-    for mappingobj in newBackStage.buttonMapping:
-        if mappingobj.stageMapTo == oldBackStage:
-            for index, newBackStageMappingObj in enumerate(newBackStage.buttonMapping):
-                if newBackStageMappingObj == mappingobj:
-                    newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
+    if stagemappingobj != None:
+        for mappingobj in newBackStage.buttonMapping:
+            if mappingobj.stageMapTo == oldBackStage:
+                for index, newBackStageMappingObj in enumerate(newBackStage.buttonMapping):
+                    if newBackStageMappingObj == mappingobj:
+                        newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
 
 
 
@@ -184,7 +193,10 @@ def checkInventory(stage,state):
     Once the user selects an option, it will add the photo of the option to state.inventory (if applicable).
     """
     if stage.clicked and stage.inventoryPic != None and stage.inventoryPic not in state.inventory:
+        pygame.mixer.Channel(2).play(pygame.mixer.Sound('item.wav'))
+        time.sleep(.2)
         state.inventory.append(stage.inventoryPic)
+
 
 
 
