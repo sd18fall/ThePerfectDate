@@ -24,3 +24,9 @@ Sophie is a lover of raspberries and musicals. She likes to work on finicky gra
 <img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/cyn.jpg" width="150" height="150" />
 
 Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to eventually grow her own food and be an incredible plant mom!
+
+&nbsp;
+
+# special thanks to
+
+TBD
