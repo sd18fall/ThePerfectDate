@@ -1,13 +1,13 @@
 
 ### Table of Contents:
 
-[Idea Formation](#1.)
+[Idea Formation](#part-1)
 
 [Meet the Team]
 
 [Code Progress & Architecture]
 
-[How to Play](#how-to-play)
+[How to Play](#HOW-TO-PLAY)
 
 [FAQ]
 
@@ -18,7 +18,9 @@
 ### CHECK US OUT:
 ![](Creepy.jpg)
 
-# 1. How it All Started
+# part 1
+
+# How it All Started
 
 We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! Upon brainstorming, we instantly fell in love with the idea of a text- based video game. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
@@ -80,7 +82,7 @@ This file stores all of our game data so the game can be personalized. The first
 
 &nbsp;
 
-# how to play
+# HOW TO PLAY
 
 To get started, please download:
 
