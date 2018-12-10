@@ -3,7 +3,12 @@
 
 ### Table of Contents:
 
-[How to Play](#how-to-play)
+[Idea Formation]
+[Meet the Team]
+[Code Progress & Architecture]
+[How to Play](#How-To-Play)
+[FAQ]
+[Special Thanks]
 
 &nbsp;
 
@@ -72,7 +77,7 @@ This file stores all of our game data so the game can be personalized. The first
 
 &nbsp;
 
-# how to play
+# How To Play
 
 To get started, please download:
 
