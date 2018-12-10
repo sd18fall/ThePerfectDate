@@ -15,13 +15,13 @@ Sabrina is a huge fan of turtlenecks and Shakira. She wakes up looking like she 
 
 ## Sophie Schaffer
 
-<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/sophie.jpg" width="150" height="150" />
+<img src="sophie.jpg" width="150" height="150" />
 
 Sophie is a lover of raspberries and musicals. She likes to work on finicky graphics problems and is annoyed at how long the town hall meeting is going. All she wants to do right now is eat some chocolate and take a nap
 
 ## Cynthia Yong
 
-<img src="https://github.com/sd18fall/ThePerfectDate/blob/master/docs/cyn.jpg" width="150" height="150" />
+<img src="cyn.jpg" width="150" height="150" />
 
 Cynthia is an avid fan of fresh smelling candles and organic hair products. She loves practicing yoga and going hiking during her free time. Her ultimate goal is to eventually grow her own food and be an incredible plant mom!
 

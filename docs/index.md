@@ -1,20 +1,5 @@
 
-| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md) 	|
-|:------------------:	|:------------------------------------------------------:	|:-------------------------:	|
-
-### Table of Contents:
-
-[Idea Formation](#how-it-all-started)
-
-[Meet the Team](#meet-the-team)
-
-[Code Progress & Architecture](#code-progress-and-architecture)
-
-[How to Play](#how-to-play)
-
-[FAQ](#faq)
-
-[Special Thanks](#special-thanks-to)
+| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md) 
 
 
 &nbsp;
