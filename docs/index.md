@@ -11,7 +11,9 @@ We came together because of a class project. As different levels of video game f
 # CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
 [Go to Video!](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
 
-<img src="TitleScreen.png" width="500" height="300" />
+<!-- <img src="TitleScreen.png" width="500" height="300" /> -->
+
+![](TitleScreen.png)
 
 &nbsp;
 
