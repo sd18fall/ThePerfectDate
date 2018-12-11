@@ -77,7 +77,8 @@ We received many comments about storing the data into a dictionary. However, we 
 
 * We would also spend more time on enhancing user experience by adding better graphics and other special effects.
 
-* We also want to include more decisions for the users to select to make the game more robust and to make the impact of their decisions more apparent in the end. 
+* We also want to include more decisions for the users to select to make the game more robust and to make the impact of their decisions more apparent in the end.
 
+&nbsp;
 
 ## BONUS: A piece of our code that we are really proud deals with the visual and interactivity of our lovely, pink buttons!
