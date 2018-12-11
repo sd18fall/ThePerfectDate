@@ -30,12 +30,12 @@ We received many comments about storing the data into a dictionary. However, rat
 
 &nbsp;
 
-## Finally, our current code design is divided into 3 different sections:
+## Finally, our current code design is divided into 3 different sections contained in their own file:
 
 ### Final Architecture:
 ![](newarc.jpg)
 
-## **MODEL**
+## **MODEL.PY**
 
 ### This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
 
@@ -50,9 +50,9 @@ We received many comments about storing the data into a dictionary. However, rat
 
 &nbsp;
 
-## **THE PERFECT DATE**
+## **THEPERFECTDATE.PY**
 
-### This file has the classes and functions for viewer and controller functionality that form the graphics of our game.
+### This file has the classes and functions for the viewer and controller functionality that form the graphics of our game.
 
 &nbsp;
 
@@ -65,9 +65,9 @@ We received many comments about storing the data into a dictionary. However, rat
 
 &nbsp;
 
-## **GAME DATA**
+## **STAGEOBJECT_MAPPINGS.PY**
 
-### This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
+### This file stores all of our game data so the game can be personalized. The other two files are essentially the blueprints and this forms our actual game. It contains mainly all of the *stage* classes from Model.
 
 &nbsp;
 
