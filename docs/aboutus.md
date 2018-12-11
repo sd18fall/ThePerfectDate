@@ -34,6 +34,17 @@ Sophie is a lover of raspberries and musicals. Her favorite animal is a puppy c
 
 Cynthia is an avid fan of fresh smelling candles and organic hair products. While she loves practicing yoga and going hiking during her free time, she definitely loves to eat 24/7. She considers eating her favorite hobby. Eventually, her ultimate goal is to grow her own food and be an incredible plant mom!
 
+
+# Project Lessons Learned:
+
+* Code organization is super important if we want to maintain our sanity. There were times where we would work on the code individually and would have to explain to one another what we did. Had we kept our code in one giant file, it would have been a nightmare to figure out how each part works with one another and who added what. Now, whenever there is a bug, it is much easier for us to figure out the error because we know what part it came from and can make better educated guesses as to why the error occurred.
+
+* This is related to the previous point, but distinguishing the function between each class was super helpful when writing code that combined everything.
+
+* Creating an intricate game is definitely not easy! Even our simple, text-based 10 minute game required a TON of detail to enhance user experience and overall game visuals. We had to be detail orientated when thinking about all the little parts to add.
+
+* Our game definitely wouldn't be where it is today without the help of our friends playing through it. Because we know our game inside and out, it was tremendously helpful to get fresh perspectives on what we could improve on.
+
 &nbsp;
 
 # SPECIAL THANKS TO...
