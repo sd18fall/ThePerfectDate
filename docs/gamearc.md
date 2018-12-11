@@ -9,7 +9,7 @@
 ## In the beginning...we really didn't know what we were doing...
 
 ### Initial Architecture!
-![](oldarc.jpg)
+![](arc.jpg)
 
 When we first began, we wanted to have as little classes as possible. This was because we didn't want to start off overcomplicating the various components involved and accidentally implement unnecessary classes and functions that we wouldn't need later on.
 
@@ -25,7 +25,7 @@ Needless to say, we had too little classes and essentially no architecture. We w
 Now that we had split our code into Model, Viewer, and Controller, it was significantly easier and clearer for us to discuss the relationships between class and effectively decide which functions/methods were necessary to add.
 
 During our second architectural review, we received positive feedback about our structure. We mainly wanted to focus on figuring out an effective way to store our game data without it being overly complicated and confusing.
-We received many comments about storing the data into a dictionary. 
+We received many comments about storing the data into a dictionary.
 
 
 &nbsp;
@@ -64,5 +64,7 @@ We received many comments about storing the data into a dictionary.
 ## **GAME DATA**
 
 ### This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
+
+&nbsp;
 
 ## BONUS: A piece of our code that we are really proud deals with the visual and interactivity of our lovely, pink buttons!
