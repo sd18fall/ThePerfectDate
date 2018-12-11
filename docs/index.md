@@ -11,8 +11,6 @@ We came together because of a class project. As different levels of video game f
 # CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
 [Go to Video!](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
 
-<!-- <img src="TitleScreen.png" width="500" height="300" /> -->
-
 ![](TitleScreen.png)
 
 &nbsp;
@@ -39,33 +37,23 @@ git clone https://github.com/sd18fall/ThePerfectDate
 python ViewerandController.py
 ```
 
-&nbsp;
-
 # FREQUENTLY ASKED QUESTIONS
 
 **Q: How long is the game?**
 
 A: ~ 10 - 15 minutes
 
-&nbsp;
-
 **Q: Will it require a lot of skill to play?**
 
 A: Nope! It's a text-based game, so you just read what is displayed and click on buttons with your mouse to proceed forward.
-
-&nbsp;
 
 **Q: Are there multiple endings?**
 
 A: Yes! Depending on the options you select!
 
-&nbsp;
-
 **Q: Is it fun?**
 
 A: OF COURSE! DUH.
-
-&nbsp;
 
 **Q: This game is amazing! How do I generate my own version?**
 
