@@ -1,17 +1,26 @@
 
-# code progress and architecture
+| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md)
+
+&nbsp;
+&nbsp;
+
+# Code Progress and Architecture
 
 ## In the beginning...
+
+![Initial Architecture!](oldarc.jpg)
 
 
 
 &nbsp;
 
-Our code is divided into 3 different sections:
+## Our current code design is divided into 3 different sections:
 
-**MODEL**
+![Improved Architecture!](newarc.jpg)
 
-This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
+## **MODEL**
+
+### This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
 
 | CLASSES & FUNCTIONS 	| WHAT IT DOES                                                                                                        	|
 |:---------------------	|:---------------------------------------------------------------------------------------------------------------------	|
@@ -22,9 +31,9 @@ This file contains all the critical classes that provide information to the View
 
 &nbsp;
 
-**VIEWER & CONTROLLER**
+## **VIEWER & CONTROLLER**
 
-This file has the classes and functions that form the graphics of our game.
+### This file has the classes and functions that form the graphics of our game.
 
 | CLASSES & FUNCTIONS  	 | WHAT IT DOES                                                                                                                                                      	|
 |:---------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------	|
@@ -35,6 +44,6 @@ This file has the classes and functions that form the graphics of our game.
 
 &nbsp;
 
-**GAME DATA**
+## **GAME DATA**
 
-This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
+### This file stores all of our game data so the game can be personalized. The first two are essentially the blue print and this forms our actual game. It contains mainly all of the *stage* classes from Model.
