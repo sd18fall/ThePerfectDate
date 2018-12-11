@@ -25,7 +25,7 @@ class State():
     inventory: Stores the .png files for the icons related to the options the user selects.
 
     """
-    def __init__(self, level, decisions = None, inventory = None,music = 'happy.mp3'):
+    def __init__(self, level, decisions = None, inventory = None,music = 'happy.mp3',noise = None):
         self.level = level
 
         if decisions == None:
@@ -35,6 +35,8 @@ class State():
             self.inventory = []
 
         self.music = music
+
+        self.noise = noise
 
     def __str__(self):
         return "Level: " + str(self.level)+", Inventory: "+ str(self.inventory) + ", Location: "+str(self.location)
@@ -146,7 +148,6 @@ def storeDecision(stage,state):
     """
     state.decisions[stage.backStage.name] = stage.name
 
-
 def choiceSelection(stage,state):
     """
     Once the user selects a choice, the screen where they selected the choice will be replaced with the description
@@ -177,8 +178,6 @@ def choiceSelection(stage,state):
                     if newBackStageMappingObj == mappingobj:
                         newBackStage.buttonMapping[index].stageMapTo = stagemappingobj.stageMapTo
 
-
-
 def checkStageConditions(stage,state):
     """
     This function marks current stage as having been seen, calls the choiceSelection function if the stage is
@@ -188,16 +187,33 @@ def checkStageConditions(stage,state):
     if stage.backStep > 1 :
         choiceSelection(stage, state)
 
+def playMusic(song):
+    """
+    Plays a song when given the file name of the song file
+    """
+    pygame.mixer.music.load(song)
+    pygame.mixer.music.play(-1)
+
+#sets the sound that plays when the player gains an item
+item = pygame.mixer.Sound('item.wav')
+item.set_volume(.3)
+
 def checkInventory(stage,state):
     """
     Once the user selects an option, it will add the photo of the option to state.inventory (if applicable).
     """
-    if stage.clicked and stage.inventoryPic != None and stage.inventoryPic not in state.inventory:
-        pygame.mixer.Channel(2).play(pygame.mixer.Sound('item.wav'))
+    if stage.inventoryPic != None and stage.inventoryPic not in state.inventory:
+        pygame.mixer.Channel(2).play(item) #plays sound
         time.sleep(.2)
-        state.inventory.append(stage.inventoryPic)
+        state.inventory.append(stage.inventoryPic) #item image appears
 
-
+def checkAllConditions(screen):
+    """
+    Check if there is an item to add to the inventory, and if an item is added to the inventory it draws it and checks if a stage needs to be updates
+    """
+    checkStageConditions(screen.stage, screen.state)
+    checkInventory(screen.stage,screen.state)
+    screen.inventoryDecide()
 
 
 

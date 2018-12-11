@@ -328,9 +328,12 @@ def playMusic(song):
 if __name__ == '__main__':
 
     # Indicates what level to start at. Level 1 will start at the beginning.
-    state = State(level=1)
+    state = State(level=5)
 
     playMusic(state.music)
+
+    click = pygame.mixer.Sound('click.wav')
+    click.set_volume(.3)
 
     # Initializes starting screen
     # currentScreen = Screen(Name, state)
@@ -342,31 +345,7 @@ if __name__ == '__main__':
 
         for event in pygame.event.get():
             pos = pygame.mouse.get_pos()
-            pygame.display.update()
 
-
-            # Runs through various functions to check conditions
-            checkStageConditions(currentScreen.stage, currentScreen.state)
-
-            if state.level == 3:
-                levelConditions(state,currentScreen.stage)
-                if state.level == 4:
-                    pygame.mixer.Channel(3).play(pygame.mixer.Sound('crash.aiff'))
-                    playMusic(state.music)
-
-            if currentScreen.stage == NotOver:
-                playMusic('happy.mp3')
-
-            if currentScreen.stage == TryAgain:
-                playMusic('happy.mp3')
-
-            levelConditions(state,currentScreen.stage)
-
-            checkInventory(currentScreen.stage,currentScreen.state)
-
-
-
-            currentScreen.inventoryDecide()
             monitor(currentScreen.screenButtons,currentScreen.stage,pos)
 
             # Check to see if a button is clicked, show the next approprate screen
@@ -374,11 +353,11 @@ if __name__ == '__main__':
                 for button in currentScreen.screenButtons:
                     if button.responseButton:
                         if enter():
-                            pygame.mixer.Channel(1).play(pygame.mixer.Sound('click.wav'))
+                            pygame.mixer.Channel(1).play(click)
                             time.sleep(.19)
                             currentScreen = nextScreen(button.stage, state, currentScreen)
                     elif isClick(button,pos):
-                        pygame.mixer.Channel(1).play(pygame.mixer.Sound('click.wav'))
+                        pygame.mixer.Channel(1).play(click)
                         time.sleep(.19)
                         currentScreen = nextScreen(button.stage, state, currentScreen)
 
@@ -386,6 +365,15 @@ if __name__ == '__main__':
                run = False
                pygame.quit()
                quit()
+
+        checkAllConditions(currentScreen)
+
+        if levelConditions(state,currentScreen.stage):
+            playMusic(state.music)
+            if state.noise != None:
+                pygame.mixer.Channel(3).play(pygame.mixer.Sound(state.noise))
+
+
 
 
 
