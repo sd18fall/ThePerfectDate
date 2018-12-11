@@ -20,6 +20,9 @@ screenWidth = 1200
 screenHeight = 800
 win = pygame.display.set_mode((screenWidth,screenHeight))
 
+#sets the sound for when a player clicks a button
+click = pygame.mixer.Sound('./sound/click.wav')
+click.set_volume(.3)
 
 # =========================================================================================
 #                                VIEWER CODE
@@ -104,7 +107,7 @@ class TextBox():
         """
         if self.text != '' or type(self) == Button:
 
-            win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
+            win.blit(pygame.transform.scale(pygame.image.load('./images/buttons/''Button.png'),(self.width, self.height)),(self.x, self.y))
 
             self.textSpacing()
 
@@ -227,7 +230,7 @@ class Screen():
         spacer = 10
         if self.state.inventory != []:
             for picture in self.state.inventory:
-                win.blit(pygame.transform.scale(pygame.image.load(picture), (60, 60)), (spacer, 10))
+                win.blit(pygame.transform.scale(pygame.image.load('./images/icons/'+picture), (60, 60)), (spacer, 10))
                 spacer += 70
 
 
@@ -237,7 +240,7 @@ class Screen():
         """
         self.buttonDecider()
         self.textboxDecider()
-        win.blit(pygame.transform.scale(pygame.image.load(self.stage.picture), (screenWidth, screenHeight)), (0, 0))
+        win.blit(pygame.transform.scale(pygame.image.load('./images/background/'+self.stage.picture), (screenWidth, screenHeight)), (0, 0))
         self.inventoryDecide()
         self.screenBox.draw()
         time.sleep(.1)
@@ -310,26 +313,20 @@ def monitor(buttonList,stage,pos):
                 whatTyping(button,stage)
                 button.draw() #redraws button with new text
             elif isOver(button,pos): #generates an outline
-                win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
+                win.blit(pygame.transform.scale(pygame.image.load('./images/buttons/'+'ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
             else: #generates a window to cover old outlind
-                win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
+                win.blit(pygame.transform.scale(pygame.image.load('./images/buttons/'+'ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
 
-def playMusic(song):
-        pygame.mixer.music.load(song)
-        pygame.mixer.music.play(-1)
-# =========================================================================================
+#=========================================================================================
 #                                RUNNING THE GAME
 # =========================================================================================
 
 if __name__ == '__main__':
 
     # Indicates what level to start at. Level 1 will start at the beginning.
-    state = State(level=5)
+    state = State(level=1)
 
     playMusic(state.music)
-
-    click = pygame.mixer.Sound('click.wav')
-    click.set_volume(.3)
 
     # Initializes starting screen
     currentScreen = Screen(Name, state)
@@ -369,7 +366,7 @@ if __name__ == '__main__':
         if levelConditions(state,currentScreen.stage):
             playMusic(state.music)
             if state.noise != None:
-                pygame.mixer.Channel(3).play(pygame.mixer.Sound(state.noise))
+                pygame.mixer.Channel(3).play(pygame.mixer.Sound('./sound/'+state.noise))
 
 
 

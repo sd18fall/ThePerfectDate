@@ -42,47 +42,98 @@ Garden = Stage('FLOWER', {0: 'There is a beautiful flower garden in the backyard
     MappingObject(Daisy, 'Daisies are simple and elegant', [1]),
     MappingObject(Sunflower,'Sunflowers are big and beautiful', [1])])
 
-Trash = Stage('Trash', {0: 'You want to empty out the trash tonight, so everything is absolutely perfect! However, when you look into the trash can, you notice bouquets of flowers with a note signed, "Your Beloved". These don\'t belong in the here, they are good as new! Suddenly, you think you hear a noise from upstairs... Eh it\'s probably nothing.'},'kitchen.png')
+TakeTrashOut = Stage('TakeOutTrash', {0: 'You ignore the noise and take the trash out to the curb.'},'kitchen.png', None, 2)
+
+Trash = Stage('Trash', {0: 'You want to empty out the trash tonight, so everything is absolutely perfect! However, when you look into the trash can, you notice bouquets of flowers with a note signed, "Your Beloved". These don\'t belong in the here, they are good as new! Suddenly, you think you hear a noise from upstairs...'},'kitchen.png',
+[MappingObject(TakeTrashOut, 'Eh it\'s probably nothing', [0])])
 
 Kitchen = Stage('Kitchen', {1: 'Nothing screams cozy and comfy like a home cooked meal! You have been learning how to cook since you were a child and are super eager to wow your date with your deliciously hypnotizing dishes!',2: 'Time to clean up! The kitchen is a mess after all that cooking and for some reason there is a weird smell.',3: 'Time to clean up! The kitchen is a mess after all that cooking and for some reason there is a weird smell.'},'kitchen.png',
 [MappingObject(Cookbook, 'Check out your favorite cookbook for a recipe to cook for tonight!', [1]),
     MappingObject(Garden, 'Head to the garden to choose a flower for tonight!', [1]),
     MappingObject(Trash, 'Take out the trash so the kitchen doesn’t smell weird later', [2,3])])
 
-Dishes2 = Stage('Dishes', {0: 'You have to search a little to find the right cabinets to put all the dishes in but eventually everything is away. For the love of God what is happening upstairs.'},'kitchen.png',None,9)
+Excited = Stage('Excited', {0: 'You get so excited about you date tonight that you uncontrolably squeal for half a second! Eeeee! It\'s going to be so amazing!!'},'kitchen.png',None ,25)
 
-Dishes = Stage('Dishes', {0: 'You wash and dry all of the dishes. Woo you really made a mess earleir. Sweat drips down your forehead.'},'kitchen.png',
+Music = Stage('Music', {0: 'You turn on a CD player and the smooth voice of Frank Sinatra fills the room. You turn the music up. Loud.'},'kitchen.png',
+[MappingObject(Excited,'Get excited about tonight!',[0])], 24)
+
+Garnish = Stage('Garnish', {0: 'You place a single parsely leaf on top of the COOKEDMEAL. Perfect. You are basically a master chef. All of a sudden the kitchen becomes earily quiet.'},'kitchen.png',
+[MappingObject(Music,'Put on some mood music',[0])],23)
+
+Dust = Stage('Dust', {0: 'You dust the room to really make sure everything is clean. You feel like someone is watching you.'},'kitchen.png',
+[MappingObject(Garnish,'Add a garnish to the food',[0])],21)
+
+Vaccuum = Stage('Vaccuum', {0: 'While you are a roll you break out the vaccuum. This kitchen will be spotless! Did you just see a shadow coming from upstairs?'},'kitchen.png',
+[MappingObject(Dust,'Dust around the room',[0])],21)
+
+Mop = Stage('Mop', {0: 'Now that you swept the floor you may as well also mop it. You mop the kitchen floor and it basically sparkles in the candle light! You could eat off the floor if you wanted to, it\'s that clean! You think the noises from upstairs are moving closer to the stairs.'},'kitchen.png',
+[MappingObject(Vaccuum,'Vaccum',[0])],20)
+
+Sweep = Stage('Sweep', {0: 'There are some crumbs on the floor from the granola bar you at. Time to break out the old broom! You sweep the whole kitchen floor. You think you hear something fall upstairs.'},'kitchen.png',
+[MappingObject(Mop,'Mop the floor',[0])],19)
+
+AirFreshener = Stage('AirFreshener', {0: 'You spray airfreshener around the kitchen to sure it smells great for later! You think you hear stomping echoing down to the kitchen.'},'kitchen.png',
+[MappingObject(Sweep,'Sweep the floor',[0])],18)
+
+AdjustPainting = Stage('AdjustPainting', {0: 'You go around to all the paintings in the kitchen to make sure that they are hanging straight. Looking good! You think you hear the footsteps upstairs again.'},'kitchen.png',
+[MappingObject(AirFreshener,'Spray air freshener',[0])],17)
+
+CutFlowers = Stage('CutFlowers', {0: 'You take out the FLOWER and cut off a little bit off the bottoms using hedge clippers.'},'kitchen.png',
+[MappingObject(AdjustPainting,'The paintings on the wall look a little tilted',[0])],16)
+
+RelightCandles = Stage('RelightCandles', {0: 'The draft from the open door must have blown out the candles. You relight them with care and the room begins to glow with candle light again. You think you hear someone stumble upstairs.'},'kitchen.png',
+[MappingObject(CutFlowers,'The flowers look a little too tall for that vase',[0])],15)
+
+CloseDoor = Stage('CloseDoor', {0: 'Hm you thought you closed this door when you came in from the garden. You look closely at the lock and see that it is broken. You didn\'t notice earlier and the wind must have blown it open after you came in from the garden.'},'kitchen.png',
+[MappingObject(RelightCandles,'Oh no! The candles went out!',[0])],14)
+
+EatSnack = Stage('EatSnack', {0: 'There\'s no reason to starve youself! You get a granola bar from the pantry and munch on it while you look with pride at how nice the table looks. You feel another cold draft.'},'kitchen.png',
+[MappingObject(CloseDoor,'Close the door to the garden',[0])],13)
+
+AdjustTable = Stage('AdjustTable', {0: 'You adjust the plates so they are perfectly symmetrical. Whew! All of this cleaning is making you hungry. You think you hear echoing noises from upstairs.'},'kitchen.png',
+[MappingObject(EatSnack,'Eat a snack',[0])],12)
+
+WipeWindows = Stage('WipeWindows', {0: 'The windows in the kitchen are filthy! You wet a rag and wipe them all down till they are looking crystal clear. You think you hear a door slam.'},'kitchen.png',
+[MappingObject(AdjustTable,'Hm the place settings look crooked',[0])],11)
+
+CleanSink = Stage('CleanSink', {0: 'You wet a sponge and clean the inside and all around the sink. Very nice! Maybe your date will notice how good you are at cleaning. You feel a draft from behind you.'},'kitchen.png',
+[MappingObject(WipeWindows,'Wipe down all the windows',[0])],10)
+
+Dishes2 = Stage('Dishes2', {0: 'You have to search a little to find the right cabinets to put all the dishes in but eventually everything is away. Are the shuffling noises getting closer?'},'kitchen.png',
+[MappingObject(CleanSink,'Uh oh! The sink is all dirty!',[0])],9)
+
+Dishes = Stage('Dishes', {0: 'You wash and dry all of the dishes. Woo you really made a  mess earleir. You think you hear more footsteps from upstairs.'},'kitchen.png',
 [MappingObject(Dishes2,'Put away the dishes',[0])],8)
 
-Napkins = Stage('Napkins', {0: 'You fold the white napkins to look like cranes and leave one at each end of the table. Your heart is beating fast.'},'kitchen.png',
+Napkins = Stage('Napkins', {0: 'You fold the white napkins to look like cranes and leave one at each end of the table. Are the noises upstairs getting louder?'},'kitchen.png',
 [MappingObject(Dishes,'Uh oh you forgot to do the dishes!',[0])],7)
 
-Weapon = Stage('Weapon', {0: 'You shove a newly polished fork in your pocket. Might be useful later. Are the noises upstairs getting louder?'},'kitchen.png',None,7,'fork.png')
+Weapon = Stage('Weapon', {0: 'You shove a newly polished fork in your pocket. Might be useful later.'},'kitchen.png',None,7,'fork.png')
 
-Polish = Stage('Polish', {0: 'This silverware is looking a little dull. Nothing a little elbow grease cannot fix! You feel like someone is watching you.'},'kitchen.png',
+Polish = Stage('Polish', {0: 'This silverware is looking a little dull. Nothing a little elbow grease cannot fix! You polish all the silverware until they are shining like new. You think you hear a door squeek again.'},'kitchen.png',
 [MappingObject(Napkins,'Put out napkins',[0]),
     MappingObject(Weapon,'Use a fork as a weapon',[0])],6)
 
-LightCandles = Stage('LightCandles', {0: 'These candles really set the mood. Classy. Elegant. You hear footsteps echo from the bedroom.'},'kitchen.png',
+LightCandles = Stage('LightCandles', {0: 'These candles really set the mood. Classy. Elegant. You hear light footsteps echo from the bedroom.'},'kitchen.png',
 [MappingObject(Polish,'Polish the silverware',[0])],5)
 
-SetTable = Stage('SetTable', {0: 'You start to set the table for tonight. Everything has to be perfect. The FLOWER you picked out earlier are quite the centerpiece. You hear a door slam.'},'kitchen.png',
+SetTable = Stage('SetTable', {0: 'You start to set the table for tonight. Everything has to be perfect. The FLOWER you picked out earlier are quite the centerpiece. You hear squeeking that sounds like a door opening slowly.'},'kitchen.png',
 [MappingObject(LightCandles,'Time to light some candles',[0])],4)
 
-TableCloth = Stage('TableCloth', {0: 'The table cloth is floral and almost matches the plates! Did you just see a shadow coming from upstairs?'},'kitchen.png',
+TableCloth = Stage('TableCloth', {0: 'The table cloth is floral and almost matches the plates! There is rustling noises coming from upstairs.'},'kitchen.png',
 [MappingObject(SetTable,'Set the table',[0])],3)
 
-PrepareFood = Stage('PrepareFood', {0: 'You take the COOKEDMEAL out of oven, and it is to die for! Well done! There is rustling noises coming from upstairs.'}, 'kitchen.png',
+PrepareFood = Stage('PrepareFood', {0: 'You take the COOKEDMEAL out of oven, and it is to die for! Well done!'}, 'kitchen.png',
 [MappingObject(TableCloth,'Lay out a beautiful tablecloth',[0])],2)
 
 EndKitchen = Stage('Kitchen', {0:'You hear a loud crashing sound from upstairs!!'}, 'kitchen.png',
 [MappingObject(PrepareFood,'Get the food out of the oven',[3,4])])
 
-SunDress= Stage('sun dress', {0: 'What a cute sun dress! Yellow with pink flowers, this warm summery look will light up any room!'},'bedroom.png', None, 2,'dress.png')
+SunDress= Stage('sun dress', {0: 'What a cute sun dress! Yellow with pink flowers, this warm summery look will light up any room! You set out the sun dress for later'},'bedroom.png', None, 2,'dress.png')
 
-TShirt= Stage('T shirt', {0: 'T shirt and jeans is just a classic NAME outfit, and why mess with a classic??'},'bedroom.png', None, 2,'shirt.png')
+TShirt= Stage('T shirt', {0: 'T shirt and jeans is just a classic NAME outfit, and why mess with a classic?? You set out a clean T shirt for later'},'bedroom.png', None, 2,'shirt.png')
 
-PowerSuit= Stage('pant suit', {0: 'Go big or go home. Nothing screams confidence like a bright red suit. And the best part is it basically matches everything!'},'bedroom.png', None, 2,'suit.png')
+PowerSuit= Stage('pant suit', {0: 'Go big or go home. Nothing screams confidence like a bright red suit. And the best part is it basically matches everything! You set out the pant suit for later.'},'bedroom.png', None, 2,'suit.png')
 
 Outfit = Stage('OUTFIT', {0: 'You have always loved picking out dresses, ever since you were little and you would dress up your dolls. Well tonight is the real deal and it is time to get serious about fashion. Which should you pick out for tonight?'},'bedroom.png',
 [MappingObject(SunDress, 'Sun Dress', [1]),
@@ -153,11 +204,9 @@ Approach6 = Stage('Approach6',{0: 'You shake NAME and she yells, "My family must
 Approach5 = Stage('Approach5',{0: 'NAME struggles to get away but you do not let go.'},'Dark.jpeg',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0])])
 
-
 Pain = Stage('Pain',{0: 'You hold your cheek with one hand and grab NAMEs wrist with the other one. For a second you want to hurt her back but you try to breath. You love her. Do not hurt her. Do not hurt her. Breath.'},'Dark.jpeg',
 [MappingObject(Approach6,'YOU ARE RUINING EVERYTHING!',[0]),
     MappingObject(Approach5,'Stay rational',[0])])
-
 
 Approach4 = Stage('Approach4',{0: 'All couples have spats. You know that with love and time this will work itself out. You move in to hug NAME. You were not expecting her to run and NAME manages to dodge your hug. You got scratched on the cheek. OW.. Ow it really hurts! You see her looking for an escape. You take a deep breath and try to stay calm.'},'Dark.jpeg',
 [MappingObject(Pain,'Uggh it hurts',[0])])
@@ -171,7 +220,7 @@ Approach2 = Stage('Approach2',{0: 'You say, "It\'s okay you are just confused." 
 Argue= Stage('Argue',{0: 'You realize she must have thrown the FLOWER in the trash on purpose! You say, "Those FLOWER were supposed to cheer you up when you got fired from Star Bucks! I can\'t believe you threw them away. I\'m only trying to take care you" You feel your face getting warm but you shake it off.'},'bedroom.png',
 [MappingObject(Approach2,'Forgive her',[0])])
 
-Approach = Stage('Approach',{0: 'As you try to follow her footstaps you her her say "Stay away from me! First you send me all those stupid flowers, then the letters, now you resorted to locking me in my own closet!? You need to leave. Now!" You are sure she does not know what\'s happening.'},'bedroom.png',
+Approach = Stage('Approach',{0: 'As you try to follow her footsteps you her say "Stay away from me! First you send me all those stupid flowers, then the letters, now you resorted to locking me in my own closet!? You need to leave. Now!" You are sure she does not know what\'s happening.'},'bedroom.png',
 [MappingObject(Approach2,'Calm her down',[0]),
 MappingObject(Argue,'Argue with her',[0])])
 
@@ -200,15 +249,15 @@ Intro2 = Stage('Intro2', {0 : '"Good morning NAME, it\'s mom! Are you still in b
 
 Intro = Stage('Intro', {0 : 'You finish washing your hands and shoot yourself a smile in the mirror. You wink once at your reflection and admire how nice you look today! Your blue eyes are especially vibrant. You hear a phone ring and go to voice mail.'},'livingroom.png', [MappingObject(Intro2, '"Hm I bet I know who that is!"', [0])])
 
-StartingPage2 = Stage('', {0 : 'What is your favorite girls name?'},'livingroom.png', [MappingObject(Intro, '', [0],False, responseButton = True)],2)
+Details = Stage('Details', {0 : 'Going on a perfect date means paying attention to details! So make sure you read carefully, the decisions you make now are going to be important later.'},'livingroom.png', [MappingObject(Intro, 'Got it!', [0])])
+
+StartingPage2 = Stage('', {0 : 'What is your favorite girls name?'},'livingroom.png', [MappingObject(Details, '', [0],False, responseButton = True)],2)
 
 StartingPage = Stage('StartingPage', {0 : 'Ever wanted to bring your dream date to reality?'},'livingroom.png', [MappingObject(StartingPage2, 'Yes', [0])])
 
 Name2 = Stage('NAME', {0 : 'TRIGGER WARNING: This game is not suitable for the easily disturbed.'},'livingroom.png', [MappingObject(StartingPage, 'I accept the risks', [0])])
 
 Name = Stage('NAME', {0 : ''},'TitleScreen.png', [MappingObject(Name2, 'Start', [0])])
-
-
 
 LoopApproach5 = Stage('LoopApproach5',{0: 'NAME continues to struggle to get away but you still do not let go'},'Dark.jpeg',
 [MappingObject(Approach6,'SHE IS RUINING EVERYTHING!',[0]),
@@ -238,6 +287,7 @@ Rose.backStage = Garden
 Daisy.backStage = Garden
 Sunflower.backStage = Garden
 
+TakeTrashOut.backStage = Trash
 Trash.backStage = Kitchen
 
 Kitchen.backStage = Hallway
@@ -265,6 +315,7 @@ Bedroom.backStage = Hallway
 EndBedroom.backStage = Hallway
 
 EndKitchen.backStage = Hallway
+
 PrepareFood.backStage = EndKitchen
 TableCloth.backStage = PrepareFood
 SetTable.backStage = TableCloth
@@ -274,13 +325,29 @@ Napkins.backStage = Polish
 Weapon.backStage = Polish
 Dishes.backStage = Napkins
 Dishes2.backStage = Dishes
+CleanSink.backStage = Dishes2
+WipeWindows.backStage = CleanSink
+AdjustTable.backStage = WipeWindows
+EatSnack.backStage = AdjustTable
+CloseDoor.backStage = EatSnack
+RelightCandles.backStage = CloseDoor
+CutFlowers.backStage = RelightCandles
+AdjustPainting.backStage = CutFlowers
+AirFreshener.backStage = AdjustPainting
+Sweep.backStage = AirFreshener
+Mop.backStage = Sweep
+Vaccuum.backStage = Mop
+Dust.backStage = Vaccuum
+Garnish.backStage = Dust
+Music.backStage = Garnish
+Excited.backStage = Music
 
 
 """
 The list belows contains all the stages that need back buttons.
 We do not want all stages to have back buttons, for the purpose of gameplay.
 """
-backButtonList = [Lasagna,Salad,Pizza,Rose,Daisy,Sunflower,Trash,Kitchen,SunDress,TShirt,PowerSuit,Stranger,Dreams,LoveLife,Diary,Notes,Bedroom,EndKitchen,PrepareFood,SetTable,TableCloth,LightCandles,Polish,Weapon,Napkins,Dishes,Dishes2,NoteSteven,NotePark,NoteGarden]
+backButtonList = [Lasagna,Salad,Pizza,Rose,Daisy,Sunflower,TakeTrashOut,Kitchen,SunDress,TShirt,PowerSuit,Stranger,Dreams,LoveLife,Diary,Notes,Bedroom,EndKitchen,PrepareFood,SetTable,TableCloth,LightCandles,Polish,Weapon,Napkins,Dishes,Dishes2,NoteSteven,NotePark,NoteGarden,Excited,Music,Garnish,Dust,Vaccuum,Mop, Sweep,AirFreshener,AdjustPainting, CutFlowers, RelightCandles, CloseDoor,EatSnack,AdjustTable,WipeWindows,CleanSink]
 
 def backButtonGen (stage):
     """
@@ -332,9 +399,23 @@ def levelConditions(state,stage):
         state.level = 1
         state.decisions = {}
         state.inventory = []
-        ##redefining
+        Diary.clicked = False
+        Outfit.clicked = False
+        Garden.clicked = False
+        Cookbook.clicked = False
+        Trash.clicked = False
+        Notes.clicked = False
+        EndKitchen.clicked = False
+        Weapon.clicked = False
+        TryAgain.Clicked = False
 
-
+        EndKitchen.buttonMapping = [MappingObject(PrepareFood,'Get the food out of the oven',[3,4])]
+        Bedroom.buttonMapping = [MappingObject(Outfit, 'Time to choose what to wear for this special night!', [1]),
+            MappingObject(Diary, 'Take a look at the Diary!', [1]),
+            MappingObject(Notes, 'Tidy up the stack of letters in a messy pile on the table', [2,3])]
+        Kitchen.buttonMapping = [MappingObject(Cookbook, 'Check out your favorite cookbook for a recipe to cook for tonight!', [1]),
+            MappingObject(Garden, 'Head to the garden to choose a flower for tonight!', [1]),
+            MappingObject(Trash, 'Take out the trash so the kitchen doesn’t smell weird later', [2,3])]
 
 
 

@@ -11,6 +11,10 @@ import time
 pygame.init()
 pygame.mixer.init()
 
+#sets the sound that plays when the player gains an item
+item = pygame.mixer.Sound('./sound/item.wav')
+item.set_volume(.3)
+
 class State():
     """
     Stores the information of what has already happened, so the game will
@@ -159,7 +163,6 @@ def choiceSelection(stage,state):
     After choice selection: (KITCHEN -> LASAGNA)
     """
     storeDecision(stage,state) #stores choice made by user
-
     #Store the MappingObject from previous stage associated with the button linked to current stage
     stagemappingobj = None
     oldBackStage = stage.backStage
@@ -191,12 +194,8 @@ def playMusic(song):
     """
     Plays a song when given the file name of the song file
     """
-    pygame.mixer.music.load(song)
+    pygame.mixer.music.load('./sound/'+song)
     pygame.mixer.music.play(-1)
-
-#sets the sound that plays when the player gains an item
-item = pygame.mixer.Sound('item.wav')
-item.set_volume(.3)
 
 def checkInventory(stage,state):
     """
