@@ -1,4 +1,9 @@
 
+| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md)
+
+&nbsp;
+&nbsp;
+
 # ABOUT US
 
 **We are three college students, 2 from Olin College of Engineering and 1 from Babson College that are working together on a final class project! If you had to describe us in two words it would be weird and cute (just like our game). We had a blast working, eating, and struggling together.**
