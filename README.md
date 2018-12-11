@@ -22,7 +22,7 @@ git clone https://github.com/sd18fall/ThePerfectDate
 Code to run the program: A screen should populate with the start page of the game
 
 ```
-python3 game.py
+python ThePerfectDate.py
 ```
 
 ## License

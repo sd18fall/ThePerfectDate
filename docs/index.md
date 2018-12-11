@@ -36,7 +36,7 @@ git clone https://github.com/sd18fall/ThePerfectDate
 ## Then, to **PLAY**, please run:
 
 ```
-python ViewerandController.py
+python ThePerfectDate.py
 ```
 
 # FREQUENTLY ASKED QUESTIONS
