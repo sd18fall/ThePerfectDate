@@ -1,51 +1,71 @@
 
-| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md) 
+| [Home](index.md) 	| [Project Evolution & Game Architecture](gamearc.md) 	| [About Us!](aboutus.md)
 
+
+# THE GAME INSPIRATION
+
+We came together because of a class project. As different levels of video game fanatics, we had a wide collection of video games under our belts. However, we instantly fell in love with the idea of developing a text-based video game with a twist. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
+
+# CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
+
+[![sophie.jpg](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
 
 &nbsp;
 
-# how to play
+# HOW TO PLAY
 
-To get started, please download:
+##To get started, please download:
 
-#### PYGAME: This is needed so the game display can be generated.
+## PYGAME: This is needed so the game display can be generated.
 
 ```
 pip install pygame
 ```
 
-To **PLAY**, please run:
+## First, clone the repository onto your local drive:
 
 ```
-python3 ViewerandController.py
+git clone https://github.com/sd18fall/ThePerfectDate
+```
+
+## To **PLAY**, please run:
+
+```
+python ViewerandController.py
 ```
 
 &nbsp;
 
-# faq
+# FREQUENTLY ASKED QUESTIONS
 
-**Q**: Are there multiple endings?
+### **Q**: **How long is the game?**
 
-**A**: Yes! Depending on the options you select!
-
-&nbsp;
-
-**Q**: How long is the game?
-
-**A**: ~ 10 - 15 minutes
+### **A**: ~ 10 - 15 minutes
 
 &nbsp;
 
-**Q**: Is it fun?
+### **Q**: **Will it require a lot of skill to play?**
 
-**A**: OF COURSE! DUH.
+### **A**: Nope! It's a text-based game, so you just read what is displayed and click on buttons with your mouse to proceed forward.
+
+&nbsp;
+
+### **Q**: **Are there multiple endings?**
+
+### **A**: Yes! Depending on the options you select!
 
 &nbsp;
 
-**Q**: Will it require a lot of skill to play?
+### **Q**: **Is it fun?**
 
-**A**: Nope! It's a text-based game, so you mostly read what is displayed and click on buttons with your mouse to proceed forward.
-
+### **A**: OF COURSE! DUH.
 
 &nbsp;
-## NOT INTENDED FOR THE EASILY DISTURBED.
+
+### **Q**: **This game is amazing! What can I do to create my own version?**
+
+### **A**: GLAD YOU ASKED. You can simply go into our "stageobject_mappings.py" file and you can edit the game plot in there!
+
+&nbsp;
+
+# NOT INTENDED FOR THE EASILY DISTURBED.
