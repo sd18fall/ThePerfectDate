@@ -81,4 +81,4 @@ We received many comments about storing the data into a dictionary. However, we 
 
 &nbsp;
 
-## BONUS: A piece of our code that we are really proud deals with the visual and interactivity of our lovely, pink buttons!
+## BONUS: A piece of our code that we are really proud of deals with the visual and interactivity of our lovely, pink buttons!
