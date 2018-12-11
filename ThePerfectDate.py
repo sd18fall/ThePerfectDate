@@ -85,11 +85,11 @@ class TextBox():
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    #self.typePause(.02)
+                    self.typePause(.02)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
-            #self.typePause(.01)
+            self.typePause(.01)
 
     def typePause(self,pause):
         """
