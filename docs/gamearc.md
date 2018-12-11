@@ -50,9 +50,9 @@ We received many comments about storing the data into a dictionary. However, rat
 
 &nbsp;
 
-## **VIEWER & CONTROLLER**
+## **THE PERFECT DATE**
 
-### This file has the classes and functions that form the graphics of our game.
+### This file has the classes and functions for viewer and controller functionality that form the graphics of our game.
 
 &nbsp;
 
