@@ -1,6 +1,8 @@
 """
-MetaGame
-An interactive video game! #name files differently
+MetaGame: Viewer and Controller Code
+
+This file contains code that interacts with the user and display the
+game onto a screen. It is the file that is used to run the game.
 
 Authors: Cynthia Yong, Sabrina Pereira, Sophie Schaffer
 """
