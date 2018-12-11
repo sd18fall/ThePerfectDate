@@ -28,6 +28,9 @@ class State():
 
     inventory: Stores the .png files for the icons related to the options the user selects.
 
+    music: the name of the song file that is currently playing, is changed in levelConditions when level changes
+
+    noise: the name of the noise file that plays when a level is changed, default is None. noise is changed in levelConditions when the level changes
     """
     def __init__(self, level, decisions = None, inventory = None,music = 'happy.mp3',noise = None):
         self.level = level
@@ -194,7 +197,7 @@ def playMusic(song):
     """
     Plays a song when given the file name of the song file
     """
-    pygame.mixer.music.load('./sound/'+song)
+    pygame.mixer.music.load('./sounds/'+song)
     pygame.mixer.music.play(-1)
 
 def checkInventory(stage,state):
