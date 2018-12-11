@@ -46,8 +46,6 @@ class TextBox():
         self.height = 300
 
     """The methods below handle how the text is able to stay in the textbox rather than running off the page."""
-    # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEe
-    #
     def append(self,text):
         """
         Method that adds text to the preexisting text
@@ -84,7 +82,7 @@ class TextBox():
                     letter_width, letter_height = letter_surface.get_size()
                     win.blit(letter_surface,(x, y))
                     x+=letter_width
-                    self.typePause(.01)
+                    self.typePause(.02)
                 x += space
             x = position[0]  # Reset the x.
             y += word_height  # Start on new row.
@@ -104,7 +102,6 @@ class TextBox():
         """
         This function will draw each button onto the screen.
         """
-        # ASK SOPHIEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeeeee
         if self.text != '' or type(self) == Button:
 
             win.blit(pygame.transform.scale(pygame.image.load('Button.png'),(self.width, self.height)),(self.x, self.y))
@@ -255,7 +252,6 @@ def nextScreen(stage, state, oldScreen = None):
     """
     currentScreen = Screen(stage,state)
     currentScreen.draw()
-
     return currentScreen
 
 
@@ -293,7 +289,7 @@ def whatTyping(button,stage):
         if event.key == 8: #delete
             button.pop()
         else:
-            button.append(event.unicode)
+            button.append(event.unicode) #types a letter
         stage.name = button.text
 
 def enter():
@@ -301,21 +297,21 @@ def enter():
     This function checks if a key was pressed and if it was enter, and if it was it returns true
     """
     if event.type == pygame.KEYDOWN:
-        if event.key == 13:
+        if event.key == 13: #enter
             return True
 
 def monitor(buttonList,stage,pos):
     """
     This function will generate a white outline when the user hovers the mouse over a button and update the text on a button if it is a response button
     """
-    if buttonList != None and buttonList != [None]: #ASK SOPHIE
+    if buttonList != None and buttonList != [None]:
         for button in buttonList:
             if button.responseButton:
                 whatTyping(button,stage)
-                button.draw()
-            elif isOver(button,pos):
+                button.draw() #redraws button with new text
+            elif isOver(button,pos): #generates an outline
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutline.png'),(button.width, button.height)),(button.x, button.y))
-            else:
+            else: #generates a window to cover old outlind
                 win.blit(pygame.transform.scale(pygame.image.load('ButtonOutlineCover.png'),(button.width, button.height)),(button.x, button.y))
 
 def playMusic(song):
@@ -336,7 +332,6 @@ if __name__ == '__main__':
     click.set_volume(.3)
 
     # Initializes starting screen
-    # currentScreen = Screen(Name, state)
     currentScreen = Screen(Name, state)
     currentScreen = nextScreen(currentScreen.stage, state)
 
@@ -346,6 +341,7 @@ if __name__ == '__main__':
         for event in pygame.event.get():
             pos = pygame.mouse.get_pos()
 
+            #monitors the display on the current screen is changing, either from an outline on a button or text on a response button
             monitor(currentScreen.screenButtons,currentScreen.stage,pos)
 
             # Check to see if a button is clicked, show the next approprate screen
@@ -366,8 +362,10 @@ if __name__ == '__main__':
                pygame.quit()
                quit()
 
+        #checks if inventory, buttonmapping, or stored names have changed
         checkAllConditions(currentScreen)
 
+        #checks if the level has changed and if it has plays accompanying music and noises
         if levelConditions(state,currentScreen.stage):
             playMusic(state.music)
             if state.noise != None:

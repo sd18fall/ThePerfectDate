@@ -308,7 +308,7 @@ allBackButtonGen(backButtonList) #generates backbuttons for all stages in backBu
 def levelConditions(state,stage):
     """
     This is specifically created for purpose of the game plot. It sets the conditions for when
-    the game level changes and the plot moves forward.
+    the game level changes and the plot moves forward. It also updates what music is playing and can come with a noise as the level changes. If the music is updates it returns True
     """
     if state.level == 1 and Diary.clicked and Outfit.clicked and Garden.clicked and Cookbook.clicked:
         state.level = 2 #Trash and Notes appear
