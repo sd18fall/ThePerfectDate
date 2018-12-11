@@ -8,7 +8,7 @@
 
 ## In the beginning...we really didn't know what we were doing...
 
-### Initial Architecture!
+### Initial Architecture:
 ![](arc.jpg)
 
 When we first began, we wanted to have as little classes as possible. This was because we didn't want to start off overcomplicating the various components involved and accidentally implement unnecessary classes and functions that we wouldn't need later on.
@@ -19,20 +19,20 @@ Needless to say, we had too little classes and essentially no architecture. We w
 
 ## After splitting the code into three parts and developing an MVP, we were in much better shape!
 
-### Improved Architecture!
+### Improved Architecture:
 ![](progarc.jpg)
 
 Now that we had split our code into Model, Viewer, and Controller, it was significantly easier and clearer for us to discuss the relationships between class and effectively decide which functions/methods were necessary to add.
 
 During our second architectural review, we received positive feedback about our structure. We mainly wanted to focus on figuring out an effective way to store our game data without it being overly complicated and confusing.
-We received many comments about storing the data into a dictionary.
+We received many comments about storing the data into a dictionary. However, we rather than storing the data in a dictionary, we decided to create classes in model that would store our data instead. 
 
 
 &nbsp;
 
 ## Finally, our current code design is divided into 3 different sections:
 
-### Final Architecture!
+### Final Architecture:
 ![](newarc.jpg)
 
 ## **MODEL**
