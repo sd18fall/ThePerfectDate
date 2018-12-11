@@ -167,14 +167,15 @@ Bedroom = Stage('Bedroom', {1: 'The room is extremely cozy and great for cuddlin
     MappingObject(Diary, 'Take a look at the Diary!', [1]),
     MappingObject(Notes, 'Tidy up the stack of letters in a messy pile on the table', [2,3])])
 
-NotOver2 = Stage('NotOver',{0: 'You help NAME get dressed in her OUTFIT and carry her downstairs to share some delicious COOKEDMEAL!'},'kitchen.png')
+TryAgain = Stage('TryAgain',{0: 'Hopefully you have better luck with the next girl huh? Try again?'},'bedroom.png')
+
+NotOver2 = Stage('NotOver',{0: 'You help NAME get dressed in her OUTFIT and carry her downstairs to share some delicious COOKEDMEAL! This date went so well! Why not try again with another girl? '},'kitchen.png')
 
 NotOver = Stage('NotOver',{0: 'No reason to ruin a perfectly good date over a little spat! All couples fight. That\'s right. All couples fight. When she wakes up everything will be okay. For now you had better help NAME get ready for your date.'},'bedroom.png',
 [MappingObject(NotOver2,'Help her get dressed',[0])])
 
-TryAgain = Stage('TryAgain',{0: 'Hopefully you have better luck with the next girl huh? Try again?'},'bedroom.png')
-
-TheEnd = Stage('TheEnd',{0: 'The End'},'Black.jpg')
+WakeUp = Stage('WakeUp',{0: 'When you wake up NAME is gone. You get up slowly. Oof your head really hurts.'},'Dark.jpeg',
+[MappingObject(TryAgain,'Try again',[0])])
 
 ForkAttack = Stage('ForkAttack',{0: 'You use fork to stab NAME once in the stomach. You let go and she staggers back. Your instincts take over. You throw her against the wall. There is a loud cracking noise and her head is tilted at a weird angle. You shake her a couple times, but she is not breathing.'},'Dark.jpeg',
 [MappingObject(TryAgain,'Try again',[0]),
@@ -185,7 +186,7 @@ Pulled = Stage('Pulled',{0: 'You pull NAME onto the ground. Hard. Much harder th
     MappingObject(NotOver,'This isn\'t over',[0])])
 
 Bottle2 = Stage('Bottle2',{0: 'While you are distracted NAME grabs a lamp and swings it over her head. Her face is red and she is baring her teeth. She brings it down over your head. Hard. Everything goes dark.'},'Black.jpg',
-[MappingObject(TheEnd,'The End',[0])])
+[MappingObject(WakeUp,'Wake up',[0])])
 
 Bottle = Stage('Bottle',{0: 'You jump up and grab the bottle before NAME. You didn\'t want to have to use it but she reached for it first. This is breaking your heart. Tears are streaming down your face'},'Dark.jpeg',
 [MappingObject(Bottle2 ,'Use the bottle',[0])],1,'beer-bottle.png')
@@ -267,6 +268,8 @@ MappingObject(Approach5,'Stay rational',[0])])
 Approach5.buttonMapping.append(MappingObject(LoopApproach5,'Stay rational',[0]))
 
 TryAgain.buttonMapping= [MappingObject(StartingPage,'Try again',[0])]
+
+NotOver2.buttonMapping= [MappingObject(StartingPage,'Try again',[0])]
 
 """
 This part connects all stages in a hierarchy, assigning the bottomest tier stages which stage is the one previous. In our case, the HALLWAY stage is at the top of the hierarchy, as all other stages stem from it.
@@ -375,7 +378,12 @@ allBackButtonGen(backButtonList) #generates backbuttons for all stages in backBu
 def levelConditions(state,stage):
     """
     This is specifically created for purpose of the game plot. It sets the conditions for when
-    the game level changes and the plot moves forward. It also updates what music is playing and can come with a noise as the level changes. If the music is updates it returns True
+    the game level changes and the plot moves forward. It also updates what music is playing and
+    can come with a noise as the level changes. If the music is updates it returns True.
+
+    This function also checks for when a button indicating the game should restart is pressed. If
+    the button is pressed, all stages that have been modified that are pertinent to choice interactions
+    are set back to their original form.
     """
     if state.level == 1 and Diary.clicked and Outfit.clicked and Garden.clicked and Cookbook.clicked:
         state.level = 2 #Trash and Notes appear
@@ -395,7 +403,9 @@ def levelConditions(state,stage):
             state.music = 'happy.mp3'
             state.noise = None
             return True
-    if TryAgain.clicked:
+    if TryAgain.clicked or NotOver2.clicked: #starts game over
+        TryAgain.clicked = False
+        NotOver2.clicked = False
         state.level = 1
         state.decisions = {}
         state.inventory = []
@@ -407,7 +417,17 @@ def levelConditions(state,stage):
         Notes.clicked = False
         EndKitchen.clicked = False
         Weapon.clicked = False
-        TryAgain.Clicked = False
+        Lasagna.clicked = False
+        Pizza.clicked = False
+        Salad.clicked = False
+        Sunflower.clicked = False
+        Daisy.clicked = False
+        Rose.clicked = False
+        PowerSuit.clicked = False
+        SunDress.clicked = False
+        TShirt.clicked = False
+        StartingPage2.clicked = False
+        PrepareFood.clicked = False
 
         EndKitchen.buttonMapping = [MappingObject(PrepareFood,'Get the food out of the oven',[3,4])]
         Bedroom.buttonMapping = [MappingObject(Outfit, 'Time to choose what to wear for this special night!', [1]),
@@ -416,6 +436,14 @@ def levelConditions(state,stage):
         Kitchen.buttonMapping = [MappingObject(Cookbook, 'Check out your favorite cookbook for a recipe to cook for tonight!', [1]),
             MappingObject(Garden, 'Head to the garden to choose a flower for tonight!', [1]),
             MappingObject(Trash, 'Take out the trash so the kitchen doesn’t smell weird later', [2,3])]
+        Hallway.buttonMapping = [MappingObject(Kitchen, 'Go downstairs to the kitchen!', [1]),
+            MappingObject(Kitchen, 'Go downstairs to clean the kitchen!', [2]),
+            MappingObject(EndKitchen,'Go downstairs to the kitchen and check on the oven!',[3,4,5]),
+            MappingObject(Bedroom, 'Go upstairs to the bedroom!', [1,3]),
+            MappingObject(Bedroom, 'Go upstairs to clean the bedroom!', [2]),
+            MappingObject(EndBedroom,'Go upstairs to the bedroom!',[4,5])]
+
+        allBackButtonGen([EndKitchen,Bedroom,Kitchen])
 
 
 

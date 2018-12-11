@@ -109,13 +109,12 @@ class MappingObject():
     responseButton: Indicates whether the Button object created from the MappingObject will be a responseButton or not.
 
     """
-    def __init__(self, stageMapTo, buttontext,levels,backButton = False, responseButton = False, dimensions = 1):
+    def __init__(self, stageMapTo, buttontext,levels,backButton = False, responseButton = False):
         self.stageMapTo = stageMapTo
         self.buttontext = buttontext
         self.levels = levels
         self.backButton = backButton
         self.responseButton = responseButton
-        self.dimensions = dimensions
 
     def __str__(self):
         return str(self.stageMapTo)
@@ -197,7 +196,7 @@ def playMusic(song):
     """
     Plays a song when given the file name of the song file
     """
-    pygame.mixer.music.load('./sounds/'+song)
+    pygame.mixer.music.load('./sound/'+song)
     pygame.mixer.music.play(-1)
 
 def checkInventory(stage,state):
