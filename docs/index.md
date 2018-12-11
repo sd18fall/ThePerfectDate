@@ -7,7 +7,7 @@
 ![](TitleScreen.png)
 
 ### CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
-[Go to Video!](https://www.youtube.com/watch?v=DvxlZQlkiZk&t=3s)
+[Go to Video!](https://www.youtube.com/watch?v=DvxlZQlkiZk&t=0s)
 
 &nbsp;
 
