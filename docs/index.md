@@ -7,14 +7,15 @@
 We came together because of a class project. As different levels of video game fanatics, we had a wide collection of video games under our belts. However, we instantly fell in love with the idea of developing a text-based video game with a twist. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
 
 # CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
+[Click This Link](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
 
-[![sophie.jpg](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
+<img src="TitleScreen.png" width="300" height="300" />
 
 &nbsp;
 
 # HOW TO PLAY
 
-##To get started, please download:
+## To get started, please download:
 
 ## PYGAME: This is needed so the game display can be generated.
 
@@ -38,33 +39,33 @@ python ViewerandController.py
 
 # FREQUENTLY ASKED QUESTIONS
 
-### **Q**: **How long is the game?**
+### Q: How long is the game?
 
-### **A**: ~ 10 - 15 minutes
-
-&nbsp;
-
-### **Q**: **Will it require a lot of skill to play?**
-
-### **A**: Nope! It's a text-based game, so you just read what is displayed and click on buttons with your mouse to proceed forward.
+### A: ~ 10 - 15 minutes
 
 &nbsp;
 
-### **Q**: **Are there multiple endings?**
+### Q: Will it require a lot of skill to play?
 
-### **A**: Yes! Depending on the options you select!
-
-&nbsp;
-
-### **Q**: **Is it fun?**
-
-### **A**: OF COURSE! DUH.
+### A: Nope! It's a text-based game, so you just read what is displayed and click on buttons with your mouse to proceed forward.
 
 &nbsp;
 
-### **Q**: **This game is amazing! What can I do to create my own version?**
+### Q: Are there multiple endings?
 
-### **A**: GLAD YOU ASKED. You can simply go into our "stageobject_mappings.py" file and you can edit the game plot in there!
+### A: Yes! Depending on the options you select!
+
+&nbsp;
+
+### Q: Is it fun?
+
+### A: OF COURSE! DUH.
+
+&nbsp;
+
+### Q: This game is amazing! How do I generate my own version?
+
+### A: GLAD YOU ASKED. You can simply go into our "stageobject_mappings.py" file and you can edit the game plot in there!
 
 &nbsp;
 
