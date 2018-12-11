@@ -25,7 +25,7 @@ Needless to say, we had too little classes and essentially no architecture. We w
 Now that we had split our code into Model, Viewer, and Controller, it was significantly easier and clearer for us to discuss the relationships between class and effectively decide which functions/methods were necessary to add.
 
 During our second architectural review, we received positive feedback about our structure. We mainly wanted to focus on figuring out an effective way to store our game data without it being overly complicated and confusing.
-We received many comments about storing the data into a dictionary. However, we rather than storing the data in a dictionary, we decided to create classes in model that would store our data instead.
+We received many comments about storing the data into a dictionary. However, rather than storing the data in a dictionary, we decided to create classes in model that would store our data instead.
 
 
 &nbsp;

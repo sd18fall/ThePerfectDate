@@ -51,6 +51,6 @@ Cynthia is an avid fan of fresh smelling candles and organic hair products. Whi
 
 **1. All the losers who tested our game and gave us amazing feedback!**
 
-**2. Ben Hill, Peter Segar, Ashley Swanson, Vivien Chen for their patience and continuous feedback throughout the entire project!**
+**2. Ben Hill, Peter Segar, Ashley Swanson, and Vivien Chen for their patience and continuous feedback throughout the entire project!**
 
-**3. Doki Doki Literature Club, Undertale, and Can Your Pet for the game inspiration. We couldn't have done it without your amazing work!**
+**3. Doki Doki Literature Club, Undertale, and Can Your Pet for the game inspiration. We couldn't have done it without their amazing work!**
