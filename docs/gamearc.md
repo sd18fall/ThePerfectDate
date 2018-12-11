@@ -13,7 +13,7 @@
 
 When we first began, we wanted to have as little classes as possible. This was because we didn't want to start off overcomplicating the various components involved and accidentally implement unnecessary classes and functions that we wouldn't need later on.
 
-Needless to say, we had too little classes and essentially no architecture. We were also confused ourselves as to how the classes worked with one another because we hadn't done much coding yet. One of the biggest pieces of feedback we received during our first architectural review session was to implement a "state machine" to help us keep track of the game as it progresses. We hadn't thought of the idea because we were too focused on oversimplifying the game. Additionally, we had all of our code in one giant file with no clear distinction between each class and how they work with one another. This was a huge red flag, and we are thankful that we immediately fixed the structure after we got feedback.
+Needless to say, we had too little classes and essentially no architecture. We were also confused ourselves as to how the classes worked with one another because we hadn't done much coding yet. One of the biggest pieces of feedback we received during our first architectural review session was to implement a "state machine" to help us keep track of the game as it progresses. We hadn't thought of the idea because we were too focused on oversimplifying the game. Additionally, we had all of our code in one giant file with no clear distinction between each class and how they work with one another. This was a huge red flag, and we are thankful that we immediately fixed the structure after we got feedback.s
 
 &nbsp;
 
@@ -25,7 +25,7 @@ Needless to say, we had too little classes and essentially no architecture. We w
 Now that we had split our code into Model, Viewer, and Controller, it was significantly easier and clearer for us to discuss the relationships between class and effectively decide which functions/methods were necessary to add.
 
 During our second architectural review, we received positive feedback about our structure. We mainly wanted to focus on figuring out an effective way to store our game data without it being overly complicated and confusing.
-We received many comments about storing the data into a dictionary. However, we rather than storing the data in a dictionary, we decided to create classes in model that would store our data instead. 
+We received many comments about storing the data into a dictionary. However, we rather than storing the data in a dictionary, we decided to create classes in model that would store our data instead.
 
 
 &nbsp;
@@ -39,6 +39,8 @@ We received many comments about storing the data into a dictionary. However, we 
 
 ### This file contains all the critical classes that provide information to the Viewer and Controller file so the game can be displayed.
 
+&nbsp;
+
 | CLASSES & FUNCTIONS 	| WHAT IT DOES                                                                                                        	|
 |:---------------------	|:---------------------------------------------------------------------------------------------------------------------	|
 | Stage Class         	| Stores information about the rooms/screens that will be used to generate the visuals                                	|
@@ -51,6 +53,8 @@ We received many comments about storing the data into a dictionary. However, we 
 ## **VIEWER & CONTROLLER**
 
 ### This file has the classes and functions that form the graphics of our game.
+
+&nbsp;
 
 | CLASSES & FUNCTIONS  	 | WHAT IT DOES                                                                                                                                                      	|
 |:---------------------- |:-------------------------------------------------------------------------------------------------------------------------------------------------------------------	|

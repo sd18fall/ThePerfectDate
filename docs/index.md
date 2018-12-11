@@ -4,14 +4,16 @@
 &nbsp;
 &nbsp;
 
+![](TitleScreen.png)
+
+### CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
+[Go to Video!](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
+
+&nbsp;
+
 # THE GAME INSPIRATION
 
 We came together because of a class project. As different levels of video game fanatics, we had a wide collection of video games under our belts. However, we instantly fell in love with the idea of developing a text-based video game with a twist. With different learning goals in mind, we set out on an adventurous journey to see what we can do with python to bring this fantastic video game to life!
-
-# CURIOUS ABOUT HOW THE GAME WORKS? CHECK OUT THIS VIDEO!
-[Go to Video!](https://www.youtube.com/watch?v=7IkMg99j7lA&feature=youtu.be)
-
-![](TitleScreen.png)
 
 &nbsp;
 
